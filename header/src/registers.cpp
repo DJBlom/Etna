@@ -1,21 +1,12 @@
-#include "../registers.h"
-
-
-
-
-
-/**********************************************
- * CONSTRUCTOR IMPLEMENTATION
+/**
+ * Contents	: Static helper functions to access MCU registers.
  *
- * NOTE:By calling this constructor, it should
- *              set the address specified with a given 
- *              bit_positions.
- **********************************************/
-template<typename address_t, typename position_t>
-firmware::Registers<address_t, position_t>::Registers(address_t &address, position_t bit_positions)
-{
-        *(reinterpret_cast<volatile address_t *> (&address)) = static_cast<position_t> (bit_positions);
-}
+ * Author	: Dawid Blom	
+ *
+ * Date		: 08/30/2022
+ *
+ * NOTE		:
+ **/
 
 
 
@@ -26,9 +17,11 @@ firmware::Registers<address_t, position_t>::Registers(address_t &address, positi
 
 
 
-/***********************************
- * MULTIPLE BIT MANIPULATION METHODS
- ***********************************/
+
+
+/*************************************
+ * MULTIPLE BIT MANIPULATION FUNCTIONS
+ *************************************/
 
 
 /**
@@ -38,10 +31,10 @@ firmware::Registers<address_t, position_t>::Registers(address_t &address, positi
  * or old bit_positions.
  **/
 template<typename address_t, typename position_t>
-inline void firmware::Registers<address_t, position_t>::set(address_t &address, position_t bit_positions)
+static inline void set(address_t &address, position_t bit_positions)
 {
-        *(reinterpret_cast<volatile address_t *> (&address))
-        = (static_cast<position_t> (bit_positions));
+		*(reinterpret_cast<volatile address_t *> (&address))
+		= (static_cast<position_t> (bit_positions));
 }
 
 
@@ -55,11 +48,11 @@ inline void firmware::Registers<address_t, position_t>::set(address_t &address, 
  * operation.
  **/
 template<typename address_t, typename position_t>
-inline void firmware::Registers<address_t, position_t>::enable(address_t &address, position_t bit_positions)
+static inline void enable(address_t &address, position_t bit_positions)
 {
-        *(reinterpret_cast<volatile address_t *> (&address)) 
-        = (*(reinterpret_cast<volatile address_t *> (&address)) 
-        | (static_cast<position_t> (bit_positions)));
+		*(reinterpret_cast<volatile address_t *> (&address)) 
+		= (*(reinterpret_cast<volatile address_t *> (&address)) 
+		| (static_cast<position_t> (bit_positions)));
 }
 
 
@@ -74,11 +67,11 @@ inline void firmware::Registers<address_t, position_t>::enable(address_t &addres
  * an and operation.
  **/
 template<typename address_t, typename position_t>
-inline void firmware::Registers<address_t, position_t>::check(address_t &address, position_t bit_positions)
+static inline void check(address_t &address, position_t bit_positions)
 {
-        *(reinterpret_cast<volatile address_t *> (&address)) 
-        = (*(reinterpret_cast<volatile address_t *> (&address))
-        & (static_cast<position_t> (bit_positions)));
+		*(reinterpret_cast<volatile address_t *> (&address)) 
+		= (*(reinterpret_cast<volatile address_t *> (&address))
+		& (static_cast<position_t> (bit_positions)));
 }
 
 
@@ -92,11 +85,11 @@ inline void firmware::Registers<address_t, position_t>::check(address_t &address
  * disabling the register.
  **/
 template<typename address_t, typename position_t>
-inline void firmware::Registers<address_t, position_t>::disable(address_t &address, position_t bit_positions)
+static inline void disable(address_t &address, position_t bit_positions)
 {
-        *(reinterpret_cast<volatile address_t *> (&address))
-        = (*(reinterpret_cast<volatile address_t *> (&address))
-        & (static_cast<address_t> (~bit_positions)));
+		*(reinterpret_cast<volatile address_t *> (&address))
+		= (*(reinterpret_cast<volatile address_t *> (&address))
+		& (static_cast<address_t> (~bit_positions)));
 }
 
 
@@ -110,11 +103,11 @@ inline void firmware::Registers<address_t, position_t>::disable(address_t &addre
  * register.
  **/
 template<typename address_t, typename position_t>
-inline void firmware::Registers<address_t, position_t>::toggle(address_t &address, position_t bit_positions)
+static inline void toggle(address_t &address, position_t bit_positions)
 {
-        *(reinterpret_cast<volatile address_t *> (&address))
-        = (*(reinterpret_cast<volatile address_t *> (&address))
-        ^ (static_cast<position_t> (bit_positions)));
+		*(reinterpret_cast<volatile address_t *> (&address))
+		= (*(reinterpret_cast<volatile address_t *> (&address))
+		^ (static_cast<position_t> (bit_positions)));
 }
 
 
@@ -122,16 +115,16 @@ inline void firmware::Registers<address_t, position_t>::toggle(address_t &addres
 
 
 
-/**
- * By calling this method, it should 
- * return the bit_positions of the register in
- * use.
- **/
-template<typename address_t, typename position_t>
-inline address_t firmware::Registers<address_t, position_t>::get(address_t &address)
-{
-        return (*(reinterpret_cast<volatile address_t *> (&address)));
-}
+		/**
+		 * By calling this method, it should 
+		 * return the bit_positions of the register in
+		 * use.
+		 **/
+		template<typename address_t>
+		static inline address_t get(address_t &address)
+		{
+				return (*(reinterpret_cast<volatile address_t *> (&address)));
+		}
 
 
 
@@ -149,74 +142,72 @@ inline address_t firmware::Registers<address_t, position_t>::get(address_t &addr
 
 
 
-/*********************************
- * SINGLE BIT MANIPULATION METHODS
- *********************************/
+	//	/***********************************
+	//	 * SINGLE BIT MANIPULATION FUNCTIONS	
+	//	 ***********************************/
 
 
-/**
- * By calling this method, it should 
- * set a specific bit of a register 
- * to high. Thereby enabling a single
- * bit of the register.
- **/
-template<typename address_t, typename position_t>
-inline void firmware::Registers<address_t, position_t>::enable_bit(address_t &address, position_t bit_position)
-{
-         *(reinterpret_cast<volatile address_t *> (&address)) 
-         = (*(reinterpret_cast<volatile address_t *> (&address)) 
-         | (static_cast<position_t> (1U << bit_position)));
-}
-
-
-
-
-
-/**
- * By calling this method, it should
- * set a specific bit of a register
- * to low. Thereby disabling a single 
- * bit of the register.
- **/
-template<typename address_t, typename position_t>
-inline void firmware::Registers<address_t, position_t>::disable_bit(address_t &address, position_t bit_position)
-{
-        *(reinterpret_cast<volatile address_t *> (&address))
-        = (*(reinterpret_cast<volatile address_t *> (&address))
-        & (static_cast<volatile position_t> (~(1U << bit_position))));
-}
+	//	/**
+	//	 * By calling this method, it should 
+	//	 * set a specific bit of a register 
+	//	 * to high. Thereby enabling a single
+	//	 * bit of the register.
+	//	 **/
+	//	template<typename address_t, typename position_t>
+	//	static inline void enable_bit(address_t &address, position_t bit_position)
+	//	{
+	//			 *(reinterpret_cast<volatile address_t *> (&address)) 
+	//			 = (*(reinterpret_cast<volatile address_t *> (&address)) 
+	//			 | (static_cast<position_t> (1U << bit_position)));
+	//	}
 
 
 
 
 
-/**
- * By calling this method, it should
- * set the bit that's currently high
- * to low or wisa versa. Thereby, 
- * toggling the bit on/off.
- **/
-template<typename address_t, typename position_t>
-inline void firmware::Registers<address_t, position_t>::toggle_bit(address_t &address, position_t bit_position)
-{
-        *(reinterpret_cast<volatile address_t *> (&address))
-        = (*(reinterpret_cast<volatile address_t *> (&address))
-        ^ (static_cast<position_t> (1U << bit_position)));
-}
+	//	/**
+	//	 * By calling this method, it should
+	//	 * set a specific bit of a register
+	//	 * to low. Thereby disabling a single 
+	//	 * bit of the register.
+	//	 **/
+	//	template<typename address_t, typename position_t>
+	//	static inline void disable_bit(address_t &address, position_t bit_position)
+	//	{
+	//			*(reinterpret_cast<volatile address_t *> (&address))
+	//			= (*(reinterpret_cast<volatile address_t *> (&address))
+	//			& (static_cast<volatile position_t> (~(1U << bit_position))));
+	//	}
+
+
+
+
+
+	//	/**
+	//	 * By calling this method, it should
+	//	 * set the bit that's currently high
+	//	 * to low or wisa versa. Thereby, 
+	//	 * toggling the bit on/off.
+	//	 **/
+	//	template<typename address_t, typename position_t>
+	//	static inline void toggle_bit(address_t &address, position_t bit_position)
+	//	{
+	//			*(reinterpret_cast<volatile address_t *> (&address))
+	//			= (*(reinterpret_cast<volatile address_t *> (&address))
+	//			^ (static_cast<position_t> (1U << bit_position)));
+	//	}
 
 
 
 
 
 
-/**
- * By calling this method, it should
- * return the bit data of a specified
- * bit position of the register.
- **/
-template<typename address_t, typename position_t>
-inline address_t firmware::Registers<address_t, position_t>::get_bit(address_t &address, position_t bit_position)
-{
-        return ((get(address) & static_cast<position_t> (1U << bit_position)) != static_cast<position_t> (0U));
-}
-
+	//	/**
+	//	 * By calling this method, it should
+	//	 * return the bit data of a specified
+	//	 * bit position of the register.
+	//	 **/
+	//	static inline address_t driver::registers::get_bit(address_t &address, position_t bit_position)
+	//	{
+	//			return ((get(address) & static_cast<position_t> (1U << bit_position)) != static_cast<position_t> (0U));
+	//	}
