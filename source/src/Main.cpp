@@ -12,18 +12,19 @@ volatile generic_t* odr = GetAddress(registers::gpio::gpioa::GPIOA_ODR);
 
 int main()
 {
-    GreenUserLED led{busClock, mode, odr};
+    HAL::GreenUserLED led{busClock, mode, odr};
 
 
+    generic_t bitPosition = (1U << 5);
     while (true)
     {
-        //led.EnableLED();
+        led.EnableLED(bitPosition);
         for (int i = 0; i < 500000; i++)
         {
 
         }
 
-        //led.DisableLED();
+        led.DisableLED(bitPosition);
         for (int i = 0; i < 500000; i++)
         {
 

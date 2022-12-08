@@ -26,12 +26,14 @@ add_compile_definitions(
 add_executable(Etna
     ${CMAKE_SOURCE_DIR}/startup/Startup.cpp
     ${CMAKE_SOURCE_DIR}/source/src/Main.cpp
-    ${CMAKE_SOURCE_DIR}/source/src/components/GreenUserLED.cpp
+    ${CMAKE_SOURCE_DIR}/source/src/HAL/GreenUserLED.cpp
 )
 
 target_include_directories(Etna PRIVATE
     ${CMAKE_SOURCE_DIR}/source/abstract/components
+    ${CMAKE_SOURCE_DIR}/source/abstract/HAL
     ${CMAKE_SOURCE_DIR}/source/concrete/components
+    ${CMAKE_SOURCE_DIR}/source/concrete/HAL
     ${CMAKE_SOURCE_DIR}/source/concrete/registers
 )
 
@@ -46,7 +48,7 @@ set_target_properties(Etna PROPERTIES
 
 
 target_link_options(Etna PRIVATE
-    -T${CMAKE_SOURCE_DIR}/bootloader/Flash.ld
+    -T${CMAKE_SOURCE_DIR}/startup/Flash.ld
     LINKER:--print-memory-usage
     LINKER:-Map,${CMAKE_CURRENT_BINARY_DIR}/Etna.map
 )
