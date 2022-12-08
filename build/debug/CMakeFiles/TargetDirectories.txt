@@ -1,0 +1,3 @@
+/home/odin/workspace/c++_projects/embedded/etna/build/debug/CMakeFiles/Etna.dir
+/home/odin/workspace/c++_projects/embedded/etna/build/debug/CMakeFiles/edit_cache.dir
+/home/odin/workspace/c++_projects/embedded/etna/build/debug/CMakeFiles/rebuild_cache.dir
