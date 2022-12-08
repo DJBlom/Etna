@@ -24,7 +24,7 @@ add_compile_definitions(
 )
 
 add_executable(Etna
-    ${CMAKE_SOURCE_DIR}/bootloader/Startup.cpp
+    ${CMAKE_SOURCE_DIR}/startup/Startup.cpp
     ${CMAKE_SOURCE_DIR}/source/src/Main.cpp
     ${CMAKE_SOURCE_DIR}/source/src/components/GreenUserLED.cpp
 )
@@ -36,7 +36,7 @@ target_include_directories(Etna PRIVATE
 )
 
 set(LINKER_SCRIPTS
-    ${CMAKE_SOURCE_DIR}/bootloader/Flash.ld
+    ${CMAKE_SOURCE_DIR}/startup/Flash.ld
 )
 
 set_target_properties(Etna PROPERTIES 
