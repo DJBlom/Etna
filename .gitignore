@@ -1,6 +1,6 @@
 # Project directory
-build/*.*
-build/*/
+build/*
+!build/.gitkeep
 
 # Test directory
 test/objs/
