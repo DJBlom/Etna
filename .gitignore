@@ -1,2 +1,7 @@
+# Test directory
 /test/objs
+/test/lib
+/test/*.pdf
+
+# Project directory
 /build/*
