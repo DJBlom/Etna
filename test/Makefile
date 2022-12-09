@@ -12,7 +12,7 @@ PROJECT_DIR :=$(realpath ..)
 
 TEST_DIR :=$(realpath .)
 
-TEST_TARGET	:=EtnaTests
+TEST_TARGET :=EtnaTests
 
 CPP_PLATFORM :=g++
 
