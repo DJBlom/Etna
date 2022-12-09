@@ -1,0 +1,8 @@
+# Project directory
+build/*
+!build/.gitkeep
+
+# Test directory
+test/objs/
+test/lib/
+test/EtnaTests
