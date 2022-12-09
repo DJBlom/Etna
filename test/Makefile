@@ -1,20 +1,19 @@
 ##############################################################
-# Contents: Paths to the projects source code. 
+# Contents: Paths to source files used by CppUTest
 #
 # Author: Dawid Blom.
 #
 # Date: September 18, 2022
 #
-# NOTE: This Makefile is used by the unit testing 
-# framework, CppUTest.
+# NOTE: This Makefile adds value to the CppUTests framework
+# by specifying the folders where the code is to be tested.
 ##############################################################
 PROJECT_DIR :=$(realpath ..)
-
 TEST_DIR :=$(realpath .)
 
 TEST_TARGET :=EtnaTests
-
 CPP_PLATFORM :=g++
+
 
 SRC_DIRS :=\
 	$(PROJECT_DIR)/source/src/components\
@@ -38,5 +37,4 @@ TEST_SRC_DIRS :=\
 CPPUTEST_USE_GCOV := Y
 CPPUTEST_USE_EXTENSIONS := Y
 -include $(CPPUTEST_HOME)/build/MakefileWorker.mk
-
 
