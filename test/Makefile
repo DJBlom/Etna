@@ -30,16 +30,10 @@ INCLUDE_DIRS :=\
 	$(PROJECT_DIR)/source/concrete/registers\
 	$(TEST_DIR)/mocks
 
-
-
-			   
-
 TEST_SRC_DIRS :=\
 	$(TEST_DIR)/\
 	$(TEST_DIR)/tests\
 	$(TEST_DIR)/mocks
-
-
 
 CPPUTEST_USE_GCOV := Y
 CPPUTEST_USE_EXTENSIONS := Y
