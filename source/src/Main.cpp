@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /********************************************************************************
  * Contents: Main function of Etna.
  *
@@ -10,25 +11,22 @@
 #include <cstdint>
 #include "RegisterAddresses.h"
 #include "GreenUserLED.h"
+=======
+/**********************************************************************************
+ * Contents: Main function.
+ *
+ * Author: Dawid Blom.
+ *
+ * Data: December 8, 2022.
+ *
+ * NOTE: This file contains the main function of the Etna application.
+ *********************************************************************************/
+>>>>>>> main
 
 int main()
 {
-    HAL::GreenUserLED led{busClock, mode, odr};
-
-
-    generic_t bitPosition = (1U << 5);
     while (true)
     {
-        led.EnableLED(bitPosition);
-        for (int i = 0; i < 500000; i++)
-        {
 
-        }
-
-        led.DisableLED(bitPosition);
-        for (int i = 0; i < 500000; i++)
-        {
-
-        }
     }
 }
