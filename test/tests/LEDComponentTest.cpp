@@ -1,9 +1,16 @@
+/********************************************************************************
+ * Contents: Test Fixture GreenUserLEDComponentTest.
+ *
+ * Author: Dawid Blom.
+ *
+ * Date: Testing the register manipulation of GPIOA and RCC pins.
+ *******************************************************************************/
 #include "CppUTest/TestHarness.h"
 #include "CppUTestExt/MockSupport.h"
+
 #include <cstdint>
 
 #include "GreenUserLED.h"
-
 
 extern "C" 
 {
