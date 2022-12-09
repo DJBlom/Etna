@@ -1,20 +1,20 @@
 ##############################################################
-# Contents	: Testing MakefileWorker.mk with cpputest
+# Contents: Paths to the projects source code. 
 #
-# Author	: Dawid Blom.
+# Author: Dawid Blom.
 #
-# Date		: September 18, 2022
+# Date: September 18, 2022
 #
-# NOTE		:
+# NOTE: This Makefile is used by the unit testing framework,
+# 		CppUTest.
 ##############################################################
-
 PROJECT_DIR :=$(realpath ..)
 
 TEST_DIR :=$(realpath .)
 
 TEST_TARGET	:=EtnaTests
 
-CPP_PLATFORM :=G++
+CPP_PLATFORM :=g++
 
 SRC_DIRS :=\
 		   $(PROJECT_DIR)/source/src/components\
@@ -22,12 +22,12 @@ SRC_DIRS :=\
 
 INCLUDE_DIRS :=\
 			   $(CPPUTEST_HOME)/include\
-		   	   $(PROJECT_DIR)/source/abstract/components\
-		   	   $(PROJECT_DIR)/source/abstract/HAL\
-		   	   $(PROJECT_DIR)/source/abstract/registers\
-		   	   $(PROJECT_DIR)/source/concrete/components\
-		   	   $(PROJECT_DIR)/source/concrete/HAL\
-		   	   $(PROJECT_DIR)/source/concrete/registers\
+			   $(PROJECT_DIR)/source/abstract/components\
+			   $(PROJECT_DIR)/source/abstract/HAL\
+			   $(PROJECT_DIR)/source/abstract/registers\
+			   $(PROJECT_DIR)/source/concrete/components\
+			   $(PROJECT_DIR)/source/concrete/HAL\
+			   $(PROJECT_DIR)/source/concrete/registers\
 			   $(TEST_DIR)/mocks
 
 
