@@ -1,5 +1,6 @@
 # Test directory
-test/*
+test/objs/
+test/lib/
 
 # Project directory
-/build/*
+build/

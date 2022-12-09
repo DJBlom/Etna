@@ -6,7 +6,7 @@ USAGE="Usage: $(basename $0) [-v | --verbose] [ reset | clean | debug | release 
 
 CMAKE=cmake
 BUILD=build
-TYPE=DEBUG
+TYPE=debug
 BUILD_DIR=$BUILD
 CLEAN=
 RESET=
@@ -18,8 +18,8 @@ for arg; do
     case "$arg" in
         --help|-h)    echo $USAGE; exit 0;;
         -v|--verbose) VERBOSE='VERBOSE=1'  ;;
-        debug)        TYPE=DEBUG;   BUILD_DIR=$BUILD/debug ;;
-        release)      TYPE=RELEASE; BUILD_DIR=$BUILD/release ;;
+        debug)        TYPE=debug;   BUILD_DIR=$BUILD/debug ;;
+        release)      TYPE=release; BUILD_DIR=$BUILD/release ;;
         clean)        CLEAN=1  ;;
         reset)        RESET=1 ;;
         openocd)      OPENOCD=1 ;;
@@ -35,7 +35,7 @@ then
     rm -rf $BUILD_DIR/*
 elif [[ -n $CLEAN  ]] 
 then
-    $CMAKE --build $BUILD_DIR --target clean
+    $CMAKE --build $BUILD_DIR/$TYPE --target clean
     $CMAKE --build $BUILD_DIR 
 else
     $CMAKE -S . -B $BUILD_DIR --warn-uninitialized -DCMAKE_BUILD_TYPE=$TYPE -DCMAKE_TOOLCHAIN_FILE=toolchain_etna.cmake
