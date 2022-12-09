@@ -4,3 +4,4 @@ build/*
 # Test directory
 test/objs/
 test/lib/
+test/EtnaTest
