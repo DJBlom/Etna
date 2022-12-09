@@ -11,14 +11,9 @@
 PROJECT_DIR :=$(realpath ..)
 TEST_DIR :=$(realpath .)
 
-<<<<<<< HEAD
-TEST_TARGET	:=EtnaTests
-CPP_PLATFORM :=G++
-=======
 TEST_TARGET :=EtnaTests
-
 CPP_PLATFORM :=g++
->>>>>>> main
+
 
 SRC_DIRS :=\
 	$(PROJECT_DIR)/source/src/components\
