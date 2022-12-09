@@ -1,13 +1,12 @@
-/**********************************************************************************
- * Contents: Main function for the CppUTest framework.
+/********************************************************************************
+ * Contents: Main function of CppUTest.
  *
  * Author: Dawid Blom.
  *
- * Data: December 8, 2022.
+ * Date: December 8, 2022.
  *
- * NOTE: This file contains the main function to used by CppUTest to execute
- *       all the tests of the project.
- *********************************************************************************/
+ * Note: Used by CppUTest to execute all the tests of the project.
+ *******************************************************************************/
 #include "CppUTest/CommandLineTestRunner.h"
 
 int main(int argc, char **argv)
