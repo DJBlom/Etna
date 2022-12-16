@@ -3,10 +3,10 @@
 #include <cstdint>
 
 using addressType = std::uint32_t;
-addressType* GetAddress(addressType address)
-{
-    return reinterpret_cast<addressType*> (address);
-}
+//addressType* GetAddress(addressType address)
+//{
+//    return reinterpret_cast<addressType*> (address);
+//}
 
 namespace registers {
     constexpr addressType BASE{0x40000000U};
@@ -18,10 +18,10 @@ namespace registers {
 
 
     namespace rcc {
-        constexpr addressType APB1_ENABLE	{RCC_BASE + 0x40U};
-        constexpr addressType AHB1_ENABLE	{RCC_BASE + 0x30U};
-        constexpr addressType AHB2_ENABLE {AHB1_ENABLE + 0x34U};
-        constexpr addressType AHB3_ENABLE	{AHB2_ENABLE + 0x38U};
+        constexpr addressType APB1_ENABLE{RCC_BASE + 0x40U};
+        constexpr addressType AHB1_ENABLE{RCC_BASE + 0x30U};
+        constexpr addressType AHB2_ENABLE{AHB1_ENABLE + 0x34U};
+        constexpr addressType AHB3_ENABLE{AHB2_ENABLE + 0x38U};
     }
 
 
