@@ -1,12 +1,16 @@
 #include "PeripheralClocks.h"
-#include "RegisterAddresses.h"
 
-namespace Addresses {
-    volatile peripheralType* ahb1Enable = reinterpret_cast<peripheralType*> (registers::rcc::AHB1_ENABLE);
+
+
+
+//Hardware::Registers temp{address};
+
+Rcc::PeripheralClocks::PeripheralClocks()
+{
+//    this->registerAddress = address;
+//    ahb1GpioA{address};
 }
-
-
 void Rcc::PeripheralClocks::ConfigurePeripheralClocks()
 {
-    clocks.EnableClockForGpioA(Addresses::ahb1Enable);
+    //ahb1GpioA.EnableRegisterBit(1U << 0);
 }

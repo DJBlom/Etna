@@ -7,84 +7,44 @@
  *
  * NOTE: This file contains the main function of the Etna application.
  *********************************************************************************/
-#include "PeripheralClocks.h"
+#include "MCURegisters.h"
 #include "RegisterAddresses.h"
 #include <cstdint>
-
-namespace SystemInit {
-    Rcc::PeripheralClocks clocks;
-}
+ 
 
 using genericType = std::uint32_t;
 
-volatile genericType* rcc = reinterpret_cast<genericType*> (registers::rcc::AHB1_ENABLE);
-volatile genericType* mode = reinterpret_cast<genericType*> (registers::gpio::gpioa::GPIOA_MODER);
-volatile genericType* odr = reinterpret_cast<genericType*> (registers::gpio::gpioa::GPIOA_ODR);
+genericType* Address(addressType address)
+{
+    return reinterpret_cast<addressType*> (address);
+}
 
-class LED {
-    public:
-        LED(volatile genericType* rcc, volatile genericType* mode, volatile genericType* odr)
-        {
-            this->odr = odr;
-            *rcc = *rcc | (Bits::odrOn << Pos::clock);
-            *mode = *mode | (Bits::modeOn << Pos::outputMode);
-        }
-
-        void EnableLED()
-        {
-            *this->odr = *this->odr | (Bits::odrOn << Pos::odr); 
-        }
-
-        void DisableLED()
-        {
-            *this->odr = *this->odr & ~(Bits::odrOn << Pos::odr); 
-        }
-
-    private:
-        volatile genericType* odr{nullptr};
-
-        enum class Pos {
-            clock = 0,
-            odr = 5,
-            outputMode = 10
-        };
-
-        enum class Bits {
-            odrOn = 0b1,
-            modeOn = 0b01
-        };
-
-        friend genericType operator<< (const Bits& bit, const Pos& pos)
-        {
-            return static_cast<genericType> (bit) << static_cast<genericType> (pos);
-        }
-
-};
-
-
+volatile genericType* rcc = Address(registers::rcc::AHB1_ENABLE);
+////reinterpret_cast<volatile genericType*> (registers::rcc::AHB1_ENABLE);
+volatile genericType* mode = Address(registers::gpio::gpioa::GPIOA_MODER);
+volatile genericType* odr = Address(registers::gpio::gpioa::GPIOA_ODR);
 
 int main()
 {
-//    SystemInit::clocks.ConfigurePeripheralClocks();
-    LED led{rcc, mode, odr};
+    Hardware::MCURegisters gpioRcc{rcc};
+    gpioRcc.EnableRegisterBit(1U << 0);
 
+    Hardware::MCURegisters gpioMode{mode};
+    gpioMode.EnableRegisterBit(0b01 << 10);
+
+    Hardware::MCURegisters led{odr};
     while (true)
     {
-        led.EnableLED();
+        led.EnableRegisterBit(1U << 5);
         for (int i = 0; i < 500000; i++)
         {
 
         }
 
-        led.DisableLED();
+        led.DisableRegister(1U << 5);
         for (int i = 0; i < 500000; i++)
         {
 
         }
     }
-
-
-
-
-
 }

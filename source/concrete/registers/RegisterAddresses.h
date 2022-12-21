@@ -8,6 +8,7 @@ using addressType = std::uint32_t;
 //    return reinterpret_cast<addressType*> (address);
 //}
 
+
 namespace registers {
     constexpr addressType BASE{0x40000000U};
     constexpr addressType APB1_BASE{BASE};
@@ -26,10 +27,6 @@ namespace registers {
 
 
     namespace uart {
-
-
-
-
         constexpr addressType USART_SR{APB2_BASE + 0x1400U};
         constexpr addressType USART_DR{APB2_BASE + 0x1400U};
         constexpr addressType USART_BRR{APB2_BASE + 0x1400U};

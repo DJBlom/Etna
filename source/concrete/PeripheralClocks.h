@@ -1,18 +1,14 @@
 
 #ifndef _PERIPHERAL_CLOCKS_H_ 
 #define _PERIPHERAL_CLOCKS_H_ 
-#include "Ahb1Clocks.h"
 #include "RccClocks.h"
-#include <cstdint>
-
-using peripheralType = std::uint32_t;
-
-
+#include "RegisterAddresses.h"
+#include <iostream>
 
 namespace Rcc {
     class PeripheralClocks : public RccClocks{
         public:
-            PeripheralClocks() = default;
+            PeripheralClocks();
             PeripheralClocks(const PeripheralClocks&) = delete;
             PeripheralClocks(PeripheralClocks&&) = delete;
             PeripheralClocks& operator= (const PeripheralClocks&) = delete;
@@ -21,9 +17,6 @@ namespace Rcc {
 
             
             virtual void ConfigurePeripheralClocks();
-
-        private:
-            Ahb1Clocks clocks;
     };
 }
 #endif
