@@ -14,18 +14,15 @@ TEST_DIR :=$(realpath .)
 TEST_TARGET :=EtnaTests
 CPP_PLATFORM :=g++
 
+CPP_PLATFORM :=-std=c++20
 
 SRC_DIRS :=\
-	$(PROJECT_DIR)/source/src/components\
-	$(PROJECT_DIR)/source/src/HAL\
+	$(PROJECT_DIR)/source/src
 
 INCLUDE_DIRS :=\
 	$(CPPUTEST_HOME)/include\
-	$(PROJECT_DIR)/source/abstract/components\
-	$(PROJECT_DIR)/source/abstract/HAL\
-	$(PROJECT_DIR)/source/abstract/registers\
-	$(PROJECT_DIR)/source/concrete/components\
-	$(PROJECT_DIR)/source/concrete/HAL\
+	$(PROJECT_DIR)/source/abstract/\
+	$(PROJECT_DIR)/source/concrete/\
 	$(PROJECT_DIR)/source/concrete/registers\
 	$(TEST_DIR)/mocks
 
@@ -37,5 +34,8 @@ TEST_SRC_DIRS :=\
 CPPUTEST_USE_GCOV := Y
 CPPUTEST_USE_EXTENSIONS := Y
 -include $(CPPUTEST_HOME)/build/MakefileWorker.mk
+
+
+
 
 

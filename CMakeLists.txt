@@ -25,15 +25,15 @@ add_compile_definitions(
 
 add_executable(Etna
     ${CMAKE_SOURCE_DIR}/startup/Startup.cpp
-    ${CMAKE_SOURCE_DIR}/source/src/Main.cpp
-    ${CMAKE_SOURCE_DIR}/source/src/HAL/GreenUserLED.cpp
+    ${CMAKE_SOURCE_DIR}/source/src/etna/Main.cpp
+    ${CMAKE_SOURCE_DIR}/source/src/MCURegisters.cpp
+    ${CMAKE_SOURCE_DIR}/source/src/Ahb1Clocks.cpp
+    ${CMAKE_SOURCE_DIR}/source/src/Peripherals.cpp
 )
 
 target_include_directories(Etna PRIVATE
-    ${CMAKE_SOURCE_DIR}/source/abstract/components
-    ${CMAKE_SOURCE_DIR}/source/abstract/HAL
-    ${CMAKE_SOURCE_DIR}/source/concrete/components
-    ${CMAKE_SOURCE_DIR}/source/concrete/HAL
+    ${CMAKE_SOURCE_DIR}/source/abstract/
+    ${CMAKE_SOURCE_DIR}/source/concrete/
     ${CMAKE_SOURCE_DIR}/source/concrete/registers
 )
 
