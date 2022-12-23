@@ -30,9 +30,10 @@ using genericType = std::uint32_t;
  **/
 TEST_GROUP(RegisterTest)
 {
+    genericType bits{0};
     volatile genericType virtualAddress{0x0};
     genericType expected{0};
-    Hardware::MCURegisters reg{&virtualAddress};
+    Hardware::MCURegisters reg;
     void setup()
     {
 
@@ -46,33 +47,37 @@ TEST_GROUP(RegisterTest)
 
 TEST(RegisterTest, EnableASpecificRegisterBit)
 {
+    bits = 1U << 2;
     expected = 4;
-    reg.EnableRegisterBit(1U << 2);
+    reg.EnableRegisterBit(&virtualAddress, bits);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(RegisterTest, DisableASpecificRegisterBit)
 {
-    reg.EnableRegisterBit(1U << 3);
-    reg.DisableRegister(1U << 3);
+    bits = 1U << 3;
+    reg.EnableRegisterBit(&virtualAddress, bits);
+    reg.DisableRegister(&virtualAddress, bits);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(RegisterTest, EnableAWholeRegisterWithAValue)
 {
+    bits = 0b0001;
     expected = 1;
-    reg.EnableRegister(0b0001);
+    reg.EnableRegister(&virtualAddress, bits);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(RegisterTest, DisableAWholeRegister)
 {
+    bits = 0b10101;
     expected = 0;
-    reg.EnableRegister(0b10101);
-    reg.DisableRegister(0b10101);
+    reg.EnableRegister(&virtualAddress, bits);
+    reg.DisableRegister(&virtualAddress, bits);
 
     CHECK_EQUAL(expected, virtualAddress);
 }

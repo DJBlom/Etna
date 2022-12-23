@@ -3,10 +3,10 @@
 #include <cstdint>
 
 using addressType = std::uint32_t;
-//addressType* GetAddress(addressType address)
-//{
-//    return reinterpret_cast<addressType*> (address);
-//}
+addressType* GetAddress(addressType address)
+{
+    return reinterpret_cast<addressType*> (address);
+}
 
 
 namespace registers {

@@ -8,12 +8,10 @@ namespace Hardware {
     class Registers {
         public:
             virtual ~Registers() = default;
-            virtual void EnableRegisterBit(registerType&& bits) = 0;
-            virtual void EnableRegister(registerType&& bits) = 0;
-            virtual void DisableRegister(registerType&& bits) = 0;
-            
-        protected:
-            virtual void UpdateHardware() = 0;
+            virtual void EnableRegisterBit(volatile registerType* address, registerType& bits) = 0;
+            virtual void EnableRegister(volatile registerType* address, registerType& bits) = 0;
+            virtual void DisableRegister(volatile registerType* address, registerType& bits) = 0;
+
     };
 }
 #endif

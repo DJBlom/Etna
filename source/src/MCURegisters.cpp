@@ -1,31 +1,16 @@
 #include "MCURegisters.h"
 
-Hardware::MCURegisters::MCURegisters(volatile registerType* address)
+void Hardware::MCURegisters::EnableRegisterBit(volatile registerType* address, registerType& bits)
 {
-    this->registerMask = *address;
-    this->registerAddress = address;
+    *address = *address | bits;
 }
 
-void Hardware::MCURegisters::EnableRegisterBit(registerType&& bits)
+void Hardware::MCURegisters::EnableRegister(volatile registerType* address, registerType& bits)
 {
-    this->registerMask = this->registerMask | bits;
-    UpdateHardware();
+    *address = bits;
 }
 
-void Hardware::MCURegisters::EnableRegister(registerType&& bits)
+void Hardware::MCURegisters::DisableRegister(volatile registerType* address, registerType& bits)
 {
-    this->registerMask = bits;
-    UpdateHardware();
-}
-
-void Hardware::MCURegisters::DisableRegister(registerType&& bits)
-{
-    this->registerMask = this->registerMask & ~bits;
-    UpdateHardware();
-}
-            
-void Hardware::MCURegisters::UpdateHardware()
-{
-    *this->registerAddress = this->registerMask;
-    this->registerMask = *this->registerAddress;
+    *address = *address & ~bits;
 }

@@ -11,8 +11,8 @@
 #include "CppUTestExt/MockSupport.h"
 #include <cstdint>
 
-#include "MCURegisters.h"
-#include "RegisterAddresses.h"
+#include "PeripheralsMock.h"
+#include "Peripherals.h"
 
 extern "C" 
 {
@@ -21,8 +21,7 @@ extern "C"
 
 using genericType = std::uint32_t;
 
-
-TEST_GROUP(PeripheralClocksTest)
+TEST_GROUP(PeripheralsTest)
 {
     void setup()
     {
@@ -35,12 +34,13 @@ TEST_GROUP(PeripheralClocksTest)
     }
 };
 
-//TEST(PeripheralClocksTest, EnablePeripheralAhb1ForGpioA)
-//{
-//    genericType bit{0};
-//    mock().expectOneCall("EnableRegisterBit").withParameter("bit", bit);
-//    PeripheralClocksMocks clocks;
-//    clocks.ConfigurePeripheralClocks();
-//
-//    mock().checkExpectations();
-//}
+TEST(PeripheralsTest, EnablePeripheralAhb1ForGpioA)
+{
+    Hal::Peripherals* clocks = new PeripheralsMock();
+
+    mock().expectOneCall("GpioAResetClockControl");
+    clocks->ConfigurePeripheralClocks();
+
+    mock().checkExpectations();
+    delete clocks;
+}

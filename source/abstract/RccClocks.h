@@ -7,7 +7,7 @@ namespace Rcc {
     class RccClocks {
         public:
             virtual ~RccClocks() = default;
-            virtual void ConfigurePeripheralClocks() = 0;
+            virtual void ResetClockControlFor(clockType&&) = 0;
     };
 }
 #endif
