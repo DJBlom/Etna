@@ -1,20 +1,36 @@
-
+/********************************************************************************
+ * Contents: Class MCURegisters.
+ * Author: Dawid Blom.
+ * Date: December 29, 2022.
+ *
+ * Note: This class is used to Enable, Disable, or Toggle a register bit or a
+ * whole register.
+ *******************************************************************************/
 #ifndef _MCU_REGISTERS_H_ 
 #define _MCU_REGISTERS_H_ 
 #include "Registers.h"
 namespace Hardware {
-    class MCURegisters: public Registers {
+    class MCURegisters : public Registers {
         public:
             MCURegisters() = default;
-            MCURegisters(const MCURegisters&) = delete;
-            MCURegisters(MCURegisters&&) = delete;
-            MCURegisters& operator= (const MCURegisters&) = delete;
-            MCURegisters& operator= (MCURegisters&&) = delete;
-            ~MCURegisters() = default;
+            explicit MCURegisters(volatile registerType*);
+            MCURegisters(const MCURegisters&) = default;
+            MCURegisters(MCURegisters&&) = default;
+            MCURegisters& operator= (const MCURegisters&) = default;
+            MCURegisters& operator= (MCURegisters&&) = default;
+            virtual ~MCURegisters() = default;
 
-            virtual void EnableRegisterBit(volatile registerType* address, registerType& bits);
-            virtual void EnableRegister(volatile registerType* address, registerType& bits);
-            virtual void DisableRegister(volatile registerType* address, registerType& bits);
+            virtual bool EnableRegisterBit(registerType&&);
+            virtual bool EnableRegister(registerType&&);
+            virtual bool DisableRegister(registerType&&);
+            virtual bool ToggleRegister(registerType&&);
+            
+        protected:
+            virtual bool HardwareIsUpdated();
+            
+        private:
+            registerType registerMask{0};
+            volatile registerType* registerAddress{nullptr};
     };
 }
 #endif

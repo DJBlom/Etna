@@ -1,16 +1,54 @@
 #include "MCURegisters.h"
 
-void Hardware::MCURegisters::EnableRegisterBit(volatile registerType* address, registerType& bits)
+
+Hardware::MCURegisters::MCURegisters(volatile registerType* address)
 {
-    *address = *address | bits;
+    this->registerMask = *address;
+    this->registerAddress = address;
 }
 
-void Hardware::MCURegisters::EnableRegister(volatile registerType* address, registerType& bits)
+bool Hardware::MCURegisters::EnableRegisterBit(registerType&& pin)
 {
-    *address = bits;
+    this->registerMask = this->registerMask | pin;
+    if (HardwareIsUpdated())
+        return true;
+    else
+        return false;
 }
 
-void Hardware::MCURegisters::DisableRegister(volatile registerType* address, registerType& bits)
+bool Hardware::MCURegisters::EnableRegister(registerType&& pin)
 {
-    *address = *address & ~bits;
+    this->registerMask = pin;
+    if (HardwareIsUpdated())
+        return true;
+    else
+        return false;
+}
+
+bool Hardware::MCURegisters::DisableRegister(registerType&& pin)
+{
+    this->registerMask = this->registerMask & ~(pin);
+    if (HardwareIsUpdated())
+        return true;
+    else
+        return false;
+}
+
+bool Hardware::MCURegisters::ToggleRegister(registerType&& pin)
+{
+    this->registerMask = this->registerMask ^ pin;
+    if (HardwareIsUpdated())
+        return true;
+    else
+        return false;
+}
+
+bool Hardware::MCURegisters::HardwareIsUpdated()
+{
+    *this->registerAddress = this->registerMask;
+    this->registerMask = *this->registerAddress;
+    if (this->registerMask == *this->registerAddress)
+        return true;
+    else
+        return false;
 }

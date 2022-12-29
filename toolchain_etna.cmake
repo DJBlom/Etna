@@ -29,6 +29,7 @@ add_compile_options(
     -funsigned-char
     -ffunction-sections
     -fdata-sections
+    -fno-exceptions
     -MMD
     -MP
 )

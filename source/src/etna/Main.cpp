@@ -1,42 +1,39 @@
 /**********************************************************************************
  * Contents: Main function.
- *
  * Author: Dawid Blom.
- *
  * Data: December 8, 2022.
  *
  * NOTE: This file contains the main function of the Etna application.
  *********************************************************************************/
-#include "MCURegisters.h"
-#include "Peripherals.h"
+#include "GpioMode.h"
+#include "Ahb1Peripheral.h"
 #include "RegisterAddresses.h"
 #include <cstdint>
  
 
 using genericType = std::uint32_t;
 
+volatile genericType* rcc = GetAddress(registers::rcc::AHB1_ENABLE);
 volatile genericType* mode = GetAddress(registers::gpio::gpioa::GPIOA_MODER);
 volatile genericType* odr = GetAddress(registers::gpio::gpioa::GPIOA_ODR);
 
 int main()
 {
-    Hal::Peripherals board;
-    board.ConfigurePeripheralClocks();
+    Rcc::Ahb1Peripheral ahb1{rcc};
+    ahb1.GPIOAResetClockControl();
 
-    Hardware::MCURegisters gpios;
-    genericType bits{0b01 << 10};
-    gpios.EnableRegisterBit(mode, bits);
+    Gpio::GpioMode gpioMode{mode};
+    gpioMode.EnableOutputMode(10);
 
-    bits = 1U << 5;
     while (true)
     {
-        gpios.EnableRegisterBit(odr, bits);
+        *odr = *odr | (1U << 5);
         for (int i = 0; i < 500000; i++)
         {
 
         }
 
-        gpios.DisableRegister(odr, bits);
+        *odr = *odr & ~(1U << 5);
         for (int i = 0; i < 500000; i++)
         {
 
