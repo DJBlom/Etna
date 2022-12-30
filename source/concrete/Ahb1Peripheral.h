@@ -20,19 +20,17 @@ namespace Rcc {
             Ahb1Peripheral& operator= (Ahb1Peripheral&&) = default;
             virtual ~Ahb1Peripheral() = default;
 
-            virtual bool GPIOAResetClockControl();
-            virtual bool GPIOBResetClockControl();
-            virtual bool GPIOHResetClockControl();
-            virtual bool GPIOEResetClockControl();
-            virtual bool GPIODResetClockControl();
-            virtual bool GPIOCResetClockControl();
-            virtual bool CRCResetClockControl();
-            virtual bool DMA2ResetClockControl();
-            virtual bool DMA1ResetClockControl();
+            virtual bool GpioAResetClockControl();
+            virtual bool GpioBResetClockControl();
+            virtual bool GpioHResetClockControl();
+            virtual bool GpioEResetClockControl();
+            virtual bool GpioDResetClockControl();
+            virtual bool GpioCResetClockControl();
+            virtual bool CrcResetClockControl();
+            virtual bool Dma2ResetClockControl();
+            virtual bool Dma1ResetClockControl();
 
         private:
-            Hardware::MCURegisters ahb1;
-
             enum class Clock {
                 enable = 1
             };
@@ -53,6 +51,9 @@ namespace Rcc {
             {
                 return static_cast<registerType> (clock) << static_cast<registerType> (reset);
             }
+
+        private:
+            Hardware::MCURegisters ahb1;
     };
 }
 #endif

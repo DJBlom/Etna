@@ -25,8 +25,6 @@ namespace Gpio {
             virtual bool EnableAnalogMode(registerType&&);
 
         private:
-            Hardware::MCURegisters gpio;
-
             enum class Mode {
                 input = 0b00,
                 output = 0b01,
@@ -38,6 +36,11 @@ namespace Gpio {
             {
                 return static_cast<registerType> (mode) << pin;
             }
+
+        private:
+            Hardware::MCURegisters gpio;
+
+
     };
 }
 #endif

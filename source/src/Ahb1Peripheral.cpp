@@ -1,7 +1,7 @@
 #include "Ahb1Peripheral.h"
 
 
-bool Rcc::Ahb1Peripheral::GPIOAResetClockControl()
+bool Rcc::Ahb1Peripheral::GpioAResetClockControl()
 {
     if (ahb1.EnableRegisterBit(Clock::enable << Reset::gpioa))
         return true;
@@ -9,7 +9,7 @@ bool Rcc::Ahb1Peripheral::GPIOAResetClockControl()
         return false;
 }
 
-bool Rcc::Ahb1Peripheral::GPIOBResetClockControl()
+bool Rcc::Ahb1Peripheral::GpioBResetClockControl()
 {
     if (ahb1.EnableRegisterBit(Clock::enable << Reset::gpiob))
         return true;
@@ -17,7 +17,7 @@ bool Rcc::Ahb1Peripheral::GPIOBResetClockControl()
         return false;
 }
 
-bool Rcc::Ahb1Peripheral::GPIOCResetClockControl()
+bool Rcc::Ahb1Peripheral::GpioCResetClockControl()
 {
     if (ahb1.EnableRegisterBit(Clock::enable << Reset::gpioc))
         return true;
@@ -25,7 +25,7 @@ bool Rcc::Ahb1Peripheral::GPIOCResetClockControl()
         return false;
 }
 
-bool Rcc::Ahb1Peripheral::GPIODResetClockControl()
+bool Rcc::Ahb1Peripheral::GpioDResetClockControl()
 {
     if (ahb1.EnableRegisterBit(Clock::enable << Reset::gpiod))
         return true;
@@ -33,7 +33,7 @@ bool Rcc::Ahb1Peripheral::GPIODResetClockControl()
         return false;
 }
 
-bool Rcc::Ahb1Peripheral::GPIOEResetClockControl()
+bool Rcc::Ahb1Peripheral::GpioEResetClockControl()
 {
     if (ahb1.EnableRegisterBit(Clock::enable << Reset::gpioe))
         return true;
@@ -41,7 +41,7 @@ bool Rcc::Ahb1Peripheral::GPIOEResetClockControl()
         return false;
 }
 
-bool Rcc::Ahb1Peripheral::GPIOHResetClockControl()
+bool Rcc::Ahb1Peripheral::GpioHResetClockControl()
 {
     if (ahb1.EnableRegisterBit(Clock::enable << Reset::gpioh))
         return true;
@@ -49,7 +49,7 @@ bool Rcc::Ahb1Peripheral::GPIOHResetClockControl()
         return false;
 }
 
-bool Rcc::Ahb1Peripheral::CRCResetClockControl()
+bool Rcc::Ahb1Peripheral::CrcResetClockControl()
 {
     if (ahb1.EnableRegisterBit(Clock::enable << Reset::crc))
         return true;
@@ -57,7 +57,7 @@ bool Rcc::Ahb1Peripheral::CRCResetClockControl()
         return false;
 }
 
-bool Rcc::Ahb1Peripheral::DMA1ResetClockControl()
+bool Rcc::Ahb1Peripheral::Dma1ResetClockControl()
 {
     if (ahb1.EnableRegisterBit(Clock::enable << Reset::dma1))
         return false;
@@ -65,10 +65,15 @@ bool Rcc::Ahb1Peripheral::DMA1ResetClockControl()
         return true;
 }
 
-bool Rcc::Ahb1Peripheral::DMA2ResetClockControl()
+bool Rcc::Ahb1Peripheral::Dma2ResetClockControl()
 {
     if (ahb1.EnableRegisterBit(Clock::enable << Reset::dma2))
         return false;
     else
         return true;
 }
+
+
+
+
+

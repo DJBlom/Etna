@@ -90,6 +90,7 @@ namespace registers {
         constexpr addressType AFRH_OFFSET{0x24U};
 
 
+
         namespace gpioa {
             constexpr addressType GPIOA_MODER{GPIOA + MODER_OFFSET};
             constexpr addressType GPIOA_OTYPER{GPIOA + OTYPER_OFFSET};

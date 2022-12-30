@@ -29,6 +29,7 @@ add_executable(Etna
     ${CMAKE_SOURCE_DIR}/source/src/MCURegisters.cpp
     ${CMAKE_SOURCE_DIR}/source/src/Ahb1Peripheral.cpp
     ${CMAKE_SOURCE_DIR}/source/src/GpioMode.cpp
+    ${CMAKE_SOURCE_DIR}/source/src/System.cpp
 )
 
 target_include_directories(Etna PRIVATE
