@@ -8,10 +8,11 @@ void Test::SystemMock::Initialize()
 
 void Test::SystemMock::RccConfiguration()
 {
-    mock().actualCall("RccConfiguration");
+    mock().actualCall("GpioAResetClockControl");
+    mock().actualCall("Usart2ResetClockControl");
 }
 
 void Test::SystemMock::ModeConfiguration()
 {
-    mock().actualCall("ModeConfiguration");
+    mock().actualCall("EnableOutputMode").withParameter("Pin", 1);
 }

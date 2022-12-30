@@ -21,9 +21,9 @@ extern "C"
 /**
  * SYSTEM PERIPHERAL TEST LIST
  *
- * 1) Initialize objects with desired addresses
- * 2) Configure Rcc peripheral buss
- * 3) Configure the gpio modes
+ * 1) Initialize objects with desired addresses (Done)
+ * 2) Configure Rcc peripheral buss (Done)
+ * 3) Configure the gpio modes (Done)
  **/
 TEST_GROUP(SystemTest)
 {
@@ -50,7 +50,8 @@ TEST(SystemTest, InitializeObjectsWithDesiredAddresses)
 
 TEST(SystemTest, ConfigureAHB1PeripheralBus)
 {
-    mock().expectOneCall("RccConfiguration");
+    mock().expectOneCall("GpioAResetClockControl");
+    mock().expectOneCall("Usart2ResetClockControl");
     system->RccConfiguration();
 
     mock().checkExpectations();
@@ -58,7 +59,7 @@ TEST(SystemTest, ConfigureAHB1PeripheralBus)
 
 TEST(SystemTest, ConfigureTheGpioModes)
 {
-    mock().expectOneCall("ModeConfiguration");
+    mock().expectOneCall("EnableOutputMode").withParameter("Pin", 1);
     system->ModeConfiguration();
 
     mock().checkExpectations();
