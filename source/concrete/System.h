@@ -3,6 +3,7 @@
 #define _SYSTEM_H_ 
 #include <cstdint>
 #include "Ahb1Peripheral.h"
+#include "Apb1Peripheral.h"
 #include "GpioMode.h"
 using systemType = std::uint32_t;
 namespace Hal {
@@ -28,6 +29,7 @@ namespace Hal {
 
         private:
             Rcc::Ahb1Peripheral ahb1;
+//            Rcc::Apb1Peripheral apb1;
             Gpio::GpioMode modeA;
     };
 }

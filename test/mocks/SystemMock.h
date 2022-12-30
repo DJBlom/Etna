@@ -3,6 +3,7 @@
 #define _SYSTEM_MOCK_H_ 
 #include "System.h"
 #include "Ahb1Peripheral.h"
+#include "Apb1Peripheral.h"
 #include "GpioMode.h"
 namespace Test {
     class SystemMock : public Hal::System {
@@ -19,6 +20,7 @@ namespace Test {
             virtual void ModeConfiguration();
         private:
             Rcc::Ahb1Peripheral ahb1;
+            Rcc::Apb1Peripheral apb1;
             Gpio::GpioMode gpioMode;
     };
 }
