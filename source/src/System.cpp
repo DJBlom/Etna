@@ -18,7 +18,7 @@ namespace Address {
 void Hal::System::Initialize()
 {
     ahb1 = Rcc::Ahb1Peripheral{Address::ahb1Enable};
-    gpioMode = Gpio::GpioMode{Address::modeA};
+    modeA = Gpio::GpioMode{Address::modeA};
 }
 
 void Hal::System::RccConfiguration()

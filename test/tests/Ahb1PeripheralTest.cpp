@@ -138,25 +138,25 @@ TEST(Ahb1PeripheralTest, ResetClockControlForGPIOA)
  * 11) Reset clock control I2C3
  * 12) Reset clock control PWR
  **/
-TEST_GROUP(Apb1PeripheralTest)
-{
-    Rcc::Apb1Peripheral apb1;
-    void setup()
-    {
-        virtualAddress = 0;
-        expected = 0;
-        apb1 = Rcc::Apb1Peripheral(&virtualAddress);
-    }
-
-    void teardown()
-    {
-    }
-};
-
-TEST(Apb1PeripheralTest, ResetClockControlForTIM2)
-{
-    expected = 1;
-    apb1.Tim2ResetClockControl();
-
-    CHECK_EQUAL(expected, virtualAddress);
-}
+//TEST_GROUP(Apb1PeripheralTest)
+//{
+//    Rcc::Apb1Peripheral apb1;
+//    void setup()
+//    {
+//        virtualAddress = 0;
+//        expected = 0;
+//        apb1 = Rcc::Apb1Peripheral(&virtualAddress);
+//    }
+//
+//    void teardown()
+//    {
+//    }
+//};
+//
+//TEST(Apb1PeripheralTest, ResetClockControlForTIM2)
+//{
+//    expected = 1;
+//    apb1.Tim2ResetClockControl();
+//
+//    CHECK_EQUAL(expected, virtualAddress);
+//}
