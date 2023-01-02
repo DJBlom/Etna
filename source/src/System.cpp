@@ -33,6 +33,7 @@ void Hal::System::RccConfiguration()
 void Hal::System::ModeConfiguration()
 {
     modeA.EnableOutputMode(ConvertPinToSystemType(Pin::five));
+    modeA.EnableAlternativeFunctionMode(ConvertPinToSystemType(Pin::two));
 }
 
 systemType Hal::System::ConvertPinToSystemType(const Pin& pin)

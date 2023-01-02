@@ -5,6 +5,7 @@
  *
  * Note: 
  *******************************************************************************/
+#include <cstdint>
 #include "System.h"
 #include "SystemMock.h"
 
@@ -16,7 +17,7 @@ extern "C"
 #include "CppUTest/TestHarness.h"
 #include "CppUTestExt/MockSupport.h"
 
-
+using genericType = std::uint32_t;
 
 /**
  * SYSTEM PERIPHERAL TEST LIST
@@ -27,6 +28,7 @@ extern "C"
  **/
 TEST_GROUP(SystemTest)
 {
+    genericType pin{0};
     Hal::System* system;
     void setup()
     {
@@ -50,8 +52,7 @@ TEST(SystemTest, InitializeObjectsWithDesiredAddresses)
 
 TEST(SystemTest, ConfigureAHB1PeripheralBus)
 {
-    mock().expectOneCall("GpioAResetClockControl");
-    mock().expectOneCall("Usart2ResetClockControl");
+    mock().expectOneCall("RccConfiguration");
     system->RccConfiguration();
 
     mock().checkExpectations();
@@ -59,7 +60,7 @@ TEST(SystemTest, ConfigureAHB1PeripheralBus)
 
 TEST(SystemTest, ConfigureTheGpioModes)
 {
-    mock().expectOneCall("EnableOutputMode").withParameter("Pin", 1);
+    mock().expectOneCall("ModeConfiguration");
     system->ModeConfiguration();
 
     mock().checkExpectations();

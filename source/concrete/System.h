@@ -22,6 +22,7 @@ namespace Hal {
             
         private:
             enum class Pin: uint32_t {
+                two = 4,
                 five = 10
             };
 
