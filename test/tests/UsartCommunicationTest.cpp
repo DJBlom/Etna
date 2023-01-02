@@ -7,6 +7,7 @@
  *******************************************************************************/
 #include "MCURegisters.h"
 #include "UsartCR1.h"
+#include "UsartCR2.h"
 #include <cstdint>
 
 
@@ -49,7 +50,7 @@ TEST_GROUP(UsartCR1Test)
 {
     genericType expected{0};
     Hardware::MCURegisters uartRegister;
-    Communication::UsartCR1 uart2; 
+    Usart::UsartCR1 uart2; 
     void setup()
     {
         virtualAddress = 0;
@@ -85,3 +86,32 @@ TEST(UsartCR1Test, EnableTheUsart)
     CHECK_EQUAL(expected, virtualAddress);
 }
 
+
+/**
+ * USART CR2 TEST LIST
+ *
+ * 1) Set the stop bits to one
+ **/
+TEST_GROUP(UsartCR2Test)
+{
+    genericType expected{0};
+    Hardware::MCURegisters uartRegister;
+    Usart::UsartCR2 uart2; 
+    void setup()
+    {
+        virtualAddress = 0;
+        uartRegister = Hardware::MCURegisters{&virtualAddress};
+    }
+
+    void teardown()
+    {
+    }
+};
+
+TEST(UsartCR2Test, SetTheStopBitsToOne)
+{
+    expected = 0;
+    uart2.UseOneStopBit(uartRegister);
+
+    CHECK_EQUAL(expected, virtualAddress);
+}

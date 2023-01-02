@@ -2,7 +2,7 @@
 #ifndef _USART_CR1_H_ 
 #define _USART_CR1_H_ 
 #include "Registers.h"
-namespace Communication {
+namespace Usart {
     class UsartCR1 {
         public:
             UsartCR1() = default;
