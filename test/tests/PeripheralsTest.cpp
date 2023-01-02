@@ -5,6 +5,7 @@
  *
  * Note: 
  *******************************************************************************/
+#include "MCURegisters.h"
 #include "Ahb1Peripheral.h"
 #include "Apb1Peripheral.h"
 #include <cstdint>
@@ -35,12 +36,13 @@ static genericType expected{0};
  **/
 TEST_GROUP(Ahb1PeripheralTest)
 {
+    Hardware::MCURegisters rccRegisters;
     Rcc::Ahb1Peripheral ahb1;
     void setup()
     {
         virtualAddress = 0;
         expected = 0;
-        ahb1 = Rcc::Ahb1Peripheral(&virtualAddress);
+        rccRegisters = Hardware::MCURegisters{&virtualAddress};
     }
 
     void teardown()
@@ -52,7 +54,7 @@ TEST_GROUP(Ahb1PeripheralTest)
 TEST(Ahb1PeripheralTest, ResetClockControlForDMA2)
 {
     expected = 4194304;
-    ahb1.Dma2ResetClockControl();
+    ahb1.Dma2ResetClockControl(rccRegisters);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
@@ -60,7 +62,7 @@ TEST(Ahb1PeripheralTest, ResetClockControlForDMA2)
 TEST(Ahb1PeripheralTest, ResetClockControlForDMA1)
 {
     expected = 2097152;
-    ahb1.Dma1ResetClockControl();
+    ahb1.Dma1ResetClockControl(rccRegisters);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
@@ -68,7 +70,7 @@ TEST(Ahb1PeripheralTest, ResetClockControlForDMA1)
 TEST(Ahb1PeripheralTest, ResetClockControlForCRC)
 {
     expected = 4096;
-    ahb1.CrcResetClockControl();
+    ahb1.CrcResetClockControl(rccRegisters);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
@@ -76,7 +78,7 @@ TEST(Ahb1PeripheralTest, ResetClockControlForCRC)
 TEST(Ahb1PeripheralTest, ResetClockControlForGPIOH)
 {
     expected = 128;
-    ahb1.GpioHResetClockControl();
+    ahb1.GpioHResetClockControl(rccRegisters);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
@@ -84,7 +86,7 @@ TEST(Ahb1PeripheralTest, ResetClockControlForGPIOH)
 TEST(Ahb1PeripheralTest, ResetClockControlForGPIOE)
 {
     expected = 16;
-    ahb1.GpioEResetClockControl();
+    ahb1.GpioEResetClockControl(rccRegisters);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
@@ -92,7 +94,7 @@ TEST(Ahb1PeripheralTest, ResetClockControlForGPIOE)
 TEST(Ahb1PeripheralTest, ResetClockControlForGPIOD)
 {
     expected = 8;
-    ahb1.GpioDResetClockControl();
+    ahb1.GpioDResetClockControl(rccRegisters);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
@@ -100,7 +102,7 @@ TEST(Ahb1PeripheralTest, ResetClockControlForGPIOD)
 TEST(Ahb1PeripheralTest, ResetClockControlForGPIOC)
 {
     expected = 4;
-    ahb1.GpioCResetClockControl();
+    ahb1.GpioCResetClockControl(rccRegisters);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
@@ -108,7 +110,7 @@ TEST(Ahb1PeripheralTest, ResetClockControlForGPIOC)
 TEST(Ahb1PeripheralTest, ResetClockControlForGPIOB)
 {
     expected = 2;
-    ahb1.GpioBResetClockControl();
+    ahb1.GpioBResetClockControl(rccRegisters);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
@@ -116,7 +118,7 @@ TEST(Ahb1PeripheralTest, ResetClockControlForGPIOB)
 TEST(Ahb1PeripheralTest, ResetClockControlForGPIOA)
 {
     expected = 1;
-    ahb1.GpioAResetClockControl();
+    ahb1.GpioAResetClockControl(rccRegisters);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
@@ -141,12 +143,13 @@ TEST(Ahb1PeripheralTest, ResetClockControlForGPIOA)
  **/
 TEST_GROUP(Apb1PeripheralTest)
 {
+    Hardware::MCURegisters rccRegister;
     Rcc::Apb1Peripheral apb1;
     void setup()
     {
         virtualAddress = 0;
         expected = 0;
-        apb1 = Rcc::Apb1Peripheral(&virtualAddress);
+        rccRegister = Hardware::MCURegisters{&virtualAddress};
     }
 
     void teardown()
@@ -157,7 +160,7 @@ TEST_GROUP(Apb1PeripheralTest)
 TEST(Apb1PeripheralTest, ResetClockControlForTIM2)
 {
     expected = 1;
-    apb1.Tim2ResetClockControl();
+    apb1.Tim2ResetClockControl(rccRegister);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
@@ -165,7 +168,7 @@ TEST(Apb1PeripheralTest, ResetClockControlForTIM2)
 TEST(Apb1PeripheralTest, ResetClockControlForTIM3)
 {
     expected = 2;
-    apb1.Tim3ResetClockControl();
+    apb1.Tim3ResetClockControl(rccRegister);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
@@ -173,7 +176,7 @@ TEST(Apb1PeripheralTest, ResetClockControlForTIM3)
 TEST(Apb1PeripheralTest, ResetClockControlForTIM4)
 {
     expected = 4;
-    apb1.Tim4ResetClockControl();
+    apb1.Tim4ResetClockControl(rccRegister);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
@@ -181,7 +184,7 @@ TEST(Apb1PeripheralTest, ResetClockControlForTIM4)
 TEST(Apb1PeripheralTest, ResetClockControlForTIM5)
 {
     expected = 8;
-    apb1.Tim5ResetClockControl();
+    apb1.Tim5ResetClockControl(rccRegister);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
@@ -189,7 +192,7 @@ TEST(Apb1PeripheralTest, ResetClockControlForTIM5)
 TEST(Apb1PeripheralTest, ResetClockControlForWWDG)
 {
     expected = 2048;
-    apb1.WwdgResetClockControl();
+    apb1.WwdgResetClockControl(rccRegister);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
@@ -197,7 +200,7 @@ TEST(Apb1PeripheralTest, ResetClockControlForWWDG)
 TEST(Apb1PeripheralTest, ResetClockControlForSpi2)
 {
     expected = 16384;
-    apb1.Spi2ResetClockControl();
+    apb1.Spi2ResetClockControl(rccRegister);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
@@ -205,7 +208,7 @@ TEST(Apb1PeripheralTest, ResetClockControlForSpi2)
 TEST(Apb1PeripheralTest, ResetClockControlForSpi3)
 {
     expected = 32768;
-    apb1.Spi3ResetClockControl();
+    apb1.Spi3ResetClockControl(rccRegister);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
@@ -213,7 +216,7 @@ TEST(Apb1PeripheralTest, ResetClockControlForSpi3)
 TEST(Apb1PeripheralTest, ResetClockControlForUSART2)
 {
     expected = 131072;
-    apb1.Usart2ResetClockControl();
+    apb1.Usart2ResetClockControl(rccRegister);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
@@ -221,7 +224,7 @@ TEST(Apb1PeripheralTest, ResetClockControlForUSART2)
 TEST(Apb1PeripheralTest, ResetClockControlForI2C1)
 {
     expected = 2097152;
-    apb1.I2c1ResetClockControl();
+    apb1.I2c1ResetClockControl(rccRegister);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
@@ -229,7 +232,7 @@ TEST(Apb1PeripheralTest, ResetClockControlForI2C1)
 TEST(Apb1PeripheralTest, ResetClockControlForI2C2)
 {
     expected = 4194304;
-    apb1.I2c2ResetClockControl();
+    apb1.I2c2ResetClockControl(rccRegister);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
@@ -237,7 +240,7 @@ TEST(Apb1PeripheralTest, ResetClockControlForI2C2)
 TEST(Apb1PeripheralTest, ResetClockControlForI2C3)
 {
     expected = 8388608;
-    apb1.I2c3ResetClockControl();
+    apb1.I2c3ResetClockControl(rccRegister);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
@@ -245,7 +248,7 @@ TEST(Apb1PeripheralTest, ResetClockControlForI2C3)
 TEST(Apb1PeripheralTest, ResetClockControlForPWR)
 {
     expected = 268435456;
-    apb1.PwrResetClockControl();
+    apb1.PwrResetClockControl(rccRegister);
 
     CHECK_EQUAL(expected, virtualAddress);
 }

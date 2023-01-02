@@ -5,7 +5,8 @@
  *
  * NOTE: This file contains the main function of the Etna application.
  *********************************************************************************/
-#include "System.h"
+#include "SystemPeripherals.h"
+#include "SystemGpios.h"
 #include "RegisterAddresses.h"
 #include <cstdint>
  
@@ -17,10 +18,13 @@ volatile genericType* odr = GetAddress(registers::gpio::gpioa::GPIOA_ODR);
 int main()
 {
 
-    Hal::System system;
-    system.Initialize();
-    system.RccConfiguration();
-    system.ModeConfiguration();
+    Hal::SystemPeripherals systemPeripheral;
+    systemPeripheral.InitializePeripherals();
+    systemPeripheral.ConfigureSystemPeripheralBusses();
+
+    Hal::SystemGpios systemGpios;
+    systemGpios.InitializeGpios();
+    systemGpios.ConfigureSystemGpios();
 
     while (true)
     {

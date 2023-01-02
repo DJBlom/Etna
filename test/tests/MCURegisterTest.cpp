@@ -47,7 +47,7 @@ TEST_GROUP(MCURegistersTest)
 TEST(MCURegistersTest, EnableASpecifiedRegisterBit)
 {
     expected = 1;
-    reg.EnableRegisterBit(1U << 0);
+    reg.BitEnable(1U << 0);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
@@ -55,23 +55,23 @@ TEST(MCURegistersTest, EnableASpecifiedRegisterBit)
 TEST(MCURegistersTest, SetAWholeRegisterWithAValue)
 {
     expected = 0b1010;
-    reg.EnableRegister(0b1010);
+    reg.BitsEnable(0b1010);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(MCURegistersTest, DisableASpecifiedRegisterBit)
 {
-    reg.EnableRegisterBit(1U << 0);
-    reg.DisableRegister(1U << 0);
+    reg.BitEnable(1U << 0);
+    reg.Disable(1U << 0);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(MCURegistersTest, DisableAWholeRegister)
 {
-    reg.EnableRegister(0b1010);
-    reg.DisableRegister(0b1010);
+    reg.BitsEnable(0b1010);
+    reg.Disable(0b1010);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
@@ -79,7 +79,7 @@ TEST(MCURegistersTest, DisableAWholeRegister)
 TEST(MCURegistersTest, ToggleASpecifiedRegisterBit)
 {
     expected = 1;
-    reg.ToggleRegister(1U << 0);
+    reg.Toggle(1U << 0);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
@@ -87,8 +87,8 @@ TEST(MCURegistersTest, ToggleASpecifiedRegisterBit)
 TEST(MCURegistersTest, ToggleAWholeRegister)
 {
     expected = 0;
-    reg.ToggleRegister(0b10101);
-    reg.ToggleRegister(0b10101);
+    reg.Toggle(0b10101);
+    reg.Toggle(0b10101);
 
     CHECK_EQUAL(expected, virtualAddress);
 }

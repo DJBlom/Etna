@@ -1,13 +1,16 @@
 /********************************************************************************
- * Contents: Test Fixture of the SystemTest.
+ * Contents: Test Fixture of the SystemPeripheralTest.
  * Author: Dawid Blom.
  * Date: December 29, 2022.
  *
  * Note: 
  *******************************************************************************/
 #include <cstdint>
-#include "System.h"
-#include "SystemMock.h"
+#include "SystemPeripherals.h"
+#include "SystemPeripheralsMock.h"
+
+#include "SystemGpios.h"
+#include "SystemGpiosMock.h"
 
 extern "C" 
 {
@@ -24,15 +27,14 @@ using genericType = std::uint32_t;
  *
  * 1) Initialize objects with desired addresses (Done)
  * 2) Configure Rcc peripheral buss (Done)
- * 3) Configure the gpio modes (Done)
  **/
-TEST_GROUP(SystemTest)
+TEST_GROUP(SystemPeripheralTest)
 {
-    genericType pin{0};
-    Hal::System* system;
+    genericType bit{0};
+    Hal::SystemPeripherals* system;
     void setup()
     {
-        system = new Test::SystemMock();
+        system = new Test::SystemPeripheralsMock();
     }
 
     void teardown()
@@ -42,26 +44,58 @@ TEST_GROUP(SystemTest)
     }
 };
 
-TEST(SystemTest, InitializeObjectsWithDesiredAddresses)
+TEST(SystemPeripheralTest, InitializeObjectsWithDesiredAddresses)
 {
-    mock().expectOneCall("Initialization");
-    system->Initialize();
+    mock().expectOneCall("InitializationPeripherals");
+    system->InitializePeripherals();
 
     mock().checkExpectations();
 }
 
-TEST(SystemTest, ConfigureAHB1PeripheralBus)
+TEST(SystemPeripheralTest, ConfigureAHB1PeripheralBus)
 {
-    mock().expectOneCall("RccConfiguration");
-    system->RccConfiguration();
+    mock().expectOneCall("ConfigureSystemPeripheralBusses");
+    system->ConfigureSystemPeripheralBusses();
 
     mock().checkExpectations();
 }
 
-TEST(SystemTest, ConfigureTheGpioModes)
+
+
+/**
+ * SYSTEM GPIO TEST LIST
+ *
+ * 1) Initialize objects with desired addresses (Done)
+ * 3) Configure the gpio modes (Done)
+ **/
+TEST_GROUP(SystemGpioTest)
 {
-    mock().expectOneCall("ModeConfiguration");
-    system->ModeConfiguration();
+    genericType bit{0};
+    Hal::SystemGpios* system;
+    void setup()
+    {
+        system = new Test::SystemGpiosMock();
+    }
+
+    void teardown()
+    {
+        mock().clear();
+        delete system;
+    }
+};
+
+TEST(SystemGpioTest, InitializeObjectsWithDesiredAddresses)
+{
+    mock().expectOneCall("InitializeGpios");
+    system->InitializeGpios();
+
+    mock().checkExpectations();
+}
+
+TEST(SystemGpioTest, ConfigureTheGpioModes)
+{
+    mock().expectOneCall("ConfigureSystemGpios");
+    system->ConfigureSystemGpios();
 
     mock().checkExpectations();
 }

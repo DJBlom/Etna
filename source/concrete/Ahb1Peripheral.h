@@ -8,27 +8,26 @@
  *******************************************************************************/
 #ifndef _AHB1_PERIPHERAL_H_ 
 #define _AHB1_PERIPHERAL_H_ 
-#include "MCURegisters.h"
+#include "Registers.h"
 namespace Rcc {
     class Ahb1Peripheral {
         public:
             Ahb1Peripheral() = default;
-            explicit Ahb1Peripheral(volatile registerType* address): ahb1{address} {}
             Ahb1Peripheral(const Ahb1Peripheral&) = default;
             Ahb1Peripheral(Ahb1Peripheral&&) = default;
             Ahb1Peripheral& operator= (const Ahb1Peripheral&) = default;
             Ahb1Peripheral& operator= (Ahb1Peripheral&&) = default;
             virtual ~Ahb1Peripheral() = default;
 
-            virtual bool GpioAResetClockControl();
-            virtual bool GpioBResetClockControl();
-            virtual bool GpioHResetClockControl();
-            virtual bool GpioEResetClockControl();
-            virtual bool GpioDResetClockControl();
-            virtual bool GpioCResetClockControl();
-            virtual bool CrcResetClockControl();
-            virtual bool Dma2ResetClockControl();
-            virtual bool Dma1ResetClockControl();
+            virtual bool GpioAResetClockControl(Hardware::Registers& rccRegister);
+            virtual bool GpioBResetClockControl(Hardware::Registers& rccRegister);
+            virtual bool GpioHResetClockControl(Hardware::Registers& rccRegister);
+            virtual bool GpioEResetClockControl(Hardware::Registers& rccRegister);
+            virtual bool GpioDResetClockControl(Hardware::Registers& rccRegister);
+            virtual bool GpioCResetClockControl(Hardware::Registers& rccRegister);
+            virtual bool CrcResetClockControl(Hardware::Registers& rccRegister);
+            virtual bool Dma2ResetClockControl(Hardware::Registers& rccRegister);
+            virtual bool Dma1ResetClockControl(Hardware::Registers& rccRegister);
 
         private:
             enum class Clock {
@@ -51,9 +50,6 @@ namespace Rcc {
             {
                 return static_cast<registerType> (clock) << static_cast<registerType> (reset);
             }
-
-        private:
-            Hardware::MCURegisters ahb1;
     };
 }
 #endif

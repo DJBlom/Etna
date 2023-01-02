@@ -7,48 +7,48 @@ Hardware::MCURegisters::MCURegisters(volatile registerType* address)
     this->registerAddress = address;
 }
 
-bool Hardware::MCURegisters::EnableRegisterBit(registerType&& pin)
+bool Hardware::MCURegisters::BitEnable(registerType&& pin)
 {
     this->registerMask = this->registerMask | pin;
-    if (HardwareIsUpdated())
-        return true;
-    else
+    if (HardwareIsUpdated() == false)
         return false;
+    else
+        return true;
 }
 
-bool Hardware::MCURegisters::EnableRegister(registerType&& pin)
+bool Hardware::MCURegisters::BitsEnable(registerType&& pin)
 {
     this->registerMask = pin;
-    if (HardwareIsUpdated())
-        return true;
-    else
+    if (HardwareIsUpdated() == false)
         return false;
+    else
+        return true;
 }
 
-bool Hardware::MCURegisters::DisableRegister(registerType&& pin)
+bool Hardware::MCURegisters::Disable(registerType&& pin)
 {
     this->registerMask = this->registerMask & ~(pin);
-    if (HardwareIsUpdated())
-        return true;
-    else
+    if (HardwareIsUpdated() == false)
         return false;
+    else 
+        return true;
 }
 
-bool Hardware::MCURegisters::ToggleRegister(registerType&& pin)
+bool Hardware::MCURegisters::Toggle(registerType&& pin)
 {
     this->registerMask = this->registerMask ^ pin;
-    if (HardwareIsUpdated())
-        return true;
-    else
+    if (HardwareIsUpdated() == false)
         return false;
+    else
+        return true;
 }
 
 bool Hardware::MCURegisters::HardwareIsUpdated()
 {
     *this->registerAddress = this->registerMask;
     this->registerMask = *this->registerAddress;
-    if (this->registerMask == *this->registerAddress)
-        return true;
-    else
+    if (this->registerMask != *this->registerAddress)
         return false;
+    else
+        return true;
 }

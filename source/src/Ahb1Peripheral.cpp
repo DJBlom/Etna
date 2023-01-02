@@ -1,73 +1,73 @@
 #include "Ahb1Peripheral.h"
 
 
-bool Rcc::Ahb1Peripheral::GpioAResetClockControl()
+bool Rcc::Ahb1Peripheral::GpioAResetClockControl(Hardware::Registers& ahb1)
 {
-    if (ahb1.EnableRegisterBit(Clock::enable << Reset::gpioa))
-        return true;
-    else
-        return false;
-}
-
-bool Rcc::Ahb1Peripheral::GpioBResetClockControl()
-{
-    if (ahb1.EnableRegisterBit(Clock::enable << Reset::gpiob))
-        return true;
-    else
-        return false;
-}
-
-bool Rcc::Ahb1Peripheral::GpioCResetClockControl()
-{
-    if (ahb1.EnableRegisterBit(Clock::enable << Reset::gpioc))
-        return true;
-    else
-        return false;
-}
-
-bool Rcc::Ahb1Peripheral::GpioDResetClockControl()
-{
-    if (ahb1.EnableRegisterBit(Clock::enable << Reset::gpiod))
-        return true;
-    else
-        return false;
-}
-
-bool Rcc::Ahb1Peripheral::GpioEResetClockControl()
-{
-    if (ahb1.EnableRegisterBit(Clock::enable << Reset::gpioe))
-        return true;
-    else
-        return false;
-}
-
-bool Rcc::Ahb1Peripheral::GpioHResetClockControl()
-{
-    if (ahb1.EnableRegisterBit(Clock::enable << Reset::gpioh))
-        return true;
-    else
-        return false;
-}
-
-bool Rcc::Ahb1Peripheral::CrcResetClockControl()
-{
-    if (ahb1.EnableRegisterBit(Clock::enable << Reset::crc))
-        return true;
-    else
-        return false;
-}
-
-bool Rcc::Ahb1Peripheral::Dma1ResetClockControl()
-{
-    if (ahb1.EnableRegisterBit(Clock::enable << Reset::dma1))
+    if (ahb1.BitEnable(Clock::enable << Reset::gpioa) == false)
         return false;
     else
         return true;
 }
 
-bool Rcc::Ahb1Peripheral::Dma2ResetClockControl()
+bool Rcc::Ahb1Peripheral::GpioBResetClockControl(Hardware::Registers& ahb1)
 {
-    if (ahb1.EnableRegisterBit(Clock::enable << Reset::dma2))
+    if (ahb1.BitEnable(Clock::enable << Reset::gpiob) == false)
+        return false;
+    else
+        return true;
+}
+
+bool Rcc::Ahb1Peripheral::GpioCResetClockControl(Hardware::Registers& ahb1)
+{
+    if (ahb1.BitEnable(Clock::enable << Reset::gpioc) == false)
+        return false;
+    else
+        return true;
+}
+
+bool Rcc::Ahb1Peripheral::GpioDResetClockControl(Hardware::Registers& ahb1)
+{
+    if (ahb1.BitEnable(Clock::enable << Reset::gpiod) == false)
+        return false;
+    else
+        return true;
+}
+
+bool Rcc::Ahb1Peripheral::GpioEResetClockControl(Hardware::Registers& ahb1)
+{
+    if (ahb1.BitEnable(Clock::enable << Reset::gpioe) == false)
+        return false;
+    else
+        return true;
+}
+
+bool Rcc::Ahb1Peripheral::GpioHResetClockControl(Hardware::Registers& ahb1)
+{
+    if (ahb1.BitEnable(Clock::enable << Reset::gpioh) == false)
+        return false;
+    else
+        return true;
+}
+
+bool Rcc::Ahb1Peripheral::CrcResetClockControl(Hardware::Registers& ahb1)
+{
+    if (ahb1.BitEnable(Clock::enable << Reset::crc) == false)
+        return false;
+    else
+        return true;
+}
+
+bool Rcc::Ahb1Peripheral::Dma1ResetClockControl(Hardware::Registers& ahb1)
+{
+    if (ahb1.BitEnable(Clock::enable << Reset::dma1) == false)
+        return false;
+    else
+        return true;
+}
+
+bool Rcc::Ahb1Peripheral::Dma2ResetClockControl(Hardware::Registers& ahb1)
+{
+    if (ahb1.BitEnable(Clock::enable << Reset::dma2) == false)
         return false;
     else
         return true;

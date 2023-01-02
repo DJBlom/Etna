@@ -7,22 +7,21 @@
  *******************************************************************************/
 #ifndef _GPIO_MODE_H_ 
 #define _GPIO_MODE_H_ 
-#include "MCURegisters.h"
+#include "Registers.h"
 namespace Gpio {
     class GpioMode {
         public:
             GpioMode() = default;
-            explicit GpioMode(volatile registerType* address): gpio{address} {}
             GpioMode(const GpioMode&) = default;
             GpioMode(GpioMode&&) = default;
             GpioMode& operator= (const GpioMode&) = default;
             GpioMode& operator= (GpioMode&&) = default;
             virtual ~GpioMode() = default;
 
-            virtual bool EnableInputMode(registerType&&);
-            virtual bool EnableOutputMode(registerType&&);
-            virtual bool EnableAlternativeFunctionMode(registerType&&);
-            virtual bool EnableAnalogMode(registerType&&);
+            virtual bool InputModeEnable(Hardware::Registers&, registerType&&);
+            virtual bool OutputModeEnable(Hardware::Registers&, registerType&&);
+            virtual bool AlternateFunctionModeEnable(Hardware::Registers&, registerType&&);
+            virtual bool AnalogModeEnable(Hardware::Registers&, registerType&&);
 
         private:
             enum class Mode {
@@ -36,11 +35,6 @@ namespace Gpio {
             {
                 return static_cast<registerType> (mode) << pin;
             }
-
-        private:
-            Hardware::MCURegisters gpio;
-
-
     };
 }
 #endif
