@@ -17,13 +17,13 @@ namespace Address {
 
 void Hal::SystemPeripherals::InitializePeripherals()
 {
-    ahb1Bus = Hardware::MCURegisters{Address::ahb1Enable};
-    apb1Bus = Hardware::MCURegisters{Address::apb1Enable};
+    ahb1Register = Hardware::MCURegisters{Address::ahb1Enable};
+    apb1Register = Hardware::MCURegisters{Address::apb1Enable};
 }
 
 void Hal::SystemPeripherals::ConfigureSystemPeripheralBusses()
 {
-    ahb1.GpioAResetClockControl(ahb1Bus);
-    apb1.Usart2ResetClockControl(apb1Bus);
+    ahb1Bus.GpioAResetClockControl(ahb1Register);
+    apb1Bus.Usart2ResetClockControl(apb1Register);
 }
 

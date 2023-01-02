@@ -1,32 +1,32 @@
 #include "GpioMode.h"
 
-bool Gpio::GpioMode::InputModeEnable(Hardware::Registers& gpio, registerType&& pin)
+bool Gpio::GpioMode::InputModeEnable(Hardware::Registers& gpioModeRegister, registerType&& bit)
 {
-    if (gpio.BitEnable(Mode::input << pin) == false)
+    if (gpioModeRegister.BitEnable(Mode::input << bit) == false)
         return false;
     else 
         return true;
 }
 
-bool Gpio::GpioMode::OutputModeEnable(Hardware::Registers& gpio, registerType&& pin)
+bool Gpio::GpioMode::OutputModeEnable(Hardware::Registers& gpioModeRegister, registerType&& bit)
 {
-    if (gpio.BitEnable(Mode::output << pin) == false)
+    if (gpioModeRegister.BitEnable(Mode::output << bit) == false)
         return false;
     else
         return true;
 }
 
-bool Gpio::GpioMode::AlternateFunctionModeEnable(Hardware::Registers& gpio, registerType&& pin)
+bool Gpio::GpioMode::AlternateFunctionModeEnable(Hardware::Registers& gpioModeRegister, registerType&& bit)
 {
-    if (gpio.BitEnable(Mode::alternateFunction << pin) == false)
+    if (gpioModeRegister.BitEnable(Mode::alternateFunction << bit) == false)
         return false;
     else 
         return true;
 }
 
-bool Gpio::GpioMode::AnalogModeEnable(Hardware::Registers& gpio, registerType&& pin)
+bool Gpio::GpioMode::AnalogModeEnable(Hardware::Registers& gpioModeRegister, registerType&& bit)
 {
-    if (gpio.BitEnable(Mode::analog << pin) == false)
+    if (gpioModeRegister.BitEnable(Mode::analog << bit) == false)
         return false;
     else
         return true;

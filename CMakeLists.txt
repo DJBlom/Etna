@@ -30,6 +30,7 @@ add_executable(Etna
     ${CMAKE_SOURCE_DIR}/source/src/Ahb1Peripheral.cpp
     ${CMAKE_SOURCE_DIR}/source/src/Apb1Peripheral.cpp
     ${CMAKE_SOURCE_DIR}/source/src/GpioMode.cpp
+    ${CMAKE_SOURCE_DIR}/source/src/GpioAF.cpp
     ${CMAKE_SOURCE_DIR}/source/src/SystemPeripherals.cpp
     ${CMAKE_SOURCE_DIR}/source/src/SystemGpios.cpp
 )

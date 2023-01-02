@@ -25,10 +25,10 @@ namespace Hal {
             virtual void ConfigureSystemPeripheralBusses();
             
         private:
-            Hardware::MCURegisters ahb1Bus;
-            Hardware::MCURegisters apb1Bus;
-            Rcc::Ahb1Peripheral ahb1;
-            Rcc::Apb1Peripheral apb1;
+            Hardware::MCURegisters ahb1Register;
+            Hardware::MCURegisters apb1Register;
+            Rcc::Ahb1Peripheral ahb1Bus;
+            Rcc::Apb1Peripheral apb1Bus;
     };
 }
 #endif
