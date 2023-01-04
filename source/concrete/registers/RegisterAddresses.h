@@ -35,6 +35,8 @@ namespace registers {
         constexpr addressType USART_CR3{APB2_BASE + 0x1400U};
         constexpr addressType USART_GTPR{APB2_BASE + 0x1400U};
 
+
+
         namespace uart1 {
             constexpr addressType USART1{APB2_BASE + 0x1000U};
             constexpr addressType USART1_SR{USART1 + 0x0U};

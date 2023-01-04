@@ -6,6 +6,7 @@
  * Note: 
  *******************************************************************************/
 #include "MCURegisters.h"
+#include "Usart.h"
 #include "UsartCR1.h"
 #include "UsartCR2.h"
 #include <cstdint>
@@ -36,8 +37,77 @@ static genericType virtualAddress{0};
  * the USART is disabled or enters the Halt mode to avoid corrupting the last
  * transmission.
 **/
+TEST_GROUP(UsartTest)
+{
+    genericType expected{0};
+    Hardware::MCURegisters uartRegister;
+    Communication::Usart uart; 
+    void setup()
+    {
+        virtualAddress = 0;
+        uartRegister = Hardware::MCURegisters{&virtualAddress};
+    }
 
+    void teardown()
+    {
+    }
+};
 
+TEST(UsartTest, EnableTheUsart)
+{
+    expected = 8192;
+    uart.UsartEnable(uartRegister);
+
+    CHECK_EQUAL(expected, virtualAddress);
+}
+
+TEST(UsartTest, SetTheWordLengthToBeUsed)
+{
+    expected = 0;
+    uart.EightBitWordLengthUsed(uartRegister);
+
+    CHECK_EQUAL(expected, virtualAddress);
+}
+
+TEST(UsartTest, SetTheNumberOfStopBitsToBeUsed)
+{
+    expected = 0;
+    uart.OneStopBitUsed(uartRegister);
+
+    CHECK_EQUAL(expected, virtualAddress);
+}
+
+TEST(UsartTest, SetTheBaudRateToBeUsed)
+{
+    expected = 0x2D00;
+    uart.HighBaudRateUsed(uartRegister);
+
+    CHECK_EQUAL(expected, virtualAddress);
+}
+
+TEST(UsartTest, EnableTheTransmitterBitToTransmitData)
+{
+    expected = 8;
+    uart.TransmitterEnable(uartRegister);
+
+    CHECK_EQUAL(expected, virtualAddress);
+}
+
+TEST(UsartTest, InputTheDataToBeSent)
+{
+    expected = 'C';
+    uart.WriteData(uartRegister, 'C');
+
+    CHECK_EQUAL(expected, virtualAddress);
+}
+
+TEST(UsartTest, IsTheDataTransferingBufferEmpty)
+{
+    expected = 0x40;
+    uart.DataBufferIsEmpty(uartRegister);
+
+    CHECK_EQUAL(expected, virtualAddress);
+}
 
 /**
  * USART CR1 TEST LIST

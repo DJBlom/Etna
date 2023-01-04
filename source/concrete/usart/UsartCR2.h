@@ -13,6 +13,20 @@ namespace Usart {
             virtual ~UsartCR2() = default;
 
             virtual bool UseOneStopBit(Hardware::Registers&);
+
+        private:
+            enum class NumStopBits {
+                one = 0b00
+            };
+
+            enum class RegisterBit {
+                twelve = 12
+            };
+
+            friend registerType operator<< (const NumStopBits& stopBit, const RegisterBit& bit)
+            {
+                return static_cast<registerType> (stopBit) << static_cast<registerType> (bit);
+            }
     };
 }
 #endif 

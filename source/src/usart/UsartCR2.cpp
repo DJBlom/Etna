@@ -2,7 +2,7 @@
 
 bool Usart::UsartCR2::UseOneStopBit(Hardware::Registers& usartRegister)
 {
-    if (usartRegister.BitEnable(0b00 << 12) == false)
+    if (usartRegister.BitEnable(NumStopBits::one << RegisterBit::twelve) == false)
         return false;
     else
         return true;
