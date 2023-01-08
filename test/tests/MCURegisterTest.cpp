@@ -28,6 +28,7 @@ static genericType expected{0};
  * 4) Disable a whole register (Done)
  * 5) Toggle a specified register bit (Done)
  * 6) Toggle a whole register (Done)
+ * 7) Check whether or not a bit is set
  **/
 TEST_GROUP(MCURegistersTest)
 {
@@ -47,7 +48,7 @@ TEST_GROUP(MCURegistersTest)
 TEST(MCURegistersTest, EnableASpecifiedRegisterBit)
 {
     expected = 1;
-    reg.BitEnable(1U << 0);
+    reg.EnableBit(1U << 0);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
@@ -55,14 +56,14 @@ TEST(MCURegistersTest, EnableASpecifiedRegisterBit)
 TEST(MCURegistersTest, SetAWholeRegisterWithAValue)
 {
     expected = 0b1010;
-    reg.BitsEnable(0b1010);
+    reg.SetBits(0b1010);
 
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(MCURegistersTest, DisableASpecifiedRegisterBit)
 {
-    reg.BitEnable(1U << 0);
+    reg.EnableBit(1U << 0);
     reg.Disable(1U << 0);
 
     CHECK_EQUAL(expected, virtualAddress);
@@ -70,7 +71,7 @@ TEST(MCURegistersTest, DisableASpecifiedRegisterBit)
 
 TEST(MCURegistersTest, DisableAWholeRegister)
 {
-    reg.BitsEnable(0b1010);
+    reg.SetBits(0b1010);
     reg.Disable(0b1010);
 
     CHECK_EQUAL(expected, virtualAddress);
@@ -91,4 +92,13 @@ TEST(MCURegistersTest, ToggleAWholeRegister)
     reg.Toggle(0b10101);
 
     CHECK_EQUAL(expected, virtualAddress);
+}
+
+TEST(MCURegistersTest, IsTheSpecifiedBitEnabled)
+{
+    expected = 0;
+    reg.EnableBit(1U << 6);
+    reg.CheckBit(1U << 6);
+
+    CHECK_EQUAL(expected, reg.CheckBit(1U << 6));
 }

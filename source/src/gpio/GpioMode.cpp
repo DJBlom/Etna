@@ -2,7 +2,7 @@
 
 bool Gpio::GpioMode::InputModeEnable(Hardware::Registers& gpioModeRegister, registerType&& bit)
 {
-    if (gpioModeRegister.BitEnable(Mode::input << bit) == false)
+    if (gpioModeRegister.EnableBit(Mode::input << bit) == false)
         return false;
     else 
         return true;
@@ -10,7 +10,7 @@ bool Gpio::GpioMode::InputModeEnable(Hardware::Registers& gpioModeRegister, regi
 
 bool Gpio::GpioMode::OutputModeEnable(Hardware::Registers& gpioModeRegister, registerType&& bit)
 {
-    if (gpioModeRegister.BitEnable(Mode::output << bit) == false)
+    if (gpioModeRegister.EnableBit(Mode::output << bit) == false)
         return false;
     else
         return true;
@@ -18,7 +18,7 @@ bool Gpio::GpioMode::OutputModeEnable(Hardware::Registers& gpioModeRegister, reg
 
 bool Gpio::GpioMode::AlternateFunctionModeEnable(Hardware::Registers& gpioModeRegister, registerType&& bit)
 {
-    if (gpioModeRegister.BitEnable(Mode::alternateFunction << bit) == false)
+    if (gpioModeRegister.EnableBit(Mode::alternateFunction << bit) == false)
         return false;
     else 
         return true;
@@ -26,7 +26,7 @@ bool Gpio::GpioMode::AlternateFunctionModeEnable(Hardware::Registers& gpioModeRe
 
 bool Gpio::GpioMode::AnalogModeEnable(Hardware::Registers& gpioModeRegister, registerType&& bit)
 {
-    if (gpioModeRegister.BitEnable(Mode::analog << bit) == false)
+    if (gpioModeRegister.EnableBit(Mode::analog << bit) == false)
         return false;
     else
         return true;

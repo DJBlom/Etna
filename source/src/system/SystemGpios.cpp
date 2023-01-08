@@ -24,8 +24,8 @@ void Hal::SystemGpios::InitializeGpios()
 void Hal::SystemGpios::ConfigureSystemGpios()
 {
     modeA.OutputModeEnable(gpioaModeRegister, ConvertModeBitToSystemType(ModeBit::five));
-    modeA.OutputModeEnable(gpioaModeRegister, ConvertModeBitToSystemType(ModeBit::two));
     modeA.AlternateFunctionModeEnable(gpioaModeRegister, ConvertModeBitToSystemType(ModeBit::two));
+    modeA.AlternateFunctionModeEnable(gpioaModeRegister, ConvertModeBitToSystemType(ModeBit::three));
     lowAFA.SevenEnable(gpioaAFRegister, ConvertAFBitToSystemType(AFBit::two));
 }
 

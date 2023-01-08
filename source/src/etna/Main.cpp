@@ -15,9 +15,20 @@
 
 using genericType = std::uint32_t;
 
+volatile genericType* streamCtrl = GetAddress(registers::dma::dma1::STREAM5_DMA_CR);
+volatile genericType* streamNdtr = GetAddress(registers::dma::dma1::STREAM5_DMA_NDTR);
+volatile genericType* streamPar = GetAddress(registers::dma::dma1::STREAM5_DMA_PAR);
+volatile genericType* streamMar = GetAddress(registers::dma::dma1::STREAM5_DMA_M0AR);
+
+volatile genericType* ahb1Rcc = GetAddress(registers::rcc::AHB1_ENABLE);
+volatile genericType* apb1Rcc = GetAddress(registers::rcc::APB1_ENABLE);
+
 volatile genericType* mode = GetAddress(registers::gpio::gpioa::GPIOA_MODER);
+
 volatile genericType* lowAF = GetAddress(registers::gpio::gpioa::GPIOA_AFRL);
+
 volatile genericType* odr = GetAddress(registers::gpio::gpioa::GPIOA_ODR);
+
 volatile genericType* ctl1 = GetAddress(registers::uart::uart2::USART2_CR1);
 volatile genericType* ctl2 = GetAddress(registers::uart::uart2::USART2_CR2);
 volatile genericType* ctl3 = GetAddress(registers::uart::uart2::USART2_CR3);
@@ -31,7 +42,10 @@ Hardware::MCURegisters baudRate{baud};
 Hardware::MCURegisters status{st};
 Hardware::MCURegisters data{dr};
 
-//void WriteData(int ch);
+Communication::Usart debug;
+//void Print(const char text[]);
+
+
 
 int main()
 {
@@ -44,31 +58,25 @@ int main()
     systemGpios.InitializeGpios();
     systemGpios.ConfigureSystemGpios();
 
-//    Communication::Usart debug;
-//    debug.UsartEnable(control1);
-//    debug.EightBitWordLengthUsed(control1);
-//    debug.OneStopBitUsed(control2);
-//    debug.HighBaudRateUsed(baudRate);
-//    debug.TransmitterEnable(control1);
 
+    debug.UsartEnable(control1);
+    debug.EightBitWordLengthUsed(control1);
+    debug.OneStopBitUsed(control2);
+    debug.HighBaudRateUsed(baudRate);
+    debug.TransmitterEnable(control1);
 
-   
-    *lowAF = *lowAF | (7 << 12);
-    *lowAF = *lowAF | (7 << 8);
-    *mode = *mode | (1 << 7);
-    *mode = *mode | (1 << 5);
-    *baud = 0x8b;
-    *ctl1 = *ctl1 | (1 << 2);
-    *ctl1 = *ctl1 | (1 << 3);
-    *ctl1 = *ctl1 | (1 << 13);
+    // DMA configuration
+//    *streamCtrl = *streamCtrl | (0b100 << 25);
+//    *streamCtrl = *streamCtrl | (0b100 << 25);
+//    streamNdtr
+//    streamPar 
+//    streamMar 
 
 
     while (true)
     {
-        if (!(*st & (1 << 7)))
-            *dr = ('D' & 0xff);
-//        if (debug.DataBufferIsEmpty(status))
-//            debug.WriteData(data, 'D');
+        debug.WriteData(data, 'D');
+
         *odr = *odr | (1U << 5);
         for (int i = 0; i < 500000; i++)
         {
@@ -83,12 +91,4 @@ int main()
     }
 }
 
-//void WriteData(int ch)
-//{
-//    std::uint32_t _ch = ch & 0xff;
-//    while (!(*st & 0x80))
-//    {
-//        *dr = _ch;
-//    }
-//}
 

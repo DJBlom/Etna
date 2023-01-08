@@ -1,56 +1,65 @@
 #include "Usart.h"
 
-bool Communication::Usart::UsartEnable(Hardware::Registers& uartRegister)
+bool Communication::Usart::UsartEnable(Hardware::Registers& cr1Register)
 {
-    if (uartRegister.BitEnable(1U << 13) == false)
+    if (cr1Register.EnableBit(Set::high << Bit::eu) == false)
         return false;
     else
         return true;
 }
 
-bool Communication::Usart::EightBitWordLengthUsed(Hardware::Registers& uartRegister)
+bool Communication::Usart::EightBitWordLengthUsed(Hardware::Registers& cr1Register)
 {
-    if (uartRegister.BitEnable(0U << 12) == false)
+    if (cr1Register.EnableBit(Set::low << Bit::m) == false)
         return false;
     else
         return true;
 }
 
-bool Communication::Usart::OneStopBitUsed(Hardware::Registers& uartRegister)
+bool Communication::Usart::OneStopBitUsed(Hardware::Registers& cr2Register)
 {
-    if (uartRegister.BitEnable(0b00 << 12) == false)
+    if (cr2Register.EnableBit(Set::stop << Bit::st) == false)
         return false;
     else
         return true;
 }
 
-bool Communication::Usart::HighBaudRateUsed(Hardware::Registers& uartRegister)
+bool Communication::Usart::HighBaudRateUsed(Hardware::Registers& brrRegister)
 {
-    if (uartRegister.BitsEnable(0x8b) == false)
+    if (brrRegister.SetBits(Mask::write & Set::baud) == false)
         return false;
     else
         return true;
 }
 
-bool Communication::Usart::TransmitterEnable(Hardware::Registers& uartRegister)
+bool Communication::Usart::TransmitterEnable(Hardware::Registers& cr1Register)
 {
-    if (uartRegister.BitEnable(1U << 3) == false)
+    if (cr1Register.EnableBit(Set::high << Bit::te) == false)
         return false;
     else
         return true;
 }
 
-bool Communication::Usart::WriteData(Hardware::Registers& uartRegister, const registerType&& character)
+bool Communication::Usart::WriteData(Hardware::Registers& drRegister, const char& character)
 {
-    if (uartRegister.BitsEnable(character & 0xff) == false)
+    if (drRegister.SetBits(character & Mask::write) == false)
         return false;
     else
         return true;
 }
 
-bool Communication::Usart::DataBufferIsEmpty(Hardware::Registers& statusRegister)
+bool Communication::Usart::TransmissionIsCompleted(Hardware::Registers& stRegister)
 {
-    if (statusRegister.BitsEnable(0x40) == false)
+    if (stRegister.CheckBit(Set::high << Bit::tc) == false)
+        return false;
+    else
+        return true;
+}
+
+bool Communication::Usart::DMATransmissionIsCompleted(Hardware::Registers& stRegister)
+{
+    stRegister.Disable(Set::high << Bit::tc);
+    if (stRegister.CheckBit(Set::high << Bit::tc) == false)
         return false;
     else
         return true;

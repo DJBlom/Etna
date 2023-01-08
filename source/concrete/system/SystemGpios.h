@@ -27,15 +27,14 @@ namespace Hal {
         private:
             enum class ModeBit {
                 two = 4,
+                three = 6,
                 five = 10
             };
 
             enum class AFBit {
-                zero, one, two,
-                three, four, five,
-                six, seven, eight,
-                nine, ten, twelve,
-                fifteen
+                zero = 0, one = 4, two = 8,
+                three = 12, four = 16, five = 20,
+                six = 24, seven = 28
             };
 
             virtual registerType ConvertModeBitToSystemType(const ModeBit&);

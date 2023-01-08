@@ -17,21 +17,40 @@ namespace Communication {
             virtual bool OneStopBitUsed(Hardware::Registers&);
             virtual bool HighBaudRateUsed(Hardware::Registers&);
             virtual bool TransmitterEnable(Hardware::Registers&);
-            virtual bool WriteData(Hardware::Registers&, const registerType&&);
-            virtual bool DataBufferIsEmpty(Hardware::Registers&);
+            virtual bool WriteData(Hardware::Registers&, const char&);
+            virtual bool TransmissionIsCompleted(Hardware::Registers&);
+            virtual bool DMATransmissionIsCompleted(Hardware::Registers&);
             
         private:
+            enum class Mask {
+                write = 0xff,
+            };
             enum class Set {
                 low = 0U,
-                high = 1U
+                high = 1U,
+                stop = 0b00,
+                baud = 0x8b,
             };
-            enum class Bits {
-                transmitter = 3,
-                wordLength = 12,
-                enabler = 13
+            enum class Bit {
+                re = 2,
+                te = 3,
+                tc = 6,
+                st = 12,
+                m = 12,
+                eu = 13,
             };
 
-            friend registerType operator << (const Set& set, const Bits& bit)
+            friend registerType operator& (const Mask& mask, const Set& set)
+            {
+                return static_cast<registerType> (mask) & static_cast<registerType> (set);
+            }
+
+            friend registerType operator& (const char& character, const Mask& mask)
+            {
+                return static_cast<registerType> (character) & static_cast<registerType> (mask);
+            }
+
+            friend registerType operator<< (const Set& set, const Bit& bit)
             {
                 return static_cast<registerType> (set) << static_cast<registerType> (bit);
             }

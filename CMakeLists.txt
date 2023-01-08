@@ -33,8 +33,6 @@ add_executable(Etna
     ${CMAKE_SOURCE_DIR}/source/src/gpio/GpioMode.cpp
     ${CMAKE_SOURCE_DIR}/source/src/gpio/GpioAF.cpp
     ${CMAKE_SOURCE_DIR}/source/src/usart/Usart.cpp
-    ${CMAKE_SOURCE_DIR}/source/src/usart/UsartCR1.cpp
-    ${CMAKE_SOURCE_DIR}/source/src/usart/UsartCR2.cpp
     ${CMAKE_SOURCE_DIR}/source/src/registers/MCURegisters.cpp
 )
 
