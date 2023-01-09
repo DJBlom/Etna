@@ -1,4 +1,10 @@
-
+/********************************************************************************
+ * Contents: Class Usart.
+ * Author: Dawid Blom.
+ * Date: January 4, 2023.
+ *
+ * Note: This class is used to setup a usart communication protocol to a device
+ *******************************************************************************/
 #ifndef _USART_H_ 
 #define _USART_H_ 
 #include "Registers.h"
@@ -16,6 +22,8 @@ namespace Communication {
             virtual bool EightBitWordLengthUsed(Hardware::Registers&);
             virtual bool OneStopBitUsed(Hardware::Registers&);
             virtual bool HighBaudRateUsed(Hardware::Registers&);
+            virtual bool EnableDmaTransmission(Hardware::Registers&);
+            virtual bool EnableDmaReceiver(Hardware::Registers&);
             virtual bool TransmitterEnable(Hardware::Registers&);
             virtual bool WriteData(Hardware::Registers&, const char&);
             virtual bool TransmissionIsCompleted(Hardware::Registers&);
@@ -35,6 +43,8 @@ namespace Communication {
                 re = 2,
                 te = 3,
                 tc = 6,
+                dmar = 6,
+                dmat = 7,
                 st = 12,
                 m = 12,
                 eu = 13,

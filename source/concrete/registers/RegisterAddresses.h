@@ -30,10 +30,12 @@ namespace registers {
         constexpr addressType DMA2{0x40026400U};
 
         namespace dma1 {
-            constexpr addressType STREAM5_DMA_CR{DMA1 + 0x10U + 0x18U * 5};
-            constexpr addressType STREAM5_DMA_NDTR{DMA1 + 0x14U + 0x18U * 5};
-            constexpr addressType STREAM5_DMA_PAR{DMA1 + 0x18U + 0x18U * 5};
-            constexpr addressType STREAM5_DMA_M0AR{DMA1 + 0x1CU + 0x18U * 5};
+            constexpr addressType STREAM5_DMA_HISR{DMA1 + 0x04U + 0x18U * 6};
+            constexpr addressType STREAM5_DMA_HIFCR{DMA1 + 0x0CU + 0x18U * 6};
+            constexpr addressType STREAM5_DMA_CR{DMA1 + 0x10U + 0x18U * 6};
+            constexpr addressType STREAM5_DMA_NDTR{DMA1 + 0x14U + 0x18U * 6};
+            constexpr addressType STREAM5_DMA_PAR{DMA1 + 0x18U + 0x18U * 6};
+            constexpr addressType STREAM5_DMA_M0AR{DMA1 + 0x1CU + 0x18U * 6};
         }
     }
 

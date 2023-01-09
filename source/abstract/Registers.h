@@ -12,7 +12,7 @@ namespace Hardware {
             virtual bool SetBits(registerType&&) = 0;
             virtual bool Disable(registerType&&) = 0;
             virtual bool Toggle(registerType&&) = 0;
-            virtual bool CheckBit(registerType&&) = 0;
+            virtual registerType CheckBit(registerType&&) = 0;
             virtual bool HardwareIsUpdated() = 0;
     };
 }

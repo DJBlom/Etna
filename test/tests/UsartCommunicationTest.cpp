@@ -28,10 +28,12 @@ static genericType virtualAddress{0};
  * 3) Set a single stop bit when transmitting (Done)
  * 4) Set the baud rate to 115200 (Done)
  * 5) Enable the transmitter by sending a idle frame as first transmission (Done)
- * 6) Send data via the uart (Done)
- * 7) Make sure the stransmission was completed (Done)
- * 8) Make sure transmission is configured for DMA by setting the TC bit to 0
-**/
+ * 6) Enable DMA mode for uart transmission
+ * 7) Enable DMA mode for uart receiver
+ * 8) Send data via the uart (Done)
+ * 9) Make sure the stransmission was completed (Done)
+ * 10) Make sure transmission is configured for DMA by setting the TC bit to 0 (Done)
+ **/
 TEST_GROUP(UsartTest)
 {
     genericType expected{0};
@@ -88,6 +90,22 @@ TEST(UsartTest, EnableTheTransmitterBitToTransmitData)
     CHECK_EQUAL(expected, virtualAddress);
 }
 
+TEST(UsartTest, EnableDmaModeForTransmission)
+{
+    expected = 128;
+    uart.EnableDmaTransmission(uartRegister);
+
+    CHECK_EQUAL(expected, virtualAddress);
+}
+
+TEST(UsartTest, EnableDmaModeForReceiver)
+{
+    expected = 64;
+    uart.EnableDmaReceiver(uartRegister);
+
+    CHECK_EQUAL(expected, virtualAddress);
+}
+
 TEST(UsartTest, InputTheDataToBeSent)
 {
     expected = 'C';
@@ -101,7 +119,7 @@ TEST(UsartTest, MakeSureTheTransmissionWasCompleted)
     expected = 99;
     uart.WriteData(uartRegister, 'V');
 
-    CHECK_EQUAL(false, uart.TransmissionIsCompleted(uartRegister));
+    CHECK_EQUAL(true, uart.TransmissionIsCompleted(uartRegister));
 }
 
 TEST(UsartTest, ConfigureTheTransmissionForDmaTransfers)

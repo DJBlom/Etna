@@ -1,7 +1,13 @@
-
+/********************************************************************************
+ * Contents: Class RingBuffer.
+ * Author: Dawid Blom.
+ * Date: January 7, 2023.
+ *
+ * Note: This class is a circular queue algorithm A.K.A ring buffer. Additionally
+ * it utilizes a queue instead of a linked list.
+ *******************************************************************************/
 #ifndef _RING_BUFFER_H_ 
 #define _RING_BUFFER_H_ 
-#include <iostream>
 #include <cstdint>
 using smallRingType = std::uint8_t; 
 namespace Algorithms {
@@ -17,11 +23,11 @@ namespace Algorithms {
 
             virtual void Enqueue(ringType& item)
             {
-                if (this->back >= BufferFull())
-                    this->back = BufferEmpty();
+                if (this->back >= FullBuffer())
+                    this->back = EmptyBuffer();
 
-                if (this->currentSize == BufferFull())
-                    this->currentSize = BufferFull();
+                if (this->currentSize >= FullBuffer())
+                    this->currentSize = FullBuffer();
                 else
                     this->currentSize++;
 
@@ -30,11 +36,11 @@ namespace Algorithms {
 
             virtual ringType Dequeue()
             {
-                if (this->front >= BufferFull())
-                    this->front = BufferEmpty();
+                if (this->front >= FullBuffer())
+                    this->front = EmptyBuffer();
 
-                if (this->currentSize == BufferEmpty())
-                    this->currentSize = BufferEmpty();
+                if (this->currentSize >= EmptyBuffer())
+                    this->currentSize = EmptyBuffer();
                 else
                     this->currentSize--;
 
@@ -43,25 +49,25 @@ namespace Algorithms {
 
             virtual smallRingType Size()
             {
-                return (smallRingType)this->currentSize;
+                return this->currentSize;
             }
+
+        protected:
+            virtual smallRingType FullBuffer()
+            {
+                return static_cast<smallRingType> (BufferState::full);
+            } 
+
+            virtual smallRingType EmptyBuffer()
+            {
+                return static_cast<smallRingType> (BufferState::empty);
+            } 
 
         private:
             enum class BufferState {
                 empty = 0,
                 full = size
             };
-
-            virtual smallRingType BufferFull()
-            {
-                return static_cast<smallRingType> (BufferState::full);
-            } 
-
-            virtual smallRingType BufferEmpty()
-            {
-                return static_cast<smallRingType> (BufferState::empty);
-            } 
-
 
         private:
             ringType buffer[size] = {0};

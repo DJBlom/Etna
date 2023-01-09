@@ -7,7 +7,6 @@
  *******************************************************************************/
 #include "RingBuffer.h"
 #include <cstdint>
-#include <iostream>
 
 #include "CppUTest/TestHarness.h"
 

@@ -43,12 +43,13 @@ bool Hardware::MCURegisters::Toggle(registerType&& bit)
         return true;
 }
 
-bool Hardware::MCURegisters::CheckBit(registerType&& bit)
+registerType Hardware::MCURegisters::CheckBit(registerType&& bit)
 {
-    if (((this->registerMask >> bit) & 1U) == false)
-        return false;
-    else
-        return true;
+    registerType registerBit{0};
+    if (((this->registerMask >> bit) & 1U) == true)
+        registerBit = (this->registerMask >> bit) & 1U;
+        
+    return registerBit;
 }
 
 bool Hardware::MCURegisters::HardwareIsUpdated()

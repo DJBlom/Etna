@@ -24,6 +24,7 @@ void Hal::SystemPeripherals::InitializePeripherals()
 void Hal::SystemPeripherals::ConfigureSystemPeripheralBusses()
 {
     ahb1Bus.GpioAResetClockControl(ahb1Register);
+    ahb1Bus.Dma1ResetClockControl(ahb1Register);
     apb1Bus.Usart2ResetClockControl(apb1Register);
 }
 
