@@ -32,10 +32,12 @@ static genericType expected{0};
  **/
 TEST_GROUP(GpioModeTest)
 {
+    bool functionWorked{false};
     Hardware::MCURegisters gpioRegister;
     Gpio::GpioMode mode;
     void setup()
     {
+        functionWorked = false;
         virtualAddress = 0;
         expected = 0;
         gpioRegister = Hardware::MCURegisters{&virtualAddress};
@@ -49,32 +51,36 @@ TEST_GROUP(GpioModeTest)
 TEST(GpioModeTest, EnableInputModeForGpioPins)
 {
     expected = 0;
-    mode.InputModeEnable(gpioRegister, 5);
+    functionWorked = mode.InputModeEnable(gpioRegister, 5);
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(GpioModeTest, EnableOutputModeForGpioPins)
 {
     expected = 1;
-    mode.OutputModeEnable(gpioRegister, 0);
-
+    functionWorked = mode.OutputModeEnable(gpioRegister, 0);
+        
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(GpioModeTest, EnableAlternativeFunctionModeForGpioPins)
 {
     expected = 2;
-    mode.AlternateFunctionModeEnable(gpioRegister, 0);
+    functionWorked = mode.AlternateFunctionModeEnable(gpioRegister, 0);
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(GpioModeTest, EnableAnalogModeForGpioPins)
 {
     expected = 3;
-    mode.AnalogModeEnable(gpioRegister, 0);
+    functionWorked = mode.AnalogModeEnable(gpioRegister, 0);
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
@@ -100,10 +106,12 @@ TEST(GpioModeTest, EnableAnalogModeForGpioPins)
  **/
 TEST_GROUP(GpioAFTest)
 {
+    bool functionWorked{false};
     Hardware::MCURegisters gpioRegister;
     Gpio::GpioAF gpioAf;
     void setup()
     {
+        functionWorked = false;
         virtualAddress = 0;
         expected = 0;
         gpioRegister = Hardware::MCURegisters{&virtualAddress};
@@ -117,103 +125,116 @@ TEST_GROUP(GpioAFTest)
 TEST(GpioAFTest, EnableAlternateFunctionZero)
 {
     expected = 0;
-    gpioAf.ZeroEnable(gpioRegister, 0);
+    functionWorked= gpioAf.ZeroEnable(gpioRegister, 0);
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(GpioAFTest, EnableAlternateFunctionOne)
 {
     expected = 1;
-    gpioAf.OneEnable(gpioRegister, 0);
+    functionWorked = gpioAf.OneEnable(gpioRegister, 0);
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(GpioAFTest, EnableAlternateFunctionTwo)
 {
     expected = 2;
-    gpioAf.TwoEnable(gpioRegister, 0);
+    functionWorked = gpioAf.TwoEnable(gpioRegister, 0);
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(GpioAFTest, EnableAlternateFunctionThree)
 {
     expected = 3;
-    gpioAf.ThreeEnable(gpioRegister, 0);
+    functionWorked = gpioAf.ThreeEnable(gpioRegister, 0);
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(GpioAFTest, EnableAlternateFunctionFour)
 {
     expected = 4;
-    gpioAf.FourEnable(gpioRegister, 0);
-
+    functionWorked = gpioAf.FourEnable(gpioRegister, 0);
+    
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(GpioAFTest, EnableAlternateFunctionFive)
 {
     expected = 5;
-    gpioAf.FiveEnable(gpioRegister, 0);
+    functionWorked = gpioAf.FiveEnable(gpioRegister, 0);
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(GpioAFTest, EnableAlternateFunctionSix)
 {
     expected = 6;
-    gpioAf.SixEnable(gpioRegister, 0);
+    functionWorked = gpioAf.SixEnable(gpioRegister, 0);
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(GpioAFTest, EnableAlternateFunctionSeven)
 {
     expected = 7;
-    gpioAf.SevenEnable(gpioRegister, 0);
+    functionWorked = gpioAf.SevenEnable(gpioRegister, 0);
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(GpioAFTest, EnableAlternateFunctionEight)
 {
     expected = 8;
-    gpioAf.EightEnable(gpioRegister, 0);
+    functionWorked = gpioAf.EightEnable(gpioRegister, 0);
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(GpioAFTest, EnableAlternateFunctionNine)
 {
     expected = 9;
-    gpioAf.NineEnable(gpioRegister, 0);
+    functionWorked = gpioAf.NineEnable(gpioRegister, 0);
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(GpioAFTest, EnableAlternateFunctionTen)
 {
     expected = 10;
-    gpioAf.TenEnable(gpioRegister, 0);
+    functionWorked = gpioAf.TenEnable(gpioRegister, 0);
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(GpioAFTest, EnableAlternateFunctionTwelve)
 {
     expected = 12;
-    gpioAf.TwelveEnable(gpioRegister, 0);
+    functionWorked = gpioAf.TwelveEnable(gpioRegister, 0);
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(GpioAFTest, EnableAlternateFunctionFifteen)
 {
     expected = 15;
-    gpioAf.FifteenEnable(gpioRegister, 0);
+    functionWorked = gpioAf.FifteenEnable(gpioRegister, 0);
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }

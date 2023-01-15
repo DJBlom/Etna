@@ -34,10 +34,12 @@ add_executable(Etna
     ${CMAKE_SOURCE_DIR}/source/src/gpio/GpioAF.cpp
     ${CMAKE_SOURCE_DIR}/source/src/usart/Usart.cpp
     ${CMAKE_SOURCE_DIR}/source/src/registers/MCURegisters.cpp
+    ${CMAKE_SOURCE_DIR}/source/src/registers/Uart2DmaController.cpp
 )
 
 target_include_directories(Etna PRIVATE
     ${CMAKE_SOURCE_DIR}/source/abstract/
+    ${CMAKE_SOURCE_DIR}/source/concrete/
     ${CMAKE_SOURCE_DIR}/source/concrete/system
     ${CMAKE_SOURCE_DIR}/source/concrete/peripheral
     ${CMAKE_SOURCE_DIR}/source/concrete/gpio

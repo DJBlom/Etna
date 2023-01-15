@@ -36,11 +36,13 @@ static genericType virtualAddress{0};
  **/
 TEST_GROUP(UsartTest)
 {
+    bool functionWorked{false};
     genericType expected{0};
     Hardware::MCURegisters uartRegister;
     Communication::Usart uart; 
     void setup()
     {
+        functionWorked = false;
         virtualAddress = 0;
         uartRegister = Hardware::MCURegisters{&virtualAddress};
     }
@@ -53,72 +55,80 @@ TEST_GROUP(UsartTest)
 TEST(UsartTest, EnableTheUsart)
 {
     expected = 8192;
-    uart.UsartEnable(uartRegister);
+    functionWorked = uart.UsartEnable(uartRegister);
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(UsartTest, SetTheWordLengthToBeUsed)
 {
     expected = 0;
-    uart.EightBitWordLengthUsed(uartRegister);
+    functionWorked = uart.EightBitWordLengthUsed(uartRegister);
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(UsartTest, SetTheNumberOfStopBitsToBeUsed)
 {
     expected = 0;
-    uart.OneStopBitUsed(uartRegister);
+    functionWorked = uart.OneStopBitUsed(uartRegister);
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(UsartTest, SetTheBaudRateToBeUsed)
 {
     expected = 0x8b;
-    uart.HighBaudRateUsed(uartRegister);
+    functionWorked = uart.HighBaudRateUsed(uartRegister);
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(UsartTest, EnableTheTransmitterBitToTransmitData)
 {
     expected = 8;
-    uart.TransmitterEnable(uartRegister);
+    functionWorked = uart.TransmitterEnable(uartRegister);
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(UsartTest, EnableDmaModeForTransmission)
 {
     expected = 128;
-    uart.EnableDmaTransmission(uartRegister);
+    functionWorked = uart.EnableDmaTransmission(uartRegister);
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(UsartTest, EnableDmaModeForReceiver)
 {
     expected = 64;
-    uart.EnableDmaReceiver(uartRegister);
+    functionWorked = uart.EnableDmaReceiver(uartRegister);
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(UsartTest, InputTheDataToBeSent)
 {
     expected = 'C';
-    uart.WriteData(uartRegister, 'C');
+    functionWorked = uart.WriteData(uartRegister, 'C');
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(UsartTest, MakeSureTheTransmissionWasCompleted)
 {
-    expected = 99;
-    uart.WriteData(uartRegister, 'V');
+    functionWorked = uart.WriteData(uartRegister, 'V');
 
+    CHECK(functionWorked);
     CHECK_EQUAL(true, uart.TransmissionIsCompleted(uartRegister));
 }
 
@@ -126,8 +136,17 @@ TEST(UsartTest, ConfigureTheTransmissionForDmaTransfers)
 {
     expected = 22;
     uart.WriteData(uartRegister, 'V');
-
-    uart.DMATransmissionIsCompleted(uartRegister);
+    functionWorked = uart.DMATransmissionIsCompleted(uartRegister);
         
+    CHECK(functionWorked);
+    CHECK_EQUAL(expected, virtualAddress);
+}
+
+TEST(UsartTest, ConfigureOversamplingMode)
+{
+    expected = 0;
+    functionWorked = uart.OversamplingBySixteen(uartRegister);
+
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }

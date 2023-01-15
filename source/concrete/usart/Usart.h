@@ -18,6 +18,7 @@ namespace Communication {
             Usart& operator= (Usart&&) = default;
             virtual ~Usart() = default;
 
+            virtual bool OversamplingBySixteen(Hardware::Registers&);
             virtual bool UsartEnable(Hardware::Registers&);
             virtual bool EightBitWordLengthUsed(Hardware::Registers&);
             virtual bool OneStopBitUsed(Hardware::Registers&);
@@ -48,6 +49,7 @@ namespace Communication {
                 st = 12,
                 m = 12,
                 eu = 13,
+                over = 15,
             };
 
             friend registerType operator& (const Mask& mask, const Set& set)

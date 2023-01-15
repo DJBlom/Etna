@@ -1,5 +1,13 @@
 #include "Usart.h"
 
+bool Communication::Usart::OversamplingBySixteen(Hardware::Registers& cr1Register)
+{
+    if (cr1Register.EnableBit(Set::low << Bit::over) == false)
+        return false;
+    else
+        return true;
+}
+
 bool Communication::Usart::UsartEnable(Hardware::Registers& cr1Register)
 {
     if (cr1Register.EnableBit(Set::high << Bit::eu) == false)
