@@ -20,10 +20,12 @@ namespace Hardware {
             MCURegisters& operator= (MCURegisters&&) = default;
             virtual ~MCURegisters() = default;
 
-            virtual bool EnableRegisterBit(registerType&&);
-            virtual bool EnableRegister(registerType&&);
-            virtual bool DisableRegister(registerType&&);
-            virtual bool ToggleRegister(registerType&&);
+            virtual bool EnableBit(registerType&&);
+            virtual bool SetBits(registerType&&);
+            virtual bool Disable(registerType&&);
+            virtual bool Toggle(registerType&&);
+            virtual registerType CheckBit(registerType&&);
+            virtual bool AssignAnotherRegister(const registerType&);
             
         protected:
             virtual bool HardwareIsUpdated();

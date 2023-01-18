@@ -17,12 +17,27 @@ CPP_PLATFORM :=g++
 CPP_PLATFORM :=-std=c++20
 
 SRC_DIRS :=\
-	$(PROJECT_DIR)/source/src
+	$(PROJECT_DIR)/source/src/\
+	$(PROJECT_DIR)/source/src/system\
+	$(PROJECT_DIR)/source/src/peripheral\
+	$(PROJECT_DIR)/source/src/gpio\
+	$(PROJECT_DIR)/source/src/usart\
+	$(PROJECT_DIR)/source/src/registers\
 
+
+
+
+
+
+	
 INCLUDE_DIRS :=\
 	$(CPPUTEST_HOME)/include\
 	$(PROJECT_DIR)/source/abstract/\
 	$(PROJECT_DIR)/source/concrete/\
+	$(PROJECT_DIR)/source/concrete/system\
+	$(PROJECT_DIR)/source/concrete/peripheral\
+	$(PROJECT_DIR)/source/concrete/gpio\
+	$(PROJECT_DIR)/source/concrete/usart\
 	$(PROJECT_DIR)/source/concrete/registers\
 	$(TEST_DIR)/mocks
 

@@ -17,7 +17,7 @@ extern "C"
 
 using genericType = std::uint32_t;
 static volatile genericType virtualAddress{0};
-static genericType expected{0};
+
 
 /**
  * MCUREGISTER TEST LIST
@@ -28,12 +28,17 @@ static genericType expected{0};
  * 4) Disable a whole register (Done)
  * 5) Toggle a specified register bit (Done)
  * 6) Toggle a whole register (Done)
+ * 7) Check whether or not a bit is set (Done)
+ * 8) Assign a register with another registers value
  **/
 TEST_GROUP(MCURegistersTest)
 {
+    bool functionWorked{false};
+    genericType expected{0};
     Hardware::MCURegisters reg;
     void setup()
     {
+        functionWorked = false;
         virtualAddress = 0;
         expected = 0;
         reg = Hardware::MCURegisters(&virtualAddress);
@@ -47,48 +52,73 @@ TEST_GROUP(MCURegistersTest)
 TEST(MCURegistersTest, EnableASpecifiedRegisterBit)
 {
     expected = 1;
-    reg.EnableRegisterBit(1U << 0);
+    functionWorked = reg.EnableBit(1U << 0);
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(MCURegistersTest, SetAWholeRegisterWithAValue)
 {
     expected = 0b1010;
-    reg.EnableRegister(0b1010);
+    functionWorked = reg.SetBits(0b1010);
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(MCURegistersTest, DisableASpecifiedRegisterBit)
 {
-    reg.EnableRegisterBit(1U << 0);
-    reg.DisableRegister(1U << 0);
+    reg.EnableBit(1U << 0);
+    functionWorked = reg.Disable(1U << 0);
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(MCURegistersTest, DisableAWholeRegister)
 {
-    reg.EnableRegister(0b1010);
-    reg.DisableRegister(0b1010);
+    reg.SetBits(0b1010);
+    functionWorked = reg.Disable(0b1010);
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(MCURegistersTest, ToggleASpecifiedRegisterBit)
 {
     expected = 1;
-    reg.ToggleRegister(1U << 0);
+    functionWorked = reg.Toggle(1U << 0);
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
 }
 
 TEST(MCURegistersTest, ToggleAWholeRegister)
 {
     expected = 0;
-    reg.ToggleRegister(0b10101);
-    reg.ToggleRegister(0b10101);
+    reg.Toggle(0b10101);
+    functionWorked = reg.Toggle(0b10101);
 
+    CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
+}
+
+TEST(MCURegistersTest, IsTheSpecifiedBitEnabled)
+{
+    genericType bitReturned{0};
+    expected = 1;
+    reg.EnableBit(1U << 0);
+    bitReturned = reg.CheckBit(0);
+
+    CHECK_EQUAL(expected, bitReturned);
+}
+
+TEST(MCURegistersTest, AssignARegisterWithAnotherRegistersValue)
+{
+    genericType anotherVirtualAddress = 0x1234;
+    functionWorked = reg.AssignAnotherRegister(anotherVirtualAddress);
+
+    CHECK(functionWorked);
+    CHECK_EQUAL(anotherVirtualAddress, virtualAddress);
 }

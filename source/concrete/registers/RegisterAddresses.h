@@ -25,6 +25,28 @@ namespace registers {
         constexpr addressType AHB3_ENABLE{AHB2_ENABLE + 0x38U};
     }
 
+    namespace dma {
+        constexpr addressType DMA1{0x40026000U};
+        constexpr addressType DMA2{0x40026400U};
+
+        namespace dma1 {
+            constexpr addressType STREAM6_DMA_HISR{DMA1 + 0x04U};
+            constexpr addressType STREAM6_DMA_HIFCR{DMA1 + 0x0CU};
+            constexpr addressType STREAM6_DMA_CR{DMA1 + 0x10U + (0x18U * 6)};
+            constexpr addressType STREAM6_DMA_NDTR{DMA1 + 0x14U + (0x18U * 6)};
+            constexpr addressType STREAM6_DMA_PAR{DMA1 + 0x18U + (0x18U * 6)};
+            constexpr addressType STREAM6_DMA_M0AR{DMA1 + 0x1CU + (0x18U * 6)};
+        }
+
+        namespace dma2 {
+            constexpr addressType STREAM6_DMA_HISR{DMA2 + 0x04U};
+            constexpr addressType STREAM6_DMA_HIFCR{DMA2 + 0x0CU};
+            constexpr addressType STREAM6_DMA_CR{DMA2 + 0x10U + (0x18U * 6)};
+            constexpr addressType STREAM6_DMA_NDTR{DMA2 + 0x14U + (0x18U * 6)};
+            constexpr addressType STREAM6_DMA_PAR{DMA2 + 0x18U + (0x18U * 6)};
+            constexpr addressType STREAM6_DMA_M0AR{DMA2 + 0x1CU + (0x18U * 6)};
+        }
+    }
 
     namespace uart {
         constexpr addressType USART_SR{APB2_BASE + 0x1400U};
@@ -34,6 +56,8 @@ namespace registers {
         constexpr addressType USART_CR2{APB2_BASE + 0x1400U};
         constexpr addressType USART_CR3{APB2_BASE + 0x1400U};
         constexpr addressType USART_GTPR{APB2_BASE + 0x1400U};
+
+
 
         namespace uart1 {
             constexpr addressType USART1{APB2_BASE + 0x1000U};
@@ -45,6 +69,7 @@ namespace registers {
             constexpr addressType USART1_CR3{USART1 + 0x14U};
             constexpr addressType USART1_GTPR{USART1 + 0x18U};
         }
+
 
         namespace uart2 {
             constexpr addressType USART2{APB1_BASE + 0x4400U};
