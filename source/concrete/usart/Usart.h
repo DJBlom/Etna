@@ -20,12 +20,12 @@ namespace Communication {
 
             virtual bool OversamplingBySixteen(Hardware::Registers&);
             virtual bool UsartEnable(Hardware::Registers&);
-            virtual bool EightBitWordLengthUsed(Hardware::Registers&);
-            virtual bool OneStopBitUsed(Hardware::Registers&);
-            virtual bool HighBaudRateUsed(Hardware::Registers&);
+            virtual bool UseEightBitWordLength(Hardware::Registers&);
+            virtual bool UseOneStopBit(Hardware::Registers&);
+            virtual bool SetBaudRateHigh(Hardware::Registers&);
             virtual bool EnableDmaTransmission(Hardware::Registers&);
             virtual bool EnableDmaReceiver(Hardware::Registers&);
-            virtual bool TransmitterEnable(Hardware::Registers&);
+            virtual bool EnableTransmitter(Hardware::Registers&);
             virtual bool WriteData(Hardware::Registers&, const char&);
             virtual bool TransmissionIsCompleted(Hardware::Registers&);
             virtual bool DMATransmissionIsCompleted(Hardware::Registers&);

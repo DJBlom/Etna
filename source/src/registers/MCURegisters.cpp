@@ -10,37 +10,37 @@ Hardware::MCURegisters::MCURegisters(volatile registerType* address)
 bool Hardware::MCURegisters::EnableBit(registerType&& bit)
 {
     this->registerMask = this->registerMask | bit;
-    if (HardwareIsUpdated() == false)
-        return false;
-    else
+    if (HardwareIsUpdated() == true)
         return true;
+    else
+        return false;
 }
 
 bool Hardware::MCURegisters::SetBits(registerType&& bits)
 {
     this->registerMask = bits;
-    if (HardwareIsUpdated() == false)
-        return false;
-    else
+    if (HardwareIsUpdated() == true)
         return true;
+    else
+        return false;
 }
 
 bool Hardware::MCURegisters::Disable(registerType&& bit)
 {
     this->registerMask = this->registerMask & ~(bit);
-    if (HardwareIsUpdated() == false)
-        return false;
-    else 
+    if (HardwareIsUpdated() == true)
         return true;
+    else
+        return false;
 }
 
 bool Hardware::MCURegisters::Toggle(registerType&& bit)
 {
     this->registerMask = this->registerMask ^ bit;
-    if (HardwareIsUpdated() == false)
-        return false;
-    else
+    if (HardwareIsUpdated() == true)
         return true;
+    else
+        return false;
 }
 
 registerType Hardware::MCURegisters::CheckBit(registerType&& bit)
@@ -50,6 +50,15 @@ registerType Hardware::MCURegisters::CheckBit(registerType&& bit)
         registerBit = (this->registerMask >> bit) & 1U;
         
     return registerBit;
+}
+
+bool Hardware::MCURegisters::AssignAnotherRegister(const registerType& newRegister)
+{
+    this->registerMask = newRegister;
+    if (HardwareIsUpdated() == true)
+        return true;
+    else
+        return false;
 }
 
 bool Hardware::MCURegisters::HardwareIsUpdated()

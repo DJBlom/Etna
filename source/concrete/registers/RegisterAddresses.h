@@ -70,6 +70,7 @@ namespace registers {
             constexpr addressType USART1_GTPR{USART1 + 0x18U};
         }
 
+
         namespace uart2 {
             constexpr addressType USART2{APB1_BASE + 0x4400U};
             constexpr addressType USART2_SR{USART2 + 0x0U};

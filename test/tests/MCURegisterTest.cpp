@@ -28,7 +28,8 @@ static volatile genericType virtualAddress{0};
  * 4) Disable a whole register (Done)
  * 5) Toggle a specified register bit (Done)
  * 6) Toggle a whole register (Done)
- * 7) Check whether or not a bit is set
+ * 7) Check whether or not a bit is set (Done)
+ * 8) Assign a register with another registers value
  **/
 TEST_GROUP(MCURegistersTest)
 {
@@ -111,4 +112,13 @@ TEST(MCURegistersTest, IsTheSpecifiedBitEnabled)
     bitReturned = reg.CheckBit(0);
 
     CHECK_EQUAL(expected, bitReturned);
+}
+
+TEST(MCURegistersTest, AssignARegisterWithAnotherRegistersValue)
+{
+    genericType anotherVirtualAddress = 0x1234;
+    functionWorked = reg.AssignAnotherRegister(anotherVirtualAddress);
+
+    CHECK(functionWorked);
+    CHECK_EQUAL(anotherVirtualAddress, virtualAddress);
 }

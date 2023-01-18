@@ -28,13 +28,14 @@ add_executable(Etna
     ${CMAKE_SOURCE_DIR}/source/src/etna/Main.cpp
     ${CMAKE_SOURCE_DIR}/source/src/system/SystemPeripherals.cpp
     ${CMAKE_SOURCE_DIR}/source/src/system/SystemGpios.cpp
+    ${CMAKE_SOURCE_DIR}/source/src/system/SystemLogger.cpp
     ${CMAKE_SOURCE_DIR}/source/src/peripheral/Ahb1Peripheral.cpp
     ${CMAKE_SOURCE_DIR}/source/src/peripheral/Apb1Peripheral.cpp
     ${CMAKE_SOURCE_DIR}/source/src/gpio/GpioMode.cpp
     ${CMAKE_SOURCE_DIR}/source/src/gpio/GpioAF.cpp
     ${CMAKE_SOURCE_DIR}/source/src/usart/Usart.cpp
     ${CMAKE_SOURCE_DIR}/source/src/registers/MCURegisters.cpp
-    ${CMAKE_SOURCE_DIR}/source/src/registers/Uart2DmaController.cpp
+    ${CMAKE_SOURCE_DIR}/source/src/Uart2DmaController.cpp
 )
 
 target_include_directories(Etna PRIVATE

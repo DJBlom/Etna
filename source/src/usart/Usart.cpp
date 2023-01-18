@@ -16,7 +16,7 @@ bool Communication::Usart::UsartEnable(Hardware::Registers& cr1Register)
         return true;
 }
 
-bool Communication::Usart::EightBitWordLengthUsed(Hardware::Registers& cr1Register)
+bool Communication::Usart::UseEightBitWordLength(Hardware::Registers& cr1Register)
 {
     if (cr1Register.EnableBit(Set::low << Bit::m) == false)
         return false;
@@ -24,7 +24,7 @@ bool Communication::Usart::EightBitWordLengthUsed(Hardware::Registers& cr1Regist
         return true;
 }
 
-bool Communication::Usart::OneStopBitUsed(Hardware::Registers& cr2Register)
+bool Communication::Usart::UseOneStopBit(Hardware::Registers& cr2Register)
 {
     if (cr2Register.EnableBit(Set::stop << Bit::st) == false)
         return false;
@@ -32,7 +32,7 @@ bool Communication::Usart::OneStopBitUsed(Hardware::Registers& cr2Register)
         return true;
 }
 
-bool Communication::Usart::HighBaudRateUsed(Hardware::Registers& brrRegister)
+bool Communication::Usart::SetBaudRateHigh(Hardware::Registers& brrRegister)
 {
     if (brrRegister.SetBits(Mask::write & Set::baud) == false)
         return false;
@@ -40,7 +40,7 @@ bool Communication::Usart::HighBaudRateUsed(Hardware::Registers& brrRegister)
         return true;
 }
 
-bool Communication::Usart::TransmitterEnable(Hardware::Registers& cr1Register)
+bool Communication::Usart::EnableTransmitter(Hardware::Registers& cr1Register)
 {
     if (cr1Register.EnableBit(Set::high << Bit::te) == false)
         return false;

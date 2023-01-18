@@ -7,8 +7,10 @@
  *********************************************************************************/
 #include "SystemPeripherals.h"
 #include "SystemGpios.h"
+#include "SystemLogger.h"
 #include "RegisterAddresses.h"
 #include "Usart.h"
+#include "Uart2DmaController.h"
 #include "MCURegisters.h"
 #include <cstdint>
 #include <string.h>
@@ -45,6 +47,7 @@ Hardware::MCURegisters control3{ctl3};
 Hardware::MCURegisters baudRate{baud};
 Hardware::MCURegisters status{st};
 Hardware::MCURegisters data{dr};
+Hardware::MCURegisters controlRegister{streamCtrl};
 
 
 void DMA1_Stream6_IRQHandler()
@@ -67,57 +70,14 @@ int main()
     systemGpios.InitializeGpios();
     systemGpios.ConfigureSystemGpios();
 
-    Communication::Usart debug;
-    debug.OversamplingBySixteen(control1);
-    debug.UsartEnable(control1);
-    debug.EightBitWordLengthUsed(control1);
-    debug.OneStopBitUsed(control2);
-    debug.HighBaudRateUsed(baudRate);
-    debug.TransmitterEnable(control1);
-    debug.EnableDmaTransmission(control3);
+    Hal::SystemLogger debug;
+    debug.InitializeSystemLogger();
+    debug.ConfigureSystemLogger();
 
-    //const char* str = "\n\n\r Hello from my uart";
-    char str[256] = "\n\n\r Hello from my uart!";
-
-
-
-    // DMA configuration
-    *streamCtrl = *streamCtrl | (0b100 << 25);
-    *streamCtrl = *streamCtrl | (0b00 << 23);
-    *streamCtrl = *streamCtrl | (0b00 << 21);
-    *streamCtrl = *streamCtrl | (0b00 << 16);
-    *streamCtrl = *streamCtrl | (0b00 << 13);
-    *streamCtrl = *streamCtrl | (0b1 << 10);
-    *streamCtrl = *streamCtrl | (0b0 << 8);
-    *streamCtrl = *streamCtrl | (0b01 << 6);
-    *streamCtrl = *streamCtrl | (0b0 << 4);
-    
-
-
-    *streamPar = registers::uart::uart2::USART2_DR;
-    *streamMar = (std::uint32_t)str;
-    *streamNdtr = sizeof(str);
-
-    
-//    *streamCtrl = *streamCtrl | (0b1 << 0);
-//    *streamCtrl = *streamCtrl | (0b0 << 0);
     while (true)
     {
-
-//        if(debug.TransmissionIsCompleted(status) == true)
-//            debug.WriteData(data, str[0]);
-
-
-
-        *streamCtrl = *streamCtrl | (0b1 << 0);
-//        *streamCtrl = *streamCtrl | (0b0 << 0);
-
-        //while (((*streamHisr >> 27) & 1U) == 0);
-
-        //*streamHifcr = *streamHifcr | (1U << 27);
-//        *streamCtrl = *streamCtrl & ~(1U << 0);
-
         *odr = *odr | (1U << 5);
+        debug.LogMessage("Blink\n\r");
         for (int i = 0; i < 500000; i++)
         {
 

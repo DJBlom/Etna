@@ -64,7 +64,7 @@ TEST(UsartTest, EnableTheUsart)
 TEST(UsartTest, SetTheWordLengthToBeUsed)
 {
     expected = 0;
-    functionWorked = uart.EightBitWordLengthUsed(uartRegister);
+    functionWorked = uart.UseEightBitWordLength(uartRegister);
 
     CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
@@ -73,7 +73,7 @@ TEST(UsartTest, SetTheWordLengthToBeUsed)
 TEST(UsartTest, SetTheNumberOfStopBitsToBeUsed)
 {
     expected = 0;
-    functionWorked = uart.OneStopBitUsed(uartRegister);
+    functionWorked = uart.UseOneStopBit(uartRegister);
 
     CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
@@ -82,7 +82,7 @@ TEST(UsartTest, SetTheNumberOfStopBitsToBeUsed)
 TEST(UsartTest, SetTheBaudRateToBeUsed)
 {
     expected = 0x8b;
-    functionWorked = uart.HighBaudRateUsed(uartRegister);
+    functionWorked = uart.SetBaudRateHigh(uartRegister);
 
     CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);
@@ -91,7 +91,7 @@ TEST(UsartTest, SetTheBaudRateToBeUsed)
 TEST(UsartTest, EnableTheTransmitterBitToTransmitData)
 {
     expected = 8;
-    functionWorked = uart.TransmitterEnable(uartRegister);
+    functionWorked = uart.EnableTransmitter(uartRegister);
 
     CHECK(functionWorked);
     CHECK_EQUAL(expected, virtualAddress);

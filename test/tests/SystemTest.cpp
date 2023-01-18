@@ -12,6 +12,8 @@
 #include "SystemGpios.h"
 #include "SystemGpiosMock.h"
 
+#include "SystemLogger.h"
+
 extern "C" 
 {
 
@@ -96,6 +98,56 @@ TEST(SystemGpioTest, ConfigureTheGpioModes)
 {
     mock().expectOneCall("ConfigureSystemGpios");
     system->ConfigureSystemGpios();
+
+    mock().checkExpectations();
+}
+
+
+
+/**
+ * SYSTEM LOG TEST LIST
+ *
+ * 1) Create the system logging output (Done)
+ * 2) Initialize the logger (Done)
+ * 3) Configure the logger (Done)
+ * 4) Send a string to the host 
+ **/
+TEST_GROUP(SystemLoggerTest)
+{
+    Hal::SystemLogger* log;
+    void setup()
+    {
+        log = new Hal::SystemLogger();
+    }
+
+    void teardown()
+    {
+        mock().clear();
+        delete log;
+    }
+};
+
+TEST(SystemLoggerTest, InitializeTheLogger)
+{
+    mock().expectOneCall("InitializeSystemLogger");
+    log->InitializeSystemLogger();
+
+    mock().checkExpectations();
+}
+
+TEST(SystemLoggerTest, ConfigureTheLogger)
+{
+    mock().expectOneCall("ConfigureSystemLogger").andReturnValue(true);
+    log->ConfigureSystemLogger();
+
+    mock().checkExpectations();
+}
+
+TEST(SystemLoggerTest, SendDataToTheHostMachine)
+{
+    const char msg[] = "Debugging Session\n\r";
+    mock().expectOneCall("LogMessage").withParameter("msg", msg).andReturnValue(true);
+    log->LogMessage(msg);
 
     mock().checkExpectations();
 }

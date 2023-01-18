@@ -25,6 +25,7 @@ namespace Hardware {
             virtual bool Disable(registerType&&);
             virtual bool Toggle(registerType&&);
             virtual registerType CheckBit(registerType&&);
+            virtual bool AssignAnotherRegister(const registerType&);
             
         protected:
             virtual bool HardwareIsUpdated();
