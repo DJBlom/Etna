@@ -1,14 +1,9 @@
 #include "SystemLogger.h"
 #include "CppUTestExt/MockSupport.h"
 
-void Hal::SystemLogger::InitializeSystemLogger()
+bool Hal::SystemLogger::InitializeSystemLogger()
 {
-    mock().actualCall("InitializeSystemLogger");
-}
-
-bool Hal::SystemLogger::ConfigureSystemLogger()
-{
-    return mock().actualCall("ConfigureSystemLogger").returnBoolValue();
+   return mock().actualCall("InitializeSystemLogger").returnBoolValue();
 }
 
 bool Hal::SystemLogger::LogMessage(const char msg[])

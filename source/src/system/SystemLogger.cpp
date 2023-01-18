@@ -34,7 +34,7 @@ namespace Registers {
 }
 
 
-void Hal::SystemLogger::InitializeSystemLogger()
+bool Hal::SystemLogger::InitializeSystemLogger()
 {
     uart2Control1 = Hardware::MCURegisters{Registers::uart2ControlR1};
     uart2Control2 = Hardware::MCURegisters{Registers::uart2ControlR2};
@@ -47,10 +47,7 @@ void Hal::SystemLogger::InitializeSystemLogger()
     uart2DmaNdtr = Hardware::MCURegisters{Registers::dmaStreamNdtrR};
     uart2DmaPar = Hardware::MCURegisters{Registers::dmaStreamParR};
     uart2DmaMar = Hardware::MCURegisters{Registers::dmaStreamMarR};
-}
 
-bool Hal::SystemLogger::ConfigureSystemLogger()
-{
     if (uart2.OversamplingBySixteen(uart2Control1) == false)
         return false;
 

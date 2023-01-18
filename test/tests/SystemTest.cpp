@@ -129,16 +129,8 @@ TEST_GROUP(SystemLoggerTest)
 
 TEST(SystemLoggerTest, InitializeTheLogger)
 {
-    mock().expectOneCall("InitializeSystemLogger");
+    mock().expectOneCall("InitializeSystemLogger").andReturnValue(true);
     log->InitializeSystemLogger();
-
-    mock().checkExpectations();
-}
-
-TEST(SystemLoggerTest, ConfigureTheLogger)
-{
-    mock().expectOneCall("ConfigureSystemLogger").andReturnValue(true);
-    log->ConfigureSystemLogger();
 
     mock().checkExpectations();
 }

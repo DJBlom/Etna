@@ -72,7 +72,6 @@ int main()
 
     Hal::SystemLogger debug;
     debug.InitializeSystemLogger();
-    debug.ConfigureSystemLogger();
 
     while (true)
     {

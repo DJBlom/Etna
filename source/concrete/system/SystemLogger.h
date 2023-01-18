@@ -15,8 +15,7 @@ namespace Hal {
             SystemLogger& operator= (SystemLogger&&) = default;
             virtual ~SystemLogger() = default;
 
-            virtual void InitializeSystemLogger();
-            virtual bool ConfigureSystemLogger();
+            virtual bool InitializeSystemLogger();
             virtual bool LogMessage(const char*);
 
         protected:
