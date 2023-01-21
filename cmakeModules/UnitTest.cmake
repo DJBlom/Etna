@@ -6,7 +6,6 @@ else()
 endif()
 
 set(UNIT_TEST UnitTest)
-
 function(${UNIT_TEST})
     add_executable(${UNIT_TEST}
         ${EtnaTestSourceFiles}

@@ -50,15 +50,6 @@ Hardware::MCURegisters data{dr};
 Hardware::MCURegisters controlRegister{streamCtrl};
 
 
-void DMA1_Stream6_IRQHandler()
-{
-    if ((*streamHisr >> 27) & 1U)
-    {
-        *streamHifcr = *streamHifcr | (1U << 27);
-        *streamCtrl = *streamCtrl & ~(1U << 0);
-    }
-} 
-
 
 int main()
 {
