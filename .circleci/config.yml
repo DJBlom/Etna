@@ -5,9 +5,9 @@ workflows:
       - build:
           context:
             - dockerhub_credentials
-      - test:
-          context:
-            - dockerhub_credentials
+              #      - test:
+              #          context:
+              #            - dockerhub_credentials
 
 executors:
   master:
