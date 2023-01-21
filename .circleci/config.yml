@@ -35,16 +35,13 @@ jobs:
   test:
     executor: master
     steps:
-      - checkout  
+      - checkout 
       - run:
           name: Unit Tests 
           command: |
-            echo $CPPUTEST_HOME
-            echo ${CPPUTEST_HOME}
-            echo "Hello World"
-            #./build.sh Test
-            #cd build
-            #make EtnaCoverage
+            ./build.sh Test
+            cd build
+            make EtnaCoverage
       #- run:
           #name: Code Coverage
           #command: |
