@@ -40,8 +40,8 @@ jobs:
           name: Unit Tests 
           command: |
             ./build.sh Test
-            cd build
-            ctest test
+          #  cd build
+          #  ctest test
       #- run:
           #name: Code Coverage
           #command: |
