@@ -1,0 +1,40 @@
+version: 2.1
+workflows:
+  my-workflow:
+    jobs:
+      - build:
+          context:
+            - dockerhub_credentials
+      - test:
+          context:
+            - dockerhub_credentials
+
+executors:
+  master:
+    docker:
+      - image: dawidblom/etna:latest
+        auth:
+          username: $DOCKERHUB_USERNAME 
+          password: $DOCKERHUB_PASSWORD 
+
+
+jobs:
+  build:
+    executor: master
+    steps:
+      - checkout
+      - run:
+          name: Building Project
+          command: 
+          name: Static Code Analysis
+
+  test:
+    executor: master
+    steps:
+      - checkout  
+      - run:
+          name: Unit Tests 
+          command:
+      - run:
+          name: Code Coverage
+          command: 

@@ -37,18 +37,12 @@ add_compile_options(
 add_compile_definitions(
     STM32F411xx
     USE_FULL_ASSERT
-    $<$<CONFIG:DEBUG>:OS_USE_TRACE_SEMIHOSTING_STDOUT>
-    $<$<CONFIG:DEBUG>:OS_USE_SEMIHOSTING>
 )
 
 add_link_options(
     ${ARM_OPTIONS}
-    $<$<CONFIG:DEBUG>:--specs=rdimon.specs>
-    $<$<CONFIG:DEBUG>:--specs=nano.specs>
     $<$<CONFIG:RELEASE>:--specs=nosys.specs>
     $<$<CONFIG:RELEASE>:--specs=nano.specs>
-    $<$<CONFIG:DEBUG>:-u_printf_float>
-    $<$<CONFIG:DEBUG>:-u_scanf_float>
     LINKER:--build-id
     LINKER:--gc-sections
 )

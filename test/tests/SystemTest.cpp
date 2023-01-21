@@ -13,6 +13,7 @@
 #include "SystemGpiosMock.h"
 
 #include "SystemLogger.h"
+#include "SystemLoggerMock.h"
 
 extern "C" 
 {
@@ -117,7 +118,7 @@ TEST_GROUP(SystemLoggerTest)
     Hal::SystemLogger* log;
     void setup()
     {
-        log = new Hal::SystemLogger();
+        log = new Test::SystemLoggerMock();
     }
 
     void teardown()

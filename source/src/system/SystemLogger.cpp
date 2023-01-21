@@ -105,7 +105,7 @@ bool Hal::SystemLogger::LogMessage(const char* msg)
 
 registerType Hal::SystemLogger::MessageToRegisterType(const char* msg)
 {
-    return reinterpret_cast<registerType&> (msg);
+    return static_cast<registerType> (std::atoi(msg));
 }
 
 

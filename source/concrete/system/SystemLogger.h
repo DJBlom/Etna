@@ -2,6 +2,7 @@
 
 #ifndef _SYSTEM_LOGGER_H_ 
 #define _SYSTEM_LOGGER_H_ 
+#include <cstdlib>
 #include "Usart.h"
 #include "Uart2DmaController.h"
 #include "MCURegisters.h"
