@@ -2,7 +2,7 @@ set(CMAKE_SYSTEM_NAME Generic)
 set(CMAKE_SYSTEM_VERSION Cotex-M4-STM32F411RE)
 set(CMAKE_SYSTEM_PROCESSOR arm)
 
-set(CROSS_GCC_PATH /home/odin/workspace/c++_projects/embedded/Etna/toolchain)
+set(CROSS_GCC_PATH ${CMAKE_SOURCE_DIR}/toolchain)
 find_program(CROSS_GCC_PATH/bin "arm-none-eabi-g++")
 if (NOT CROSS_GCC_PATH)
   message(FATAL_ERROR "Cannot find ARM GCC compiler: arm-none-eabi-g++")
