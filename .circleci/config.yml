@@ -25,7 +25,8 @@ jobs:
       - checkout
       - run:
           name: Building Project
-          command: ./build.sh Release
+          command: |
+            ./build.sh Release
           name: Static Code Analysis
           command: | 
             cd build
@@ -37,7 +38,8 @@ jobs:
       - checkout  
       - run:
           name: Unit Tests 
-          command: ./build.sh Test
+          command: |
+            ./build.sh Test
       - run:
           name: Code Coverage
           command: |
