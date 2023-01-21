@@ -46,6 +46,7 @@ TEST_SRC_DIRS :=\
 	$(TEST_DIR)/tests\
 	$(TEST_DIR)/mocks
 
+CPPUTEST_CXXFLAGS := 
 CPPUTEST_USE_GCOV := Y
 CPPUTEST_USE_EXTENSIONS := Y
 -include $(CPPUTEST_HOME)/build/MakefileWorker.mk
