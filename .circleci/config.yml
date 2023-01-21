@@ -27,6 +27,7 @@ jobs:
           name: Building Project
           command: |
             ./build.sh Release
+      - run:
           name: Static Code Analysis
           command: | 
             cd build
