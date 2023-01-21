@@ -41,7 +41,7 @@ jobs:
           command: |
             ./build.sh Test
             cd build
-            make EtnaCoverage
+            ctest test
       #- run:
           #name: Code Coverage
           #command: |
