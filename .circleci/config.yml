@@ -40,9 +40,10 @@ jobs:
           name: Unit Tests 
           command: |
             ./build.sh Test
-      - run:
-          name: Code Coverage
-          command: |
-            ./build.sh Test
             cd build
             make EtnaCoverage
+      #- run:
+          #name: Code Coverage
+          #command: |
+            #cd build
+            #make EtnaCoverage
