@@ -39,7 +39,7 @@ jobs:
       - run:
           name: Unit Tests 
           command: |
-            echo $CPPUTEST_HOME
+            echo "$CPPUTEST_HOME"
             #./build.sh Test
             #cd build
             #make EtnaCoverage
