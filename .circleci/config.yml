@@ -25,16 +25,17 @@ jobs:
       - checkout
       - run:
           name: Building Project
-          command: 
-          name: Static Code Analysis
+          command: |
+            ./build.sh Release
+            #name: Static Code Analysis
 
-  test:
-    executor: master
-    steps:
-      - checkout  
-      - run:
-          name: Unit Tests 
-          command:
-      - run:
-          name: Code Coverage
-          command: 
+            #  test:
+            #    executor: master
+            #    steps:
+            #      - checkout  
+            #      - run:
+            #          name: Unit Tests 
+            #          command:
+            #      - run:
+            #          name: Code Coverage
+            #          command: 
