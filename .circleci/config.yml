@@ -31,8 +31,6 @@ jobs:
           name: Static Code Analysis
           command: | 
             ./build.sh StaticAnalysis
-            cd build/StaticCodeAnalysis
-            make EtnaStaticAnalysis
 
   test:
     executor: master
