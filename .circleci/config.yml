@@ -30,7 +30,8 @@ jobs:
       - run:
           name: Static Code Analysis
           command: | 
-            cd build/Release
+            ./build.sh StaticAnalysis
+            cd build/StaticCodeAnalysis
             make EtnaStaticAnalysis
 
   test:
