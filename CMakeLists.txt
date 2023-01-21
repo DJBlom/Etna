@@ -9,6 +9,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(BUILD_ETNA CACHE BOOL OFF)
 if(BUILD_ETNA)
+    add_subdirectory(source)
+endif()
+
+set(BUILD_STATIC CACHE BOOL OFF)
+if(BUILD_STATIC)
     enable_testing()
     add_subdirectory(source)
 endif()
