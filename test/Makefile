@@ -10,7 +10,7 @@
 ##############################################################
 PROJECT_DIR :=$(realpath ..)
 TEST_DIR :=$(realpath .)
-
+CPPUTEST_HOME := /home/odin/cpputest
 TEST_TARGET :=EtnaUnitTests
 CPP_PLATFORM :=g++
 
