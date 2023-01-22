@@ -43,8 +43,6 @@ jobs:
           command: | 
             cd test
             ls
-            ls -la /home/odin
-            cat /home/odin/.bashrc
             #./build.sh UnitTest
             
 
