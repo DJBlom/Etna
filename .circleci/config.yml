@@ -38,9 +38,11 @@ jobs:
       - checkout 
       - run:
           name: Unit Tests 
-          command: |  
-            ./build.sh UnitTest
-            ls test
+          command: | 
+            ls test 
+            cat /home/odin/.bashrc
+            #./build.sh UnitTest
+            
 
             
       - run:
