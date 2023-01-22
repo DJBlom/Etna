@@ -39,11 +39,8 @@ jobs:
       - run:
           name: Unit Tests 
           command: |    
-            ./build.sh Test
-            cd build/Test
-            ctest test
+            ./build.sh UnitTest
       - run:
           name: Code Coverage
           command: |
-            cd build/Test
-            make EtnaCoverage
+            ./build.sh CodeCoverage
