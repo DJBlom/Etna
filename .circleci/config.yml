@@ -40,11 +40,8 @@ jobs:
       - run:
           name: Unit Tests 
           command: | 
-            echo $CPPUTEST_HOME
-          #./build.sh UnitTest
-            
-
-            
+          ./build.sh UnitTest
+                  
       - run:
           name: Code Coverage
           command: |
