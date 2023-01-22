@@ -40,6 +40,7 @@ jobs:
           name: Unit Tests 
           command: |    
             ./build.sh UnitTest
+            ls test
       - run:
           name: Code Coverage
           command: |
