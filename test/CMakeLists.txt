@@ -1,7 +1,6 @@
 project(Etna VERSION 0.0.1 LANGUAGES CXX C)
 include(EtnaFiles)
 
-set(CPPUTEST_HOME /home/odin/cpputest)
 if(${CPPUTEST_HOME})
     include(UnitTest)
     UnitTest()
