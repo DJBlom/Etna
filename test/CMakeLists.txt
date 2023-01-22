@@ -1,11 +1,14 @@
 project(Etna VERSION 0.0.1 LANGUAGES CXX C)
 include(EtnaFiles)
 
-
-#if(DEFINED ENV{CPPUTEST_HOME})
+set(CPPUTEST_HOME /home/odin/cpputest)
+if(${CPPUTEST_HOME})
     include(UnitTest)
     UnitTest()
-    #endif()
+else()           
+    message("CPPUTEST_HOME is not set; You must tell CMake where to find CppUTest")
+    return()    
+endif()
 
 find_program(GCOV gcov)
 if(GCOV)

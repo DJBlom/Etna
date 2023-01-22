@@ -1,9 +1,3 @@
-#if(DEFINED ENV{CPPUTEST_HOME})
-#    message("Using CppUTest found in $ENV{CPPUTEST_HOME}")
-#else()           
-#    message("CPPUTEST_HOME is not set; You must tell CMake where to find CppUTest")
-#    return()    
-#endif()
 
 set(UNIT_TEST UnitTest)
 function(${UNIT_TEST})
