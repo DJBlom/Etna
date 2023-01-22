@@ -38,6 +38,10 @@ jobs:
     steps:
       - checkout 
       - run:
+          name: Run container with arguments
+          command: |
+            docker-compose run --rm --env CPPUTEST_HOME=/home/odin/cpputest 
+      - run:
           name: Unit Tests 
           command: | 
             ./build.sh UnitTest
