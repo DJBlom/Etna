@@ -51,10 +51,17 @@ elif [ "$TYPE" = "$UNIT_TEST" ]
 then
     cd test
     make -s -f Makefile EtnaUnitTests
+    ./EtnaUnitTests -c -v
 elif [ "$TYPE" = "$CODE_COVERAGE" ]
 then
     $CMAKE -S . -B $BUILD_DIR --warn-uninitialized -DBUILD_COVERAGE:TYPE=ON -DCMAKE_BUILD_TYPE=$RELEASE -DCMAKE_CXX_FLAGS_RELEASE="-g -O0 --coverage -fprofile-arcs -ftest-coverage"
     $CMAKE --build $BUILD_DIR 
+    cd build/CodeCoverage
+    ctest -T Test
+    lcov --directory . --capture --output-file EtnaCoverage.info
+    lcov --remove EtnaCoverage.info '/usr/*' --output-file EtnaCoverage.info
+    genhtml EtnaCoverage.info --output-directory resultsInHtml
+    #firefox build/CodeCoverage/resultsInHtml/index.html
 elif [[ -n $OPENOCD  ]] 
 then
     openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg
