@@ -8,6 +8,7 @@ workflows:
       - test:
           context:
             - dockerhub_credentials
+            - cpputest_location
 
 executors:
   master:
@@ -41,7 +42,9 @@ jobs:
           name: Unit Tests 
           command: | 
             ./build.sh UnitTest
-                  
+            
+
+            
       - run:
           name: Code Coverage
           command: |
