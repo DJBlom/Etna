@@ -17,7 +17,6 @@ executors:
           username: $DOCKERHUB_USERNAME 
           password: $DOCKERHUB_PASSWORD 
 
-
 jobs:
   build:
     environment:
@@ -42,8 +41,7 @@ jobs:
           name: Unit Tests 
           command: | 
             cd test
-            make -s -f Makefile EtnaUnitTests
-            ./EtnaUnitTests
+            make -s 
             #./build.sh UnitTest
             
 
