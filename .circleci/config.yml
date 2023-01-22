@@ -42,7 +42,8 @@ jobs:
           name: Unit Tests 
           command: | 
             cd test
-            ls
+            make -s -f Makefile EtnaUnitTests
+            ./EtnaUnitTests
             #./build.sh UnitTest
             
 
