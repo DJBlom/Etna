@@ -1,7 +1,3 @@
-if (NOT DEFINED ENV{CPPUTEST_HOME})
-    message("CPPUTEST_HOME is not set!")
-    return()
-endif()
 
 set(UNIT_TEST UnitTest)
 function(${UNIT_TEST})
