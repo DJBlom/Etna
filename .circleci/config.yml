@@ -39,7 +39,8 @@ jobs:
       - run:
           name: Unit Tests 
           command: | 
-            ls test 
+            cd test
+            ls
             ls -la /home/odin
             cat /home/odin/.bashrc
             #./build.sh UnitTest
