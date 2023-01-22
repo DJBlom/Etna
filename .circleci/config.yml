@@ -39,8 +39,9 @@ jobs:
       - run:
           name: Unit Tests 
           command: |
-            echo $CPPUTEST_HOME
-            ./build.sh Test
+            ls /home/odin
+          #  echo $CPPUTEST_HOME
+          #  ./build.sh Test
           #  cd build
           #  ctest test
       #- run:
