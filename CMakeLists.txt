@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.25)
 set(CMAKE_TRY_COMPILE_TARGET_TYPE "STATIC_LIBRARY")
 project(Etna VERSION 0.0.1 LANGUAGES CXX)
 
@@ -14,12 +14,19 @@ endif()
 
 set(BUILD_STATIC CACHE BOOL OFF)
 if(BUILD_STATIC)
-    enable_testing()
     add_subdirectory(source)
 endif()
 
-set(BUILD_TEST CACHE BOOL OFF)
-if(BUILD_TEST)
+set(BUILD_UNIT_TEST CACHE BOOL OFF)
+if(BUILD_UNIT_TEST)
     enable_testing()
     add_subdirectory(test)
 endif()
+
+set(BUILD_COVERAGE CACHE BOOL OFF)
+if(BUILD_COVERAGE)
+    enable_testing()
+    add_subdirectory(test)
+endif()
+
+include (CTest)

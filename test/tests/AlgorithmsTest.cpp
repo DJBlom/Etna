@@ -44,6 +44,11 @@ TEST_GROUP(RingBufferTest)
     }
 };
 
+//TEST(RingBufferTest, Failed)
+//{
+//    FAIL("Failed Here");
+//}
+
 TEST(RingBufferTest, AddAElementToTheRingBuffer)
 {
     item = 1;

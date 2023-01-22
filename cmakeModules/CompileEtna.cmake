@@ -14,6 +14,7 @@ function(Compile${PROJECT_NAME})
     )
 
     add_executable(${PROJECT_NAME}
+        $<$<CONFIG:RELEASE>:${EtnaMain}>
         $<$<CONFIG:RELEASE>:${EtnaStartupFiles}>
         $<$<CONFIG:RELEASE>:${EtnaSourceFiles}>
     )

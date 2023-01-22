@@ -11,7 +11,7 @@
 PROJECT_DIR :=$(realpath ..)
 TEST_DIR :=$(realpath .)
 
-TEST_TARGET :=EtnaTests
+TEST_TARGET :=EtnaUnitTests
 CPP_PLATFORM :=g++
 
 CPP_PLATFORM :=-std=c++20
@@ -46,8 +46,6 @@ TEST_SRC_DIRS :=\
 	$(TEST_DIR)/tests\
 	$(TEST_DIR)/mocks
 
-CPPUTEST_CXXFLAGS := 
-CPPUTEST_USE_GCOV := Y
 CPPUTEST_USE_EXTENSIONS := Y
 -include $(CPPUTEST_HOME)/build/MakefileWorker.mk
 

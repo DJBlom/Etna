@@ -1,3 +1,7 @@
+if (NOT DEFINED ENV{CPPUTEST_HOME})
+    message("CPPUTEST_HOME is not set!")
+    return()
+endif()
 
 set(UNIT_TEST UnitTest)
 function(${UNIT_TEST})
@@ -14,14 +18,5 @@ function(${UNIT_TEST})
         ${EtnaTestLinkFiles}
     )
 
-    add_test(NAME AlgorithmsTest.cpp COMMAND ${UNIT_TEST})
-    add_test(NAME DMAControllerTest.cpp COMMAND ${UNIT_TEST})
-    add_test(NAME GpioTest.cpp COMMAND ${UNIT_TEST})
-    add_test(NAME MCURegisterTest.cpp COMMAND ${UNIT_TEST})
-    add_test(NAME PeripheralsTest.cpp COMMAND ${UNIT_TEST})
-    add_test(NAME SystemTest.cpp COMMAND ${UNIT_TEST})
-    add_test(NAME UsartCommunicationTest.cpp COMMAND ${UNIT_TEST})
-    add_test(NAME SystemGpiosMock.cpp COMMAND ${UNIT_TEST})
-    add_test(NAME SystemLoggerMock.cpp COMMAND ${UNIT_TEST})
-    add_test(NAME SystemPeripheralsMock.cpp COMMAND ${UNIT_TEST})
+    add_test(NAME ${UNIT_TEST} COMMAND $<TARGET_FILE:${UNIT_TEST}>)
 endfunction()

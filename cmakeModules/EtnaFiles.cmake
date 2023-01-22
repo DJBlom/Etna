@@ -1,7 +1,10 @@
 
+set(${PROJECT_NAME}Main
+    ${CMAKE_SOURCE_DIR}/source/src/etna/Main.cpp
+)
+
 set(${PROJECT_NAME}StartupFiles
     ${CMAKE_SOURCE_DIR}/startup/Startup.cpp
-    ${CMAKE_SOURCE_DIR}/source/src/etna/Main.cpp
 )
 
 set(${PROJECT_NAME}SourceFiles
@@ -41,15 +44,19 @@ set(${PROJECT_NAME}TestSourceFiles
 )
 
 
-set(CPPUTEST_HOME /home/odin/cpputest)
+#set(CPPUTEST_HOME /home/odin/cpputest)
 set(${PROJECT_NAME}TestHeaderFiles
     ${EtnaHeaderFiles}
-    ${CPPUTEST_HOME}/include
+    #${CPPUTEST_HOME}/include
+    $ENV{CPPUTEST_HOME}/include
     ${CMAKE_SOURCE_DIR}/test/mocks
 )
 
 set(${PROJECT_NAME}TestLinkFiles
-    ${CPPUTEST_HOME}/lib/libCppUTest.a
-    ${CPPUTEST_HOME}/lib/libCppUTestExt.a
+    #${CPPUTEST_HOME}/lib/libCppUTest.a
+    #${CPPUTEST_HOME}/lib/libCppUTestExt.a
+
+    $ENV{CPPUTEST_HOME}/lib/libCppUTest.a
+    $ENV{CPPUTEST_HOME}/lib/libCppUTestExt.a
 )
 
