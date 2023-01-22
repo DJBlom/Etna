@@ -37,9 +37,14 @@ jobs:
     steps:
       - checkout 
       - run:
-          name: Unit Tests 
+          name: Setup Environment Variable
           command: |
             echo "export PATH=$PATH:/home/odin/cpputest" >> $BASH_ENV
+            printenv
+      - run:
+          name: Unit Tests 
+          command: |
+            
             ./build.sh Test
             cd build/Test
             ctest test
