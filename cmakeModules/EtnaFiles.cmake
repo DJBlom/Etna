@@ -43,19 +43,13 @@ set(${PROJECT_NAME}TestSourceFiles
     ${CMAKE_SOURCE_DIR}/test/mocks/SystemPeripheralsMock.cpp
 )
 
-
-#set(CPPUTEST_HOME /home/odin/cpputest)
 set(${PROJECT_NAME}TestHeaderFiles
     ${EtnaHeaderFiles}
-    #${CPPUTEST_HOME}/include
     $ENV{CPPUTEST_HOME}/include
     ${CMAKE_SOURCE_DIR}/test/mocks
 )
 
 set(${PROJECT_NAME}TestLinkFiles
-    #${CPPUTEST_HOME}/lib/libCppUTest.a
-    #${CPPUTEST_HOME}/lib/libCppUTestExt.a
-
     $ENV{CPPUTEST_HOME}/lib/libCppUTest.a
     $ENV{CPPUTEST_HOME}/lib/libCppUTestExt.a
 )
