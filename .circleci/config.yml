@@ -39,7 +39,7 @@ jobs:
       - run:
           name: Unit Tests 
           command: |  
-            ls test  
+            ls  
           #  ./build.sh UnitTest
             
       - run:
