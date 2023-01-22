@@ -39,10 +39,18 @@ jobs:
       - run:
           name: Unit Tests 
           command: |  
-            ls  
-          #  ./build.sh UnitTest
+            ./build.sh UnitTest
+            cd test
+            ./EtnaUnitTests -c -v
             
       - run:
           name: Code Coverage
           command: |
             ./build.sh CodeCoverage
+            cd build
+            lcov --directory . --capture --output-file EtnaCoverage.info
+            lcov --remove EtnaCoverage.info '/usr/*' --output-file EtnaCoverage.info
+            genhtml coverage.info --output-directory htmlFormattedGcov
+
+
+
