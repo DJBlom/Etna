@@ -37,19 +37,13 @@ jobs:
     steps:
       - checkout 
       - run:
-          name: Setup Environment Variable
-          command: |
-            echo "export PATH=$PATH:/home/odin/cpputest" >> $BASH_ENV
-            printenv
-      - run:
           name: Unit Tests 
-          command: |
-            
+          command: |    
             ./build.sh Test
             cd build/Test
             ctest test
-      #- run:
-          #name: Code Coverage
-          #command: |
-            #cd build
-            #make EtnaCoverage
+      - run:
+          name: Code Coverage
+          command: |
+            cd build/Test
+            make EtnaCoverage
