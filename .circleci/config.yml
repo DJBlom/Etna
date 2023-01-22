@@ -13,7 +13,7 @@ workflows:
 executors:
   master:
     docker:
-      - image: dawidblom/etna@sha256:004041550faedf72b8f0a25d58689a465919dae096b22aa298bce1cc85ea6e24
+      - image: dawidblom/etna:latest
         auth:
           username: $DOCKERHUB_USERNAME 
           password: $DOCKERHUB_PASSWORD 
