@@ -5,7 +5,14 @@ workflows:
       - build:
           context:
             - dockerhub_credentials
-      - test:
+      - static_code_analysis:
+          context:
+            - dockerhub_credentials
+      - unit_tests:
+          context:
+            - dockerhub_credentials
+            - cpputest_location
+      - code_coverage:
           context:
             - dockerhub_credentials
             - cpputest_location
@@ -27,12 +34,17 @@ jobs:
           name: Building Project
           command: |
             ./build.sh Release
+
+  static_code_analysis:
+    executor: master
+    steps:
+      - checkout
       - run:
           name: Static Code Analysis
           command: | 
             ./build.sh StaticAnalysis
 
-  test:
+  unit_tests:
     executor: master
     steps:
       - checkout
@@ -41,8 +53,10 @@ jobs:
           command: | 
             ./build.sh UnitTest
             
-
-            
+  code_coverage:
+    executor: master
+    steps:
+      - checkout      
       - run:
           name: Code Coverage
           command: |
