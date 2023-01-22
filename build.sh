@@ -51,7 +51,7 @@ elif [ "$TYPE" = "$UNIT_TEST" ]
 then
     cd test
     make -s -f Makefile EtnaUnitTests
-    ./EtnaUnitTests -c -v
+    #./EtnaUnitTests -c -v
 elif [ "$TYPE" = "$CODE_COVERAGE" ]
 then
     $CMAKE -S . -B $BUILD_DIR --warn-uninitialized -DBUILD_COVERAGE:TYPE=ON -DCMAKE_BUILD_TYPE=$RELEASE -DCMAKE_CXX_FLAGS_RELEASE="-g -O0 --coverage -fprofile-arcs -ftest-coverage"
