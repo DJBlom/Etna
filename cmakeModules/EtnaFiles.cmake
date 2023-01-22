@@ -42,12 +42,12 @@ set(${PROJECT_NAME}TestSourceFiles
 
 set(${PROJECT_NAME}TestHeaderFiles
     ${EtnaHeaderFiles}
-    $ENV{CPPUTEST_HOME}/include
+    /home/odin/cpputest/include
     ${CMAKE_SOURCE_DIR}/test/mocks
 )
 
 set(${PROJECT_NAME}TestLinkFiles
-    $ENV{CPPUTEST_HOME}/lib/libCppUTest.a
-    $ENV{CPPUTEST_HOME}/lib/libCppUTestExt.a
+    /home/odin/cpputest/lib/libCppUTest.a
+    /home/odin/cpputest/lib/libCppUTestExt.a
 )
 
