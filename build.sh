@@ -21,7 +21,7 @@ for arg; do
         --help|-h)              echo $USAGE; exit 0;;
         -v|--verbose)           VERBOSE='VERBOSE=1'  ;;
         Release)                TYPE=Release; BUILD_DIR=$BUILD/Release ;;
-        Test)                   TYPE=Test; BUILD_DIR=$BUILD ;;
+        Test)                   TYPE=Test; BUILD_DIR=$BUILD/Test ;;
         StaticAnalysis)         TYPE=StaticAnalysis; BUILD_DIR=$BUILD/StaticCodeAnalysis ;;
         Reset)                  RESET=1 ;;
         Openocd)                OPENOCD=1 ;;
