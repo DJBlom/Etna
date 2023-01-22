@@ -49,7 +49,7 @@ then
     $CMAKE --build $BUILD_DIR 
 elif [ "$TYPE" = "$UNIT_TEST" ]
 then
-    cd test
+    cd ./test
     make -s -f Makefile EtnaUnitTests
     #./EtnaUnitTests -c -v
 elif [ "$TYPE" = "$CODE_COVERAGE" ]
