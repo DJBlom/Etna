@@ -61,7 +61,7 @@ then
     lcov --directory . --capture --output-file EtnaCoverage.info
     lcov --remove EtnaCoverage.info '/usr/*' --output-file EtnaCoverage.info
     genhtml EtnaCoverage.info --output-directory resultsInHtml
-    #firefox build/CodeCoverage/resultsInHtml/index.html
+    firefox build/CodeCoverage/resultsInHtml/index.html
 elif [[ -n $OPENOCD  ]] 
 then
     openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg
