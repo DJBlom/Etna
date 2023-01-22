@@ -62,8 +62,8 @@ workflows:
           context:
             - dockerhub_credentials
             - cpputest_location
-          requires:
-            - static_code_analysis
+              #requires:
+              #  - static_code_analysis
 
       - code_coverage:
           context:
