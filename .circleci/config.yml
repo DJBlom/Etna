@@ -39,7 +39,8 @@ jobs:
       - run:
           name: Unit Tests 
           command: |
-            cat /home/odin/.bashrc
+            echo ${CPPUTEST_HOME}
+            echo $CPPUTEST_HOME
           #  echo $CPPUTEST_HOME
           #  ./build.sh Test
           #  cd build
