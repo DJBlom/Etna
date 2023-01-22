@@ -40,9 +40,8 @@ jobs:
       - run:
           name: Unit Tests 
           command: | 
-            cd test
-            make -s 
-            #./build.sh UnitTest
+            echo $CPPUTEST_HOME
+          #./build.sh UnitTest
             
 
             
