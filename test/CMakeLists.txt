@@ -2,10 +2,10 @@ project(Etna VERSION 0.0.1 LANGUAGES CXX C)
 include(EtnaFiles)
 
 
-#if(DEFINED ENV{CPPUTEST_HOME})
+if(DEFINED ENV{CPPUTEST_HOME})
     include(UnitTest)
     UnitTest()
-    #endif()
+endif()
 
 find_program(GCOV gcov)
 if(GCOV)
