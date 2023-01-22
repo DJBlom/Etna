@@ -20,6 +20,8 @@ executors:
 
 jobs:
   build:
+    environment:
+      CPPUTEST_HOME: /home/odin/cpputest
     executor: master
     steps:
       - checkout
