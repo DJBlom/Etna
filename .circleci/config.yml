@@ -39,7 +39,7 @@ jobs:
       - run:
           name: Unit Tests 
           command: |
-            echo "export PATH=$PATH:/path/to/cpputest" >> $BASH_ENV
+            echo "export PATH=$PATH:/home/odin/cpputest" >> $BASH_ENV
             ./build.sh Test
             cd build/Test
             ctest test
