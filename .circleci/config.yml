@@ -38,9 +38,10 @@ jobs:
       - checkout 
       - run:
           name: Unit Tests 
-          command: |    
+          command: |  
+            ls test  
           #  ./build.sh UnitTest
-            ls test
+            
       - run:
           name: Code Coverage
           command: |
