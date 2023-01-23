@@ -33,7 +33,6 @@ jobs:
     executor: master
     steps:
       - checkout
-      - codecov/upload
       - run:
           name: Unit Tests 
           command: | 
@@ -48,9 +47,8 @@ jobs:
           command: |
             ./Build.sh CodeCoverage
             ./CodeCoverage.sh
-            curl -Os https://uploader.codecov.io/latest/linux/codecov
-            chmod +x codecov
-            ./codecov
+      - codecov/upload:
+          path: build/CodeCoverage/Coverage.txt
 
 
 workflows:
@@ -77,6 +75,7 @@ workflows:
           context:
             - dockerhub_credentials
             - cpputest_location
+            - CODECOV_TOKEN
           requires:
             - unit_tests
 
