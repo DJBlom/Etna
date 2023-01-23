@@ -21,7 +21,7 @@ branch_coverage=($(echo "$total_coverage" | awk -F '|' '{print $4}' | awk -F '%'
 line_threshold=$PASS
 if [[ "$line_coverage)" < "${thresholds[0]}" ]];
 then
-    echo "Line coverage should be greater than $thresholds[0]%: FAILED"
+    echo "Line coverage should be greater than ${thresholds[0]}%: FAILED"
     line_threshold=$FAIL
 else
     echo "Line coverage is: $line_coverage%: PASSED"
@@ -31,7 +31,7 @@ fi
 function_threshold=$PASS
 if [[ "$function_coverage" < "${thresholds[1]}" ]]; 
 then
-    echo "Function coverage should be greater than $thresholds[1]%: FAILED"
+    echo "Function coverage should be greater than ${thresholds[1]}%: FAILED"
     function_threshold=$FAIL
 else
     echo "Function coverage is: $function_coverage%: PASSED"
@@ -41,7 +41,7 @@ fi
 branch_threshold=$PASS
 if [[ "$branch_coverage" < "${thresholds[2]}" ]]; 
 then
-    echo "Branch coverage should be greater than $thresholds[2]%: FAILED"
+    echo "Branch coverage should be greater than ${thresholds[2]}%: FAILED"
     branch_threshold=$FAIL
 else
     echo "Branch coverage is: $branch_coverage%: PASSED"
