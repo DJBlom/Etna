@@ -58,7 +58,12 @@ then
     $CMAKE --build $BUILD_DIR 
     cd build/CodeCoverage
     ctest -T Test -T Coverage
+    lcov --rc lcov_branch_coverage=1 --directory . --capture --output-file Coverage.info
+    lcov --rc lcov_branch_coverage=1 --list Coverage.info > Coverage.txt
 
+    curl -Os https://uploader.codecov.io/latest/linux/codecov
+    chmod 755 codecov
+    ./codecov
 elif [[ -n $OPENOCD  ]] 
 then
     openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg
