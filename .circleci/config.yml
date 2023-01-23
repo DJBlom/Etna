@@ -54,7 +54,7 @@ jobs:
       - run:
           name: Flash Code To MCU
           command: |
-            pwd
+            ./home/odin/project/hi.sh
 
 workflows:
   project_workflow:
