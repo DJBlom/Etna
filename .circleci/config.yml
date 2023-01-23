@@ -62,8 +62,7 @@ jobs:
       - run:
           name: Flash Code To MCU
           command: |
-            sudo openocd -f interface/stlink.cfg -f target/stm32f4x.cfg 
-          # -c "program build/Release/Etna.elf verify reset exit"
+            sudo openocd -f interface/stlink.cfg -f target/stm32f4x.cfg -c "program build/Release/source/Etna.elf verify reset exit"
           #  sudo gdb -ex "target remote :3333" -ex "load build/Release/Etna.elf" -ex "continue"
 
 workflows:
