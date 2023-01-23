@@ -47,17 +47,7 @@ jobs:
           command: |
             ./scripts/Build.sh CodeCoverage
             ./scripts/CodeCoverage.sh
-
-  install_openocd_and_gdb:
-    executor: master
-    steps:
-      - checkout 
-      - run:
-          name: Install OpenOCD and GDB
-          command: |
-            sudo dnf install -y openocd
-            sudo dnf install -y gdb
-            sudo ls /usr/share/openocd/scripts/board | grep st_nucleo_f4.cfg
+            
 
             
   runner-test:
@@ -65,11 +55,23 @@ jobs:
     resource_class: djblom/etna
     steps:
       - run:
-          name: Flash Code To MCU
+          name: Install Openocd and GDB
           command: |
-            echo "Hello from your runner!"
-          #  sudo openocd -f interface/stlink.cfg -f target/stm32f4x.cfg 
-          #  sudo gdb -ex "target remote :3333" -ex "load build/Release/source/Etna.elf" -ex "continue"
+            sudo dnf install -y openocd
+            sudo dnf install -y gdb
+      - run:
+          name: Start Openocd
+          command:
+            sudo openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg
+      - run:
+          name: Start GDB
+          command:
+            arm-none-eabi-gdb
+            target remote :3333
+            file /path/to/binary
+            load
+            verify
+            
 
 workflows:
   project_workflow:
@@ -96,10 +98,6 @@ workflows:
             - CODECOV_TOKEN
           requires:
             - unit_tests
-            
-      - install_openocd_and_gdb:
-          requires:
-            - build
 
       - runner-test:
           requires:
