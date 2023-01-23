@@ -66,6 +66,7 @@ then
     echo " "
     echo "Code Coverage FAILED!"
     exit $FAIL
+    exit $PASS
 else
     echo " "
     echo "Code Coverage PASSED!"
