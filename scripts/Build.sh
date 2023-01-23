@@ -6,12 +6,12 @@ USAGE="Usage: $(basename $0) [-v | --verbose] [ Reset | Release | StaticAnalysis
 
 CMAKE=cmake
 BUILD=build
-RESET=
-TYPE=Release
-RELEASE=Release
 BUILD_DIR=$BUILD
 TESTING_DIR=Testing
 
+RESET=
+TYPE=Release
+RELEASE=Release
 UNIT_TEST=UnitTest
 STATIC_TEST=StaticAnalysis
 CODE_COVERAGE=CodeCoverage

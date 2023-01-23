@@ -3,7 +3,7 @@
 thresholds=("85" "90" "60")
 PASS=0
 FAIL=1
-PATH_TO_COVERAGE_FILE=build/CodeCoverage/Coverage.txt
+PATH_TO_COVERAGE_FILE=../build/CodeCoverage/Coverage.txt
 
 # Get the code coverage report from coverage.txt
 total_coverage=$(grep -F "Total:" $PATH_TO_COVERAGE_FILE | tr -d ' ')
