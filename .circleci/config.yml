@@ -66,7 +66,8 @@ jobs:
       - run:
           name: Start GDB
           command:
-            arm-none-eabi-gdb -ex "target exetend-remote localhost:3333" -ex "load /home/oden/project/build/Release/source/Etna.elf" -ex "verify" -ex "continue"
+            gdb -ex "target exetend-remote localhost:3333" -ex "load /home/oden/project/build/Release/source/Etna.elf" -ex "verify" -ex "continue"
+          #  arm-none-eabi-gdb -ex "target exetend-remote localhost:3333" -ex "load /home/oden/project/build/Release/source/Etna.elf" -ex "verify" -ex "continue"
             
 
 workflows:
