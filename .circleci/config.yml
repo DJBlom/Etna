@@ -62,11 +62,11 @@ jobs:
       - run:
           name: Start Openocd
           command:
-            sudo openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg
+            sudo openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg -c "init;shutdown"
       - run:
           name: Start GDB
           command:
-            gdb -ex "target extended-remote localhost:3333" -ex "load /home/oden/project/build/Release/source/Etna.elf" -ex "verify" -ex "continue" -c exit
+            gdb -ex "target extended-remote localhost:3333" -ex "load /home/oden/project/build/Release/source/Etna.elf" -ex "verify" -ex "continue"
           #  arm-none-eabi-gdb -ex "target exetend-remote localhost:3333" -ex "load /home/oden/project/build/Release/source/Etna.elf" -ex "verify" -ex "continue"
             
 
