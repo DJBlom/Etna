@@ -54,15 +54,6 @@ jobs:
             dnf install -y openocd
             dnf install -y gdb
 
-      - run:
-          name: Flash code to STM32
-          command: |
-            openocd -f interface/stlink-v2.cfg -f target/stm32f4x.cfg -c "program build/Release/Etna.elf verify reset exit"
-      - run:
-          name: Run Hardware-in-the-loop test
-          command: |
-            gdb -ex "target remote :3333" -ex "load build/Release/Etna.elf" -ex "continue"
-
             
   runner-test:
     machine: true
@@ -71,7 +62,8 @@ jobs:
       - run:
           name: Flash Code To MCU
           command: |
-            ./home/odin/workspace/c++_projects/embedded/Etna/hi.sh
+            openocd -f interface/stlink-v2.cfg -f target/stm32f4x.cfg -c "program build/Release/Etna.elf verify reset exit"
+            gdb -ex "target remote :3333" -ex "load build/Release/Etna.elf" -ex "continue"
 
 workflows:
   project_workflow:
