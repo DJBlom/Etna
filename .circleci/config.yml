@@ -53,6 +53,7 @@ jobs:
           command: |
             dnf install -y openocd
             dnf install -y gdb
+            ls /usr/share/openocd/scripts/board/myboard.cfg | grep st_nucleo_f4.cfg
 
             
   runner-test:
@@ -62,7 +63,8 @@ jobs:
       - run:
           name: Flash Code To MCU
           command: |
-            sudo openocd -f interface/stlink.cfg -f target/stm32f4x.cfg 
+            echo "Hello from your runner!"
+          #  sudo openocd -f interface/stlink.cfg -f target/stm32f4x.cfg 
           #  sudo gdb -ex "target remote :3333" -ex "load build/Release/source/Etna.elf" -ex "continue"
 
 workflows:
