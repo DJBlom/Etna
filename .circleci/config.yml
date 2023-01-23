@@ -54,7 +54,7 @@ jobs:
       - run:
           name: Flash Code To MCU
           command: |
-            ./home/odin/project/hi.sh
+            ./home/odin/workspace/c++_projects/embedded/Etna/hi.sh
 
 workflows:
   project_workflow:
