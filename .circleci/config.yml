@@ -57,7 +57,7 @@ jobs:
           command: |
             dnf install -y openocd
             dnf install -y gdb
-            sudo ls /usr/share/openocd/scripts/board | grep st_nucleo_f4.cfg
+          #  sudo ls /usr/share/openocd/scripts/board | grep st_nucleo_f4.cfg
 
             
   runner-test:
