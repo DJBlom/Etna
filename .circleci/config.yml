@@ -1,6 +1,6 @@
 version: 2.1        
-#orbs:
- # codecov: codecov/codecov@3.2.4
+orbs:
+  codecov: codecov/codecov@3.2.4
 
 executors:
   master:
@@ -33,6 +33,7 @@ jobs:
     executor: master
     steps:
       - checkout
+      - codecov/upload
       - run:
           name: Unit Tests 
           command: | 
