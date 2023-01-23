@@ -47,6 +47,23 @@ jobs:
           command: |
             ./scripts/Build.sh CodeCoverage
             ./scripts/CodeCoverage.sh
+
+      - run:
+          name: Install OpenOCD and GDB
+          command: |
+            dnf install -y openocd
+            dnf install -y gdb
+
+      - run:
+          name: Flash code to STM32
+          command: |
+            openocd -f interface/stlink-v2.cfg -f target/stm32f4x.cfg -c "program build/Release/Etna.elf verify reset exit"
+      - run:
+          name: Run Hardware-in-the-loop test
+          command: |
+            gdb -ex "target remote :3333" -ex "load build/Release/Etna.elf" -ex "continue"
+
+            
   runner-test:
     machine: true
     resource_class: djblom/etna
