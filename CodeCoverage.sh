@@ -17,7 +17,7 @@ PASS=0
 FAIL=1
 
 # Get the code coverage report from coverage.txt
-total_coverage=$(grep -F "Total:" ./build/CodeCoverage/Coverage.txt | tr -d ' ')
+total_coverage=$(grep -F "Total:" ./Coverage.txt | tr -d ' ')
 
 # Extract the line coverage percentage
 line_coverage=($(echo "$total_coverage" | awk -F '|' '{print $2}' | awk -F '%' '{print $1}' ))
