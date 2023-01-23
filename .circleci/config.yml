@@ -48,6 +48,10 @@ jobs:
             ./scripts/Build.sh CodeCoverage
             ./scripts/CodeCoverage.sh
 
+  install_openocd_and_gdb:
+    executor: master
+    steps:
+      - checkout 
       - run:
           name: Install OpenOCD and GDB
           command: |
@@ -92,6 +96,10 @@ workflows:
             - CODECOV_TOKEN
           requires:
             - unit_tests
+            
+      - install_openocd_and_gdb:
+          requires:
+            - build
 
       - runner-test:
           requires:
