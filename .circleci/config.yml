@@ -66,7 +66,10 @@ jobs:
       - run:
           name: Start GDB
           command:
-            gdb -ex "target extended-remote localhost:3333" -ex "load /home/oden/project/build/Release/source/Etna.elf" -ex "verify" -ex "continue"
+            gdb -ex "target extended-remote localhost:3333"
+            monitor reset init
+            monitor flash write_image erase /home/oden/project/build/Release/source/Etna.elf 
+            monitor reset
           #  arm-none-eabi-gdb -ex "target exetend-remote localhost:3333" -ex "load /home/oden/project/build/Release/source/Etna.elf" -ex "verify" -ex "continue"
             
 
