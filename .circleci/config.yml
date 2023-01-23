@@ -55,8 +55,8 @@ jobs:
       - run:
           name: Install OpenOCD and GDB
           command: |
-            dnf install -y openocd
-            dnf install -y gdb
+            sudo dnf install -y openocd
+            sudo dnf install -y gdb
           #  sudo ls /usr/share/openocd/scripts/board | grep st_nucleo_f4.cfg
 
             
