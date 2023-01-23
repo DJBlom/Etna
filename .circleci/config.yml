@@ -47,13 +47,6 @@ jobs:
           command: |
             ./Build.sh CodeCoverage
             ./CodeCoverage.sh
-            cd build/CodeCoverage
-            curl -Os https://uploader.codecov.io/latest/linux/codecov
-            chmod +x codecov
-            ./codecov
-
-      
-
 
 workflows:
   project_workflow:
