@@ -63,7 +63,7 @@ jobs:
           name: Flash Code To MCU
           command: |
             sudo openocd -f interface/stlink.cfg -f target/stm32f4x.cfg 
-            sudo gdb -ex "target remote :3333" -ex "load build/Release/source/Etna.elf" -ex "continue"
+          #  sudo gdb -ex "target remote :3333" -ex "load build/Release/source/Etna.elf" -ex "continue"
 
 workflows:
   project_workflow:
