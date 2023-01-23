@@ -54,14 +54,15 @@ then
     ./EtnaUnitTests -c -v
 elif [ "$TYPE" = "$CODE_COVERAGE" ]
 then
-    $CMAKE -S . -B $BUILD_DIR --warn-uninitialized -DBUILD_COVERAGE:TYPE=ON -DCMAKE_BUILD_TYPE=$RELEASE -DCMAKE_CXX_FLAGS_RELEASE="-g -O0 --coverage -fprofile-arcs -ftest-coverage"
+    $CMAKE -S . -B $BUILD_DIR --warn-uninitialized -DBUILD_COVERAGE:TYPE=ON -DCMAKE_BUILD_TYPE=$RELEASE -DCMAKE_CXX_FLAGS_RELEASE="-g -O0 -fprofile-arcs -ftest-coverage"
     $CMAKE --build $BUILD_DIR 
     cd build/CodeCoverage
-    ctest -T Test
-    lcov --directory . --capture --output-file EtnaCoverage.info
-    lcov --remove EtnaCoverage.info '/usr/*' --output-file EtnaCoverage.info
-    genhtml EtnaCoverage.info --output-directory resultsInHtml
-    firefox build/CodeCoverage/resultsInHtml/index.html
+    ctest -T Test -T Coverage
+    lcov --rc lcov_branch_coverage=1 --directory . --capture --output-file Coverage.info
+    lcov --rc lcov_branch_coverage=1 --list Coverage.info > Coverage.txt
+    lcov --rc lcov_branch_coverage=1 --remove Coverage.info '/usr/*' --output-file Coverage.info
+    genhtml Coverage.info --output-directory ResultsInHtml
+    genhtml --rc genhtml_branch_coverage=1 --branch-coverage Coverage.info -o CoverageReport
 elif [[ -n $OPENOCD  ]] 
 then
     openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg

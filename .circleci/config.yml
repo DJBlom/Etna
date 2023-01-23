@@ -15,7 +15,7 @@ jobs:
       - run:
           name: Building Project
           command: |
-            ./build.sh Release
+            ./Build.sh Release
 
   static_code_analysis:
     executor: master
@@ -24,7 +24,7 @@ jobs:
       - run:
           name: Static Code Analysis
           command: | 
-            ./build.sh StaticAnalysis
+            ./Build.sh StaticAnalysis
 
   unit_tests:
     executor: master
@@ -33,7 +33,7 @@ jobs:
       - run:
           name: Unit Tests 
           command: | 
-            ./build.sh UnitTest
+            ./Build.sh UnitTest
 
   code_coverage:
     executor: master
@@ -42,7 +42,7 @@ jobs:
       - run:
           name: Code Coverage
           command: |
-            ./build.sh CodeCoverage
+            ./Build.sh CodeCoverage
 
 
 workflows:
