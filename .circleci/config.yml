@@ -47,6 +47,9 @@ jobs:
           command: |
             ./Build.sh CodeCoverage
             ./CodeCoverage.sh
+            curl -Os https://uploader.codecov.io/latest/linux/codecov
+            chmod +x codecov
+            ./codecov
       - codecov/upload:
           file: build/CodeCoverage/Coverage.txt
 
