@@ -51,7 +51,10 @@ jobs:
     machine: true
     resource_class: djblom/etna
     steps:
-      - run: echo "Hi I'm on Runners!"
+      - run:
+          name: Flash Code To MCU
+          command: |
+            ./hi.sh
 
 workflows:
   project_workflow:
