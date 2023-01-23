@@ -4,7 +4,7 @@
 cd build/CodeCoverage
 lcov --rc lcov_branch_coverage=1 --directory . --capture --output-file Coverage.info
 lcov --rc lcov_branch_coverage=1 --list Coverage.info > Coverage.txt
-curl -s https://codecove.io/bash -t $codecov_token -f Coverage.info
+#curl -s https://codecove.io/bash -t $codecov_token -f Coverage.info
 
 #lcov --rc lcov_branch_coverage=1 --remove Coverage.info '/usr/*' --output-file Coverage.info
 #genhtml Coverage.info --output-directory ResultsInHtml
@@ -65,9 +65,9 @@ if [[ $line_threshold = $FAIL || $function_threshold = $FAIL || $branch_threshol
 then
     echo " "
     echo "Code Coverage FAILED!"
-    exit 1
+    exit $FAIL
 else
     echo " "
     echo "Code Coverage PASSED!"
-    exit 0
+    exit $PASS
 fi
