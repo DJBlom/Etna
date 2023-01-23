@@ -3,9 +3,10 @@
 thresholds=("85" "90" "60")
 PASS=0
 FAIL=1
+PATH_TO_COVERAGE_FILE=build/CodeCoverage/Coverage.txt
 
 # Get the code coverage report from coverage.txt
-total_coverage=$(grep -F "Total:" ./Coverage.txt | tr -d ' ')
+total_coverage=$(grep -F "Total:" $PATH_TO_COVERAGE_FILE | tr -d ' ')
 
 # Extract the line coverage percentage
 line_coverage=($(echo "$total_coverage" | awk -F '|' '{print $2}' | awk -F '%' '{print $1}' ))
