@@ -48,7 +48,7 @@ jobs:
             ./Build.sh CodeCoverage
             ./CodeCoverage.sh
       - codecov/upload:
-          path: build/CodeCoverage/Coverage.txt
+          file: build/CodeCoverage/Coverage.txt
 
 
 workflows:
