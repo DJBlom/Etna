@@ -54,8 +54,7 @@ jobs:
       - run:
           name: Flash Code To MCU
           command: |
-            ls -la
-            ./hi.sh
+            pwd
 
 workflows:
   project_workflow:
