@@ -62,11 +62,12 @@ jobs:
       - run:
           name: Start Openocd
           command:
-            sudo openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg -c "init;shutdown"
+            sudo openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg
       - run:
           name: Start GDB
           command:
-            gdb -ex "target extended-remote localhost:3333"
+            gdb 
+            target extended-remote localhost:3333
             monitor reset init
             monitor flash write_image erase /home/oden/project/build/Release/source/Etna.elf 
             monitor reset
