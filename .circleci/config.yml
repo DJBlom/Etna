@@ -47,6 +47,11 @@ jobs:
           command: |
             ./scripts/Build.sh CodeCoverage
             ./scripts/CodeCoverage.sh
+  runner-test:
+    machine: true
+    resource_class: djblom/etna
+    steps:
+      - run: echo "Hi I'm on Runners!"
 
 workflows:
   project_workflow:
@@ -73,4 +78,13 @@ workflows:
             - CODECOV_TOKEN
           requires:
             - unit_tests
+
+      - runner-test:
+          requires:
+            - build
+            - unit_test
+              #- static_code_analysis
+
+              #- code_coverage
+
 
