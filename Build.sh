@@ -58,11 +58,7 @@ then
     $CMAKE --build $BUILD_DIR 
     cd build/CodeCoverage
     ctest -T Test -T Coverage
-    lcov --rc lcov_branch_coverage=1 --directory . --capture --output-file Coverage.info
-    lcov --rc lcov_branch_coverage=1 --list Coverage.info > Coverage.txt
-    lcov --rc lcov_branch_coverage=1 --remove Coverage.info '/usr/*' --output-file Coverage.info
-    genhtml Coverage.info --output-directory ResultsInHtml
-    genhtml --rc genhtml_branch_coverage=1 --branch-coverage Coverage.info -o CoverageReport
+
 elif [[ -n $OPENOCD  ]] 
 then
     openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg

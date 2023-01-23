@@ -1,5 +1,16 @@
 #! /bin/bash
 
+# Generate the code coverage info
+lcov --rc lcov_branch_coverage=1 --directory . --capture --output-file Coverage.info
+lcov --rc lcov_branch_coverage=1 --list Coverage.info > Coverage.txt
+bash <(curl -s https://codecove.io/bash) -t $codecov_token -f Coverage.info
+
+#lcov --rc lcov_branch_coverage=1 --remove Coverage.info '/usr/*' --output-file Coverage.info
+#genhtml Coverage.info --output-directory ResultsInHtml
+#genhtml --rc genhtml_branch_coverage=1 --branch-coverage Coverage.info -o CoverageReport
+
+
+
 thresholds=("85" "90" "60")
 PASS=0
 FAIL=1
@@ -15,6 +26,7 @@ function_coverage=($(echo "$total_coverage" | awk -F '|' '{print $3}' | awk -F '
 
 # Extract the branch coverage percentage
 branch_coverage=($(echo "$total_coverage" | awk -F '|' '{print $4}' | awk -F '%' '{print $1}'))
+
 
 
 # Check if the line coverage is less than 85%
