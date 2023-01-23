@@ -62,7 +62,7 @@ jobs:
       - run:
           name: Start Openocd
           command:
-            sudo openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg -c exit
+            sudo openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg -c "init;shutdown"
       - run:
           name: Start GDB
           command:
