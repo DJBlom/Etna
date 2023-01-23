@@ -1,6 +1,7 @@
 #! /bin/bash
 
 # Generate the code coverage info
+cd ./build/CodeCoverage
 lcov --rc lcov_branch_coverage=1 --directory . --capture --output-file Coverage.info
 lcov --rc lcov_branch_coverage=1 --list Coverage.info > Coverage.txt
 bash <(curl -s https://codecove.io/bash) -t $codecov_token -f Coverage.info
