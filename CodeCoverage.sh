@@ -1,6 +1,6 @@
 #! /bin/bash
 
-thresholds=("85" "90" "20")
+thresholds=("85" "90" "60")
 PASS=0
 FAIL=1
 
@@ -21,30 +21,40 @@ branch_coverage=($(echo "$total_coverage" | awk -F '|' '{print $4}' | awk -F '%'
 line_threshold=$PASS
 if [[ "$line_coverage)" < "${thresholds[0]}" ]];
 then
+    echo "Line coverage should be greater than $thresholds[0]%: FAILED"
     line_threshold=$FAIL
+else
+    echo "Line coverage is: $line_coverage%: PASSED"
 fi
 
 ## Check if the function coverage is less than 90%
 function_threshold=$PASS
 if [[ "$function_coverage" < "${thresholds[1]}" ]]; 
 then
+    echo "Function coverage should be greater than $thresholds[1]%: FAILED"
     function_threshold=$FAIL
+else
+    echo "Function coverage is: $function_coverage%: PASSED"
 fi
 
 # Check if the branch coverage is less than 60%
 branch_threshold=$PASS
 if [[ "$branch_coverage" < "${thresholds[2]}" ]]; 
 then
+    echo "Branch coverage should be greater than $thresholds[2]%: FAILED"
     branch_threshold=$FAIL
+else
+    echo "Branch coverage is: $branch_coverage%: PASSED"
 fi
 
-# Final check to make sure the coverage passed or failed
+
 if [[ $line_threshold = $FAIL || $function_threshold = $FAIL || $branch_threshold = $FAIL ]];
 then
-    echo "Code Coverage FAILED!"
     echo " "
+    echo "Code Coverage FAILED!"
     exit 1
 else
+    echo " "
     echo "Code Coverage PASSED!"
     exit 0
 fi
