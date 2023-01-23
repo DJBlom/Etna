@@ -45,14 +45,14 @@ jobs:
       - run:
           name: Code Coverage
           command: |
+            ./Build.sh CodeCoverage
+            ./CodeCoverage.sh
+            cd build/CodeCoverage
             curl -Os https://uploader.codecov.io/latest/linux/codecov
             chmod +x codecov
             ./codecov
-            ./Build.sh CodeCoverage
-            ./CodeCoverage.sh
 
-      - codecov/upload:
-          file: build/CodeCoverage/Coverage.txt
+      
 
 
 workflows:
