@@ -53,8 +53,7 @@ if [[ $line_threshold = $FAIL || $function_threshold = $FAIL || $branch_threshol
 then
     echo " "
     echo "Code Coverage FAILED!"
-    #exit $FAIL
-    exit $PASS
+    exit $FAIL
 else
     echo " "
     echo "Code Coverage PASSED!"
