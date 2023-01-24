@@ -59,6 +59,8 @@ jobs:
           command: |
             sudo dnf install -y openocd
             sudo dnf install -y gdb
+            sudo dnf debuginfo-install 
+            sudo dnf coreutils-9.0-9.fc36.x86_64
       - run:
           name: Start Openocd
           command:
