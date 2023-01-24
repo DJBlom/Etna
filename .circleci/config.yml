@@ -45,20 +45,19 @@ jobs:
       - run:
           name: Code Coverage
           command: |
-            killall
             ./scripts/Build.sh CodeCoverage
             ./scripts/CodeCoverage.sh          
 
             
-  etna_runner:
-    machine: true
-    resource_class: djblom/etna
-    steps:
-      - run:
-          name: Start Openocd
-          command:
+#  etna_runner:
+#    machine: true
+#    resource_class: djblom/etna
+#    steps:
+#      - run:
+#          name: Start Openocd
+#          command:
           #  sudo openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg -c exit
-            echo "Openocd started"
+#            echo "Openocd started"
           #  sudo openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg 
           #  sudo gdb -ex "target remote :3333" -ex "load build/Release/source/Etna.elf" -ex "verify" -ex "continue" -c exit
   
@@ -70,9 +69,9 @@ workflows:
           context:
             - dockerhub_credentials
 
-      - etna_runner:
-          requires:
-            - build
+#      - etna_runner:
+#         requires:
+#            - build
 
       - static_code_analysis:
           context:
