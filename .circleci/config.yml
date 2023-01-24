@@ -55,6 +55,7 @@ jobs:
       - run:
           name: Start Openocd
           command: |
+            echo $PATH
             sudo Build.sh Openocd
 
           #  sudo ./home/odin/project/scripts/Build.sh Openocd
