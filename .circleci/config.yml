@@ -55,11 +55,12 @@ jobs:
       - run:
           name: Start Openocd
           command: |
-            sudo ls /home/odin/workspace/
-          #  openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg -c "init;reset halt;flash write_image erase build/Release/source/Etna.elf;reset run;shutdown"
-          #  sleep 5
-          #  gdb -ex "target remote :3333" -ex "load build/Release/source/Etna.elf" -ex "verify" -ex "continue"
-          #  echo "balls"
+            sudo ./home/odin/workspace/Etna/scripts/Build.sh Openocd
+            
+      - run:
+          name: Start GDB
+          command: |
+            sudo ./home/odin/workspace/Etna/scripts/Build.sh VerifyGDB
             
             
   
