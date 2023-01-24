@@ -17,6 +17,7 @@ STATIC_TEST=StaticAnalysis
 CODE_COVERAGE=CodeCoverage
 VERBOSE=
 OPENOCD=
+VERIFYGDB=
 
 
 for arg; do
@@ -29,6 +30,7 @@ for arg; do
         UnitTest)               TYPE=UnitTest; BUILD_DIR=$BUILD/UnitTest ;;
         CodeCoverage)           TYPE=CodeCoverage; BUILD_DIR=$BUILD/CodeCoverage ;;
         Openocd)                OPENOCD=1 ;;
+        VerifyGDB)              VERIFYGDB=1 ;;
         *)                      echo -e "unknown option $arg\n$USAGE" >&2;  exit 1 ;;
     esac
 done
@@ -41,7 +43,11 @@ then
     make clean
 elif [[ -n $OPENOCD  ]] 
 then
-    openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg
+    #openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg
+    openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg -c "init;reset halt;flash write_image erase build/Release/source/Etna.elf;reset run;shutdown"
+elif [[ -n $VERIFYGDB ]]
+then
+    gdb -ex "target remote :3333" -ex "load build/Release/source/Etna.elf" -ex "verify" -ex "continue"
 elif [ "$TYPE" = "$RELEASE" ]
 then
     $CMAKE -S . -B $BUILD_DIR --warn-uninitialized -DBUILD_ETNA:TYPE=ON -DCMAKE_BUILD_TYPE=$RELEASE -DCMAKE_TOOLCHAIN_FILE=cmakeModules/EtnaToolchain.cmake 
