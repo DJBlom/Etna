@@ -58,7 +58,7 @@ jobs:
       - run:
           name: Start Openocd
           command:
-            sudo openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg -c exit
+          #  sudo openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg -c exit
             echo "Openocd started"
           #  sudo openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg 
           #  sudo gdb -ex "target remote :3333" -ex "load build/Release/source/Etna.elf" -ex "verify" -ex "continue" -c exit
