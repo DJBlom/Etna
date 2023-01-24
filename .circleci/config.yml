@@ -59,7 +59,7 @@ jobs:
           command: |
             sudo dnf install -y openocd
             sudo dnf install -y gdb
-            sudo dnf debuginfo-install 
+
       - run:
           name: Start Openocd
           command:
