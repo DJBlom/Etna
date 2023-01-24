@@ -60,7 +60,6 @@ jobs:
             sudo dnf install -y openocd
             sudo dnf install -y gdb
             sudo dnf debuginfo-install 
-            sudo dnf coreutils-debuginfo-8.22-24.el7_9.2.x86_64.rpm
       - run:
           name: Start Openocd
           command:
