@@ -90,9 +90,6 @@ workflows:
       - runner-test:
           requires:
             - build
-            - unit_tests
-              #- static_code_analysis
 
-              #- code_coverage
 
 
