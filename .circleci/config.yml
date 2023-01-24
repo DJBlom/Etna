@@ -55,8 +55,10 @@ jobs:
       - run:
           name: Start Openocd
           command: |
-            sudo touch /home/odin/
-            sudo ./home/odin/project/scripts/Build.sh Openocd
+            sudo ls /home/odin/workspace/Etna/scripts
+            sudo ls /home/odin/project
+
+          #  sudo ./home/odin/project/scripts/Build.sh Openocd
             
       - run:
           name: Start GDB
