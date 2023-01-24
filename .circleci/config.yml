@@ -56,7 +56,7 @@ jobs:
           name: Start Openocd
           command: |
             sudo ls /home/odin/workspace/Etna/scripts
-            sudo ls /home/odin/project
+            sudo ./home/odin/workspace/Etna/scripts/Build.sh
 
           #  sudo ./home/odin/project/scripts/Build.sh Openocd
             
