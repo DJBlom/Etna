@@ -39,6 +39,9 @@ then
     rm -rf $TESTING_DIR
     cd test
     make clean
+elif [[ -n $OPENOCD  ]] 
+then
+    openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg
 elif [ "$TYPE" = "$RELEASE" ]
 then
     $CMAKE -S . -B $BUILD_DIR --warn-uninitialized -DBUILD_ETNA:TYPE=ON -DCMAKE_BUILD_TYPE=$RELEASE -DCMAKE_TOOLCHAIN_FILE=cmakeModules/EtnaToolchain.cmake 
@@ -64,9 +67,5 @@ then
     curl -Os https://uploader.codecov.io/latest/linux/codecov
     chmod 755 codecov
     ./codecov
-elif [[ -n $OPENOCD  ]] 
-then
-    openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg
 fi
-
 
