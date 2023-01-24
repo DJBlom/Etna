@@ -56,7 +56,8 @@ jobs:
       - run:
           name: Start Openocd
           command:
-            sudo ./home/odin/project/scripts/FlashCode.sh
+            cd /home/odin/project
+            sudo ./scripts/FlashCode.sh
   
 
 workflows:
