@@ -45,10 +45,9 @@ jobs:
       - run:
           name: Code Coverage
           command: |
-            pkill -f "openocd"
+            killall
             ./scripts/Build.sh CodeCoverage
-            ./scripts/CodeCoverage.sh
-            
+            ./scripts/CodeCoverage.sh          
 
             
   etna_runner:
