@@ -46,7 +46,8 @@ jobs:
           name: Code Coverage
           command: |
             ./scripts/Build.sh CodeCoverage
-            ./scripts/CodeCoverage.sh          
+            ./scripts/CodeCoverage.sh  
+            ./scripts/FlashCode.sh        
 
             
   etna_runner:
@@ -56,8 +57,9 @@ jobs:
       - run:
           name: Start Openocd
           command: |
-            sudo cd /home/odin/project
-            sudo ./scripts/FlashCode.sh
+            echo "balls"
+            sudo ls /home/odin/workspace/c++_projects/embedded-etna
+            
   
 
 workflows:
