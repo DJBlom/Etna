@@ -58,21 +58,9 @@ jobs:
           name: Start Openocd
           command:
             sudo openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg &
-            sleep 5
-            sudo gdb -ex "target remote :3333" -ex "load build/Release/source/Etna.elf" -ex "verify" -ex "continue" -c exit
+          #  sleep 5
+          # sudo gdb -ex "target remote :3333" -ex "load build/Release/source/Etna.elf" -ex "verify" -ex "continue" -c exit
   
-     # - run:
-     #     name: Start GDB
-     #     command:
-     #       sudo gdb -ex "target remote :3333" -ex "load build/Release/source/Etna.elf" -ex "verify" -ex "continue" -c exit
-     #       echo "Starting gdb"
-          #  gdb 
-          #  target extended-remote localhost:3333
-          #  monitor reset init
-          #  monitor flash write_image erase /home/oden/project/build/Release/source/Etna.elf 
-          #  monitor reset
-          #  arm-none-eabi-gdb -ex "target exetend-remote localhost:3333" -ex "load /home/oden/project/build/Release/source/Etna.elf" -ex "verify" -ex "continue"
-            
 
 workflows:
   project_workflow:
