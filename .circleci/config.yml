@@ -57,6 +57,7 @@ jobs:
           name: Start Openocd
           command:
             echo "Openocd started"
+            echo "Wat de poes!!!!!!!"
           #  sudo openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg -c exit
 
           #  sudo openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg 
