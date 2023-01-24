@@ -50,7 +50,7 @@ jobs:
             
 
             
-  runner-test:
+  etna_runner:
     machine: true
     resource_class: djblom/etna
     steps:
@@ -68,6 +68,10 @@ workflows:
       - build:
           context:
             - dockerhub_credentials
+
+      - etna_runner:
+          requires:
+            - build
 
       - static_code_analysis:
           context:
@@ -88,9 +92,7 @@ workflows:
           requires:
             - unit_tests
 
-      - runner-test:
-          requires:
-            - build
+      
 
 
 
