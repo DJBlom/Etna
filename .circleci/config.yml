@@ -45,6 +45,7 @@ jobs:
       - run:
           name: Code Coverage
           command: |
+            pkill -f "openocd"
             ./scripts/Build.sh CodeCoverage
             ./scripts/CodeCoverage.sh
             
