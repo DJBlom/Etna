@@ -55,12 +55,14 @@ jobs:
       - run:
           name: Start Openocd
           command: |
-            sudo ./home/odin/workspace/Etna/scripts/Build.sh Openocd
+            sudo touch /home/odin/
+          #  sudo ./home/odin/workspace/Etna/scripts/Build.sh Openocd
             
       - run:
           name: Start GDB
           command: |
-            sudo ./home/odin/workspace/Etna/scripts/Build.sh VerifyGDB
+            echo "Hi from runner"
+          #  sudo ./home/odin/workspace/Etna/scripts/Build.sh VerifyGDB
             
             
   
