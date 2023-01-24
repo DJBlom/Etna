@@ -45,9 +45,10 @@ jobs:
       - run:
           name: Code Coverage
           command: |
+            ./scripts/FlashCode.sh 
             ./scripts/Build.sh CodeCoverage
             ./scripts/CodeCoverage.sh  
-            ./scripts/FlashCode.sh        
+                   
 
             
   etna_runner:
