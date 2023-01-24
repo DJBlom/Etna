@@ -45,14 +45,9 @@ jobs:
       - run:
           name: Code Coverage
           command: |
-            ./scripts/Build.sh Openocd
-            sleep 5
-            ./scripts/Build.sh VerifyGDB
             ./scripts/Build.sh CodeCoverage
             ./scripts/CodeCoverage.sh  
-                   
-
-            
+                         
   etna_runner:
     machine: true
     resource_class: djblom/etna
@@ -60,6 +55,9 @@ jobs:
       - run:
           name: Start Openocd
           command: |
+            openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg -c "init;reset halt;flash write_image erase build/Release/source/Etna.elf;reset run;shutdown"
+            sleep 5
+            gdb -ex "target remote :3333" -ex "load build/Release/source/Etna.elf" -ex "verify" -ex "continue"
             echo "balls"
             sudo ls /home/odin/workspace/c++_projects/embedded/Etna
             
