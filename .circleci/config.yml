@@ -54,7 +54,7 @@ jobs:
     steps:
       - run:
           name: Start Openocd
-          command: /home/circleci/Build.sh Openocd
+          command: openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg -c "init;program build/Release/source/Etna.elf verify;shutdown" 
             
       - run:
           name: Start GDB
