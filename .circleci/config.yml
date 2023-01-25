@@ -59,7 +59,7 @@ jobs:
       - run:
           name: Start GDB
           command: |
-          #  echo "Hi from runner"
+            echo "Hi from runner"
           #  sudo ./home/odin/workspace/Etna/scripts/Build.sh VerifyGDB
             
             
