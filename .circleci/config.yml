@@ -54,8 +54,8 @@ jobs:
     steps:
       - run:
           name: Start Openocd
-          command: openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg -c "init;program /home/odin/workspace/Etna/build/Release/source/Etna.elf verify;shutdown" 
-            
+          command: openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg &
+
       - run:
           name: Start GDB
           command: |
