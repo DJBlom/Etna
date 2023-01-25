@@ -54,7 +54,7 @@ jobs:
     steps:
       - run:
           name: Start Openocd
-          command: openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg &
+          command: openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg 
 
       - run:
           name: Start GDB
