@@ -9,7 +9,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
     
-    - name: Verify docker creds are there
+    - name: Docker Verify
       run: echo "Docker Token: ${{ secrets.DOCKER_TOKEN }}" 
 
     - name: DockerHub Login
