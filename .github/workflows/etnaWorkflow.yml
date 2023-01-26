@@ -16,6 +16,7 @@ jobs:
       run: scripts/Build.sh Release    
         
   StaticCodeAnalysis:
+      needs: BuildProject
       runs-on: ubuntu-latest
       container: dawidblom/etna:latest
       steps:
@@ -25,6 +26,7 @@ jobs:
         run: scripts/Build.sh StaticAnalysis
       
   UnitTests:
+      needs: StaticCodeAnalysis
       runs-on: ubuntu-latest
       container: dawidblom/etna:latest
       steps:
@@ -37,6 +39,7 @@ jobs:
           CPPUTEST_HOME: ${{ vars.CPPUTEST_HOME }}
 
   CodeCoverage:
+      needs: UnitTests
       runs-on: ubuntu-latest
       container: dawidblom/etna:latest
       steps:
