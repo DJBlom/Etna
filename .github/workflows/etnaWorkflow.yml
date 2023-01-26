@@ -2,9 +2,6 @@ name: Etna CI CD
 on: [push]
 
 
-env:
-  CPPUTEST_HOME: ${{ secrets.CPPUTEST_HOME }}
-
 
 
 before_jobs:
@@ -28,7 +25,7 @@ jobs:
       run: |
         docker run --rm -v $(pwd):/project -w /project dawidblom/etna:latest bash -c "scripts/Build.sh Release"
       env:
-        CPPUTEST_HOME: ${{ env.CPPUTEST_HOME }}
+        CPPUTEST_HOME: ${{ secrets.CPPUTEST_HOME }}
 
           # StaticCodeAnalysis:
           #    runs-on: ubuntu-latest
