@@ -21,16 +21,19 @@ jobs:
         CPPUTEST_HOME: ${{ env.CPPUTEST_HOME }}
         
   StaticCodeAnalysis:
-    runs-on: ubuntu-latest
-    container: dawidblom/etna:latest
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
+      runs-on: ubuntu-latest
+      steps:
+      - name: Static Code Analysis
+        run: scripts/Build.sh StaticAnalysis
+        env: 
+          CPPUTEST_HOME: ${{ env.CPPUTEST_HOME }}
+    #runs-on: ubuntu-latest
+    #container: dawidblom/etna:latest
+    
+    #- name: Checkout Code
+    #  uses: actions/checkout@v3
       
-    - name: Static Code Analysis
-      run: scripts/Build.sh StaticAnalysis
-      env: 
-        CPPUTEST_HOME: ${{ env.CPPUTEST_HOME }}
+    
           #        
           #
           # UnitTests:
