@@ -18,8 +18,7 @@ jobs:
       uses: actions/checkout@v3
    
     - name: Build
-      run: |
-        docker run --rm -v $(pwd):/project -w /project dawidblom/etna:latest bash -c "scripts/Build.sh Release"    
+      run: scripts/Build.sh Release    
       env:
         CPPUTEST_HOME: ${{ env.CPPUTEST_HOME }}
 
