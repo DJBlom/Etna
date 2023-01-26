@@ -3,26 +3,30 @@ on: [push]
 
 env:
   CPPUTEST_HOME: ${{ secrets.CPPUTEST_HOME }}
+  
+
 
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    container: dawidblom/etna:latest
+   
+    
     steps:
     - name: Checkout Code
       uses: actions/checkout@v3
-
     - name: DockerHub Login
       uses: docker/login-action@v2.1.0
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_TOKEN }}
+   
 
     - name: Build
       run: |
         docker run --rm -v $(pwd):/project -w /project dawidblom/etna:latest bash -c "scripts/Build.sh Release"
-      container: dawidblom/etna:latest
+      
       env:
         CPPUTEST_HOME: ${{ env.CPPUTEST_HOME }}
 
