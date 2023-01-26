@@ -1,8 +1,5 @@
 name: Etna CI CD
 on: [push]
-
-env:
-  CPPUTEST_HOME: ${{ secrets.CPPUTEST_HOME }}
   
 jobs:
   build:
@@ -15,16 +12,18 @@ jobs:
     - name: Build
       run: scripts/Build.sh Release    
       env:
-        CPPUTEST_HOME: ${{ env.CPPUTEST_HOME }}
+        CPPUTEST_HOME: ${{ secrets.CPPUTEST_HOME }}
         
   StaticCodeAnalysis:
       runs-on: ubuntu-latest
       container: dawidblom/etna:latest
       steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
       - name: Static Code Analysis
         run: scripts/Build.sh StaticAnalysis
         env: 
-          CPPUTEST_HOME: ${{ env.CPPUTEST_HOME }}
+          CPPUTEST_HOME: ${{ secrets.CPPUTEST_HOME }}
     #runs-on: ubuntu-latest
     #container: dawidblom/etna:latest
     
