@@ -1,4 +1,4 @@
-name: EtnaCICD
+name: Etna CI CD
 on: [push]
 
 jobs:
