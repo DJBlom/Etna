@@ -4,11 +4,27 @@ on:
   push:
     branches:
     - feature/*
+    
+    
+
+  test2:
+    runs-on: ubuntu-latest
+    services:
+      my-db:
+        image: postgres:12
+        ports:
+          - "5432:5432"
+    steps:
+      - name: Run tests
+        run: |
+          # run tests here
+    
   
 jobs:
   BuildProject:
     runs-on: ubuntu-latest
-    container: dawidblom/etna:latest
+    services:
+      container: dawidblom/etna:latest
     steps:
     - name: Checkout Code
       uses: actions/checkout@v3
@@ -18,20 +34,18 @@ jobs:
   StaticCodeAnalysis:
       needs: BuildProject
       runs-on: ubuntu-latest
-      container: dawidblom/etna:latest
+      services:
+        container: dawidblom/etna:latest
       steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
       - name: Static Code Analysis
         run: scripts/Build.sh StaticAnalysis
       
   UnitTests:
       needs: StaticCodeAnalysis
       runs-on: ubuntu-latest
-      container: dawidblom/etna:latest
+      services:
+        container: dawidblom/etna:latest
       steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
       - name: Unit Tests
         run: |
           scripts/Build.sh UnitTest
@@ -41,10 +55,9 @@ jobs:
   CodeCoverage:
       needs: UnitTests
       runs-on: ubuntu-latest
-      container: dawidblom/etna:latest
+      services:
+        container: dawidblom/etna:latest
       steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
       - name: Code Coverage
         run: |
           scripts/Build.sh CodeCoverage
