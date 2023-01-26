@@ -6,7 +6,7 @@ on:
     - feature/*
   
 jobs:
-  Build Project:
+  BuildProject:
     runs-on: ubuntu-latest
     container: dawidblom/etna:latest
     steps:
