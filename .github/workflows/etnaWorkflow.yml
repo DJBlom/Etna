@@ -15,18 +15,18 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_TOKEN }}
 
-          #    - name: Build
-          #      run: |
-          #        docker run --rm -v $(pwd):/project -w /project dawidblom/etna:latest bash -c "scripts/Build.sh Release"
-          #        
-          #    - name: Static Code Analysis
-          #      run: |
-          #        docker run --rm -v $(pwd):/project -w /project dawidblom/etna:latest bash -c "scripts/Build.sh StaticAnalysis"
-          #        
-          #    - name: Unit Tests
-          #      run: |
-          #        docker run --rm -v $(pwd):/project -w /project dawidblom/etna:latest bash -c "scripts/Build.sh UnitTest"
-          #    - name: Code Coverage
-          #      run: |
-          #        docker run --rm -v $(pwd):/project -w /project dawidblom/etna:latest bash -c "scripts/Build.sh CodeCoverage"
+    - name: Build
+      run: |
+        docker run --rm -v $(pwd):/project -w /project dawidblom/etna:latest bash -c "scripts/Build.sh Release"
+        
+    - name: Static Code Analysis
+      run: |
+        docker run --rm -v $(pwd):/project -w /project dawidblom/etna:latest bash -c "scripts/Build.sh StaticAnalysis"
+        
+    - name: Unit Tests
+      run: |
+        docker run --rm -v $(pwd):/project -w /project dawidblom/etna:latest bash -c "scripts/Build.sh UnitTest"
+    - name: Code Coverage
+      run: |
+        docker run --rm -v $(pwd):/project -w /project dawidblom/etna:latest bash -c "scripts/Build.sh CodeCoverage"
 
