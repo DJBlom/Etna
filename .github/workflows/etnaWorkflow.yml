@@ -33,7 +33,7 @@ jobs:
       - name: Unit Tests
         run: |
           echo "$PATHE"
-          echo "CPPUTEST_HOME: ${{ vars.ETNA }}"
+          echo "CPPUTEST_HOME: ${{ vars.ENV_CONTEXT_VAR }}"
           scripts/Build.sh UnitTest
         env:
           CPPUTEST_HOME: ${{ vars.CPPUTEST_HOME }}
