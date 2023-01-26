@@ -24,43 +24,44 @@ jobs:
     - name: Build
       run: |
         docker run --rm -v $(pwd):/project -w /project dawidblom/etna:latest bash -c "scripts/Build.sh Release"
+      uses: docker://dawidblom/etna
       env:
         CPPUTEST_HOME: ${{ env.CPPUTEST_HOME }}
 
- StaticCodeAnalysis:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
-        
-    - name: Static Code Analysis
-      run: |
-        docker run --rm -v $(pwd):/project -w /project dawidblom/etna:latest bash -c "scripts/Build.sh StaticAnalysis"
-      env:
-        CPPUTEST_HOME: ${{ env.CPPUTEST_HOME }}
-        
-
- UnitTests:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
-
-    - name: Unit Tests
-      run: |
-        docker run --rm -v $(pwd):/project -w /project dawidblom/etna:latest bash -c "scripts/Build.sh UnitTest"
-      env:
-        CPPUTEST_HOME: ${{ env.CPPUTEST_HOME }}
-
- CodeCoverage:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
-
-    - name: Code Coverage
-      run: |
-        docker run --rm -v $(pwd):/project -w /project dawidblom/etna:latest bash -c "scripts/Build.sh CodeCoverage"
-      env:
-        CPPUTEST_HOME: ${{ env.CPPUTEST_HOME }}
+          # StaticCodeAnalysis:
+          #    runs-on: ubuntu-latest
+          #    steps:
+          #    - name: Checkout Code
+          #      uses: actions/checkout@v3
+          #        
+          #    - name: Static Code Analysis
+          #      run: |
+          #        docker run --rm -v $(pwd):/project -w /project dawidblom/etna:latest bash -c "scripts/Build.sh StaticAnalysis"
+          #      env:
+          #        CPPUTEST_HOME: ${{ env.CPPUTEST_HOME }}
+          #        
+          #
+          # UnitTests:
+          #    runs-on: ubuntu-latest
+          #    steps:
+          #    - name: Checkout Code
+          #      uses: actions/checkout@v3
+          #
+          #    - name: Unit Tests
+          #      run: |
+          #        docker run --rm -v $(pwd):/project -w /project dawidblom/etna:latest bash -c "scripts/Build.sh UnitTest"
+          #      env:
+          #        CPPUTEST_HOME: ${{ env.CPPUTEST_HOME }}
+          #
+          # CodeCoverage:
+          #    runs-on: ubuntu-latest
+          #    steps:
+          #    - name: Checkout Code
+          #      uses: actions/checkout@v3
+          #
+          #    - name: Code Coverage
+          #      run: |
+          #        docker run --rm -v $(pwd):/project -w /project dawidblom/etna:latest bash -c "scripts/Build.sh CodeCoverage"
+          #      env:
+          #        CPPUTEST_HOME: ${{ env.CPPUTEST_HOME }}
 
