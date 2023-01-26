@@ -33,7 +33,7 @@ jobs:
       - name: Unit Tests
         run: |
           scripts/Build.sh UnitTest
-        env: ${{ secrets.CPPUTEST_HOME }}
+        env: ${{ vars.CPPUTEST_HOME }}
 
   CodeCoverage:
       runs-on: ubuntu-latest
@@ -45,5 +45,5 @@ jobs:
         run: |
           scripts/Build.sh CodeCoverage
           scripts/CodeCoverage.sh
-        env: ${{ secrets.CPPUTEST_HOME }}
+        env: ${{ vars.CPPUTEST_HOME }}
 
