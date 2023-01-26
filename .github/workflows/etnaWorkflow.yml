@@ -46,7 +46,6 @@ jobs:
       steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-      - name: Static Code Analysis
       - name: Code Coverage
         run: |
           scripts/Build.sh CodeCoverage
