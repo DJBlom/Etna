@@ -33,7 +33,7 @@ jobs:
       - name: Unit Tests
         run: |
           echo "$PATH"
-          echo "CPPUTEST_HOME: ${{ vars.ENV_CONTEXT_VAR }}"
+          cat /home/odin/.bashrc
           scripts/Build.sh UnitTest
         env:
           CPPUTEST_HOME: ${{ vars.CPPUTEST_HOME }}
