@@ -8,11 +8,8 @@ jobs:
     steps:
     - name: Checkout Code
       uses: actions/checkout@v3
-   
     - name: Build
       run: scripts/Build.sh Release    
-      env:
-        CPPUTEST_HOME: ${{ secrets.CPPUTEST_HOME }}
         
   StaticCodeAnalysis:
       runs-on: ubuntu-latest
