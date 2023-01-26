@@ -69,9 +69,5 @@ then
     ctest -T Test -T Coverage
     lcov --rc lcov_branch_coverage=1 --directory . --capture --output-file Coverage.info
     lcov --rc lcov_branch_coverage=1 --list Coverage.info > Coverage.txt
-
-    curl -Os https://uploader.codecov.io/latest/linux/codecov
-    chmod 755 codecov
-    ./codecov
 fi
 
