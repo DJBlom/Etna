@@ -6,7 +6,7 @@ on:
     - feature/*
   
 jobs:
-  build:
+  Build Project:
     runs-on: ubuntu-latest
     container: dawidblom/etna:latest
     steps:
@@ -26,7 +26,6 @@ jobs:
         env: 
           CPPUTEST_HOME: ${{ secrets.CPPUTEST_HOME }}
       
-
   UnitTests:
       runs-on: ubuntu-latest
       container: dawidblom/etna:latest
@@ -36,7 +35,7 @@ jobs:
       - name: Unit Tests
         run: scripts/Build.sh UnitTest
         env:
-          CPPUTEST_HOME: ${{ env.CPPUTEST_HOME }}
+          CPPUTEST_HOME: ${{ secrets.CPPUTEST_HOME }}
 
   CodeCoverage:
       runs-on: ubuntu-latest
@@ -47,5 +46,5 @@ jobs:
       - name: Code Coverage
         run: scripts/Build.sh CodeCoverage
         env:
-          CPPUTEST_HOME: ${{ env.CPPUTEST_HOME }}
+          CPPUTEST_HOME: ${{ secrets.CPPUTEST_HOME }}
 
