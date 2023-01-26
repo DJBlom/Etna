@@ -5,20 +5,6 @@ on:
     branches:
     - feature/*
     
-    
-
-  test2:
-    runs-on: ubuntu-latest
-    services:
-      my-db:
-        image: postgres:12
-        ports:
-          - "5432:5432"
-    steps:
-      - name: Run tests
-        run: |
-          # run tests here
-    
   
 jobs:
   BuildProject:
