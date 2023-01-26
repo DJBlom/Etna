@@ -1,0 +1,29 @@
+name: EtnaCICD
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Docker login
+      run: echo ${{ secrets.DOCKER_USERNAME }}:${{ secrets.DOCKER_PASSWORD }} | base64 --decode | docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
+
+    - name: Build
+      run: |
+        docker run --rm -v $(pwd):/project -w /project dawidblom/etna:latest bash -c "scripts/Build.sh Release"
+        
+    - name: Static Code Analysis
+      run: |
+        docker run --rm -v $(pwd):/project -w /project dawidblom/etna:latest bash -c "scripts/Build.sh StaticAnalysis"
+        
+    - name: Unit Tests
+      run: |
+        docker run --rm -v $(pwd):/project -w /project dawidblom/etna:latest bash -c "scripts/Build.sh UnitTest"
+    - name: Code Coverage
+      run: |
+        docker run --rm -v $(pwd):/project -w /project dawidblom/etna:latest bash -c "scripts/Build.sh CodeCoverage"
+
