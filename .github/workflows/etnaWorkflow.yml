@@ -4,9 +4,6 @@ on: [push]
 env:
   CPPUTEST_HOME: ${{ secrets.CPPUTEST_HOME }}
   
-
-
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,6 +19,7 @@ jobs:
         
   StaticCodeAnalysis:
       runs-on: ubuntu-latest
+      container: dawidblom/etna:latest
       steps:
       - name: Static Code Analysis
         run: scripts/Build.sh StaticAnalysis
