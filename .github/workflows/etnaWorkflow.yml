@@ -9,8 +9,7 @@ on:
 jobs:
   BuildProject:
     runs-on: ubuntu-latest
-    services:
-      container: dawidblom/etna:latest
+    container: dawidblom/etna:latest
     steps:
     - name: Checkout Code
       uses: actions/checkout@v3
@@ -20,8 +19,7 @@ jobs:
   StaticCodeAnalysis:
       needs: BuildProject
       runs-on: ubuntu-latest
-      services:
-        container: dawidblom/etna:latest
+      container: dawidblom/etna:latest
       steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -31,8 +29,7 @@ jobs:
   UnitTests:
       needs: StaticCodeAnalysis
       runs-on: ubuntu-latest
-      services:
-        container: dawidblom/etna:latest
+      container: dawidblom/etna:latest
       steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -45,8 +42,7 @@ jobs:
   CodeCoverage:
       needs: UnitTests
       runs-on: ubuntu-latest
-      services:
-        container: dawidblom/etna:latest
+      container: dawidblom/etna:latest
       steps:
       - name: Checkout Code
         uses: actions/checkout@v3
