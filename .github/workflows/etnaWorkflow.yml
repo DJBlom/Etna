@@ -32,10 +32,9 @@ jobs:
         uses: actions/checkout@v3
       - name: Unit Tests
         run: |
-          echo "CPPUTEST_HOME: ${{ secrets.CPPUTEST_HOME }}"
           scripts/Build.sh UnitTest
         env:
-          CPPUTEST_HOME: ${{ secrets.CPPUTEST_HOME }}
+          CPPUTEST_HOME: /home/odin/cpputest
 
   CodeCoverage:
       runs-on: ubuntu-latest
@@ -46,5 +45,5 @@ jobs:
       - name: Code Coverage
         run: scripts/Build.sh CodeCoverage
         env:
-          CPPUTEST_HOME: ${{ secrets.CPPUTEST_HOME }}
+          CPPUTEST_HOME: /home/odin/cpputest
 
