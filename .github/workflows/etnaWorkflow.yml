@@ -32,7 +32,8 @@ jobs:
         uses: actions/checkout@v3
       - name: Unit Tests
         run: |
-          echo "CPPUTEST_HOME: ${{ vars.ENVIRONMENT_VAR }}
+          echo "$CPPUTEST_HOME"
+          echo "CPPUTEST_HOME: ${{ vars.ENVIRONMENT_VAR }}"
           scripts/Build.sh UnitTest
         env:
           CPPUTEST_HOME: ${{ vars.CPPUTEST_HOME }}
