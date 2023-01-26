@@ -23,6 +23,8 @@ jobs:
       services:
         container: dawidblom/etna:latest
       steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
       - name: Static Code Analysis
         run: scripts/Build.sh StaticAnalysis
       
@@ -32,6 +34,8 @@ jobs:
       services:
         container: dawidblom/etna:latest
       steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
       - name: Unit Tests
         run: |
           scripts/Build.sh UnitTest
@@ -44,6 +48,8 @@ jobs:
       services:
         container: dawidblom/etna:latest
       steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
       - name: Code Coverage
         run: |
           scripts/Build.sh CodeCoverage
