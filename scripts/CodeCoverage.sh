@@ -16,7 +16,7 @@ cd build/codeCoverage
 ctest -T Test -T coverage
 lcov --rc lcov_branch_coverage=1 --directory . --capture --output-file coverage.info
 lcov --rc lcov_branch_coverage=1 --list coverage.info > coverage.txt
-genhtml build/codeCoverage/lcov.info -o build/codeCoverage/html
+genhtml lcov.info -o html
 
 
 # Get the code coverage report from coverage.txt
@@ -26,7 +26,7 @@ total_coverage=$(grep -F "Total:" $PATH_TO_COVERAGE_FILE | tr -d ' ')
 line_coverage=($(echo "$total_coverage" | awk -F '|' '{print $2}' | awk -F '%' '{print $1}' ))
 
 # Extract the function coverage percentage
-fuaaaaaaaaaaaaaaa=($(echo "$total_coverage" | awk -F '|' '{print $3}' | awk -F '%' '{print $1}'))
+function_coverage=($(echo "$total_coverage" | awk -F '|' '{print $3}' | awk -F '%' '{print $1}'))
 
 # Extract the branch coverage percentage
 branch_coverage=($(echo "$total_coverage" | awk -F '|' '{print $4}' | awk -F '%' '{print $1}'))
