@@ -36,13 +36,11 @@ jobs:
         scripts/CodeCoverage.sh
       env: 
         CPPUTEST_HOME: ${{ vars.CPPUTEST_HOME }}
-    - name: Get Report
-      uses: actions/upload-pages-artifact@v1
-      with:
-        path: build/codeCoverage/html
     - name: Publish Report
-      id: deployment
-      uses: actions/deploy-pages@v1
+      run: |
+        git add build/codeCoverage/html
+        git commit -m "Update Coverage Report"
+        git push -f https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com:DJBlom/Coverage.git feature/CI-CD:main
      
   #HILTesting:
     #runs-on: ubuntu-latest
