@@ -6,7 +6,7 @@ function(Compile${PROJECT_NAME})
         -Wextra
         -Wconversion
         -Wsign-conversion
-        $<$<CONFIG:RELEASE>:-O3>
+        $<$<CONFIG:RELEASE>:-O2>
     )
 
     add_compile_definitions(

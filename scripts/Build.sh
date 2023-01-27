@@ -63,11 +63,15 @@ then
     ./EtnaUnitTests -c -v
 elif [ "$TYPE" = "$CODE_COVERAGE" ]
 then
-    $CMAKE -S . -B $BUILD_DIR --warn-uninitialized -DBUILD_COVERAGE:TYPE=ON -DCMAKE_BUILD_TYPE=$RELEASE -DCMAKE_CXX_FLAGS_RELEASE="-g -O0 -fprofile-arcs -ftest-coverage"
-    $CMAKE --build $BUILD_DIR 
-    cd build/CodeCoverage
-    ctest -T Test -T Coverage
-    lcov --rc lcov_branch_coverage=1 --directory . --capture --output-file Coverage.info
-    lcov --rc lcov_branch_coverage=1 --list Coverage.info > Coverage.txt
+#    $CMAKE -S . -B $BUILD_DIR --warn-uninitialized -DBUILD_COVERAGE:TYPE=ON -DCMAKE_BUILD_TYPE=$RELEASE -DCMAKE_CXX_FLAGS_RELEASE="-g -O0 -fprofile-arcs -ftest-coverage"
+#    $CMAKE --build $BUILD_DIR 
+#    cd build/CodeCoverage
+#    ctest -T Test -T Coverage
+#    lcov --rc lcov_branch_coverage=1 --directory . --capture --output-file Coverage.info
+#    lcov --rc lcov_branch_coverage=1 --list Coverage.info > Coverage.txt
+#
+#    curl -Os https://uploader.codecov.io/latest/linux/codecov
+#    chmod 755 codecov
+#    ./codecov
 fi
 

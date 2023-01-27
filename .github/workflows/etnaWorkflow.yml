@@ -17,7 +17,7 @@ jobs:
       run: scripts/Build.sh Release    
       
   StaticCodeAnalysis:
-    #needs: BuildProject
+    needs: BuildProject
     runs-on: ubuntu-latest
     container: dawidblom/etna:latest
     steps:
@@ -27,7 +27,7 @@ jobs:
       run: scripts/Build.sh StaticAnalysis
     
   UnitTests:
-    #needs: StaticCodeAnalysis
+    needs: StaticCodeAnalysis
     runs-on: ubuntu-latest
     container: dawidblom/etna:latest
     steps:
@@ -40,16 +40,16 @@ jobs:
         CPPUTEST_HOME: ${{ vars.CPPUTEST_HOME }}
         
   CodeCoverage:
-      #needs: UnitTests
-      runs-on: ubuntu-latest
-      container: dawidblom/etna:latest
-      steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-      - name: Code Coverage
-        run: |
-          scripts/Build.sh CodeCoverage
-          scripts/CodeCoverage.sh
-        env: 
-          CPPUTEST_HOME: ${{ vars.CPPUTEST_HOME }}
+    needs: UnitTests
+    runs-on: ubuntu-latest
+    container: dawidblom/etna:latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+    - name: Code Coverage
+      run: |
+        scripts/Build.sh CodeCoverage
+        scripts/CodeCoverage.sh
+      env: 
+        CPPUTEST_HOME: ${{ vars.CPPUTEST_HOME }}
 
