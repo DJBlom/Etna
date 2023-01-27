@@ -1,6 +1,7 @@
 #! /bin/bash
 
 
+CMAKE=cmake
 BUILD_DIR=build
 BUILD_TYPE=Release
 thresholds=("100" "100" "80")

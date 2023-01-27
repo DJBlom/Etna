@@ -1,5 +1,6 @@
 #!/bin/bash
 
+CMAKE=cmake
 BUILD_DIR=build
 BUILD_TYPE=Release
 
