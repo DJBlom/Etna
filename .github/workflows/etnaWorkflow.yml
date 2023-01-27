@@ -14,8 +14,14 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v3
     - name: Build
-      run: scripts/Build.sh    
+      run: scripts/Build.sh   
       
+  Test:
+    runs-on: ubuntu-latest
+    container: dawidblom/etna:latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
     #- name: Static Code Analysis
       #run: scripts/StaticCodeAnalysis.sh
 
@@ -37,4 +43,15 @@ jobs:
         git add build/codeCoverage/html
         git commit -m "Update coverage report"
         git push -f origin gh-pages:gh-pages
-
+        git config advice.addIgnoredFile false
+        
+  HILTesting:
+    runs-on: ubuntu-latest
+    container: dawidblom/etna:latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+      
+    - name: Performing HIL Testing
+      run:
+        echo "Performing Hardware In The Loop Testing"
