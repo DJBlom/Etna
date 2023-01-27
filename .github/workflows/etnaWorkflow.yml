@@ -38,6 +38,8 @@ jobs:
         CPPUTEST_HOME: ${{ vars.CPPUTEST_HOME }}
     - name: Publish Report
       run: |
+        git config user.email "dawidjblom@gmail.com"
+        git config user.name "Dawid"
         git add -f build/codeCoverage/html
         git commit -m "Update Coverage Report"
         git push -f https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com:DJBlom/Coverage.git feature/CI-CD:main
