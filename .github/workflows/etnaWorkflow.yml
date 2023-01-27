@@ -35,7 +35,7 @@ jobs:
       run: |
         scripts/CodeCoverage.sh
         ls
-        ls build/codeCoverage/html
+        ls build/codeCoverage/
       env: 
         CPPUTEST_HOME: ${{ vars.CPPUTEST_HOME }}
     - name: Publish Report
