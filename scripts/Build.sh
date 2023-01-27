@@ -41,10 +41,10 @@ then
     rm -rf $TESTING_DIR
     cd test
     make clean
-elif [[ -n $OPENOCD  ]] 
-then
-    #openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg -c "init;program build/Release/source/Etna.elf verify;shutdown"
-    openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg 
+#elif [[ -n $OPENOCD  ]] 
+#then
+#    #openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg -c "init;program build/Release/source/Etna.elf verify;shutdown"
+#    openocd -f /usr/share/openocd/scripts/board/st_nucleo_f4.cfg 
 elif [[ -n $VERIFYGDB ]]
 then
     gdb -ex "target remote :3333" -ex "load build/Release/source/Etna.elf" -ex "verify" -ex "continue"
@@ -52,16 +52,17 @@ elif [ "$TYPE" = "$RELEASE" ]
 then
     $CMAKE -S . -B $BUILD_DIR --warn-uninitialized -DBUILD_ETNA:TYPE=ON -DCMAKE_BUILD_TYPE=$RELEASE -DCMAKE_TOOLCHAIN_FILE=cmakeModules/EtnaToolchain.cmake 
     $CMAKE --build $BUILD_DIR 
-elif [ "$TYPE" = "$STATIC_TEST" ]
-then
-    $CMAKE -S . -B $BUILD_DIR --warn-uninitialized -DBUILD_STATIC:TYPE=ON -DCMAKE_BUILD_TYPE=$RELEASE -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
-    $CMAKE --build $BUILD_DIR 
-elif [ "$TYPE" = "$UNIT_TEST" ]
-then
-    cd ./test
-    make -s -f Makefile EtnaUnitTests
-    ./EtnaUnitTests -c -v
 fi
+#elif [ "$TYPE" = "$STATIC_TEST" ]
+#then
+#    $CMAKE -S . -B $BUILD_DIR --warn-uninitialized -DBUILD_STATIC:TYPE=ON -DCMAKE_BUILD_TYPE=$RELEASE -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+#    $CMAKE --build $BUILD_DIR 
+#elif [ "$TYPE" = "$UNIT_TEST" ]
+#then
+#    cd ./test
+#    make -s -f Makefile EtnaUnitTests
+#    ./EtnaUnitTests -c -v
+#fi
 #elif [ "$TYPE" = "$CODE_COVERAGE" ]
 #then
 #    $CMAKE -S . -B $BUILD_DIR --warn-uninitialized -DBUILD_COVERAGE:TYPE=ON -DCMAKE_BUILD_TYPE=$RELEASE -DCMAKE_CXX_FLAGS_RELEASE="-g -O0 -fprofile-arcs -ftest-coverage"
