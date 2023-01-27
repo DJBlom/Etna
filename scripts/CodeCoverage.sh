@@ -16,9 +16,7 @@ cd build/codeCoverage
 ctest -T Test -T coverage
 lcov --rc lcov_branch_coverage=1 --directory . --capture --output-file coverage.info
 lcov --rc lcov_branch_coverage=1 --list coverage.info > coverage.txt
-genhtml build/codeCoverage
-
-
+genhtml build/codeCoverage/lcov.info -o build/codeCoverage/html
 
 
 # Get the code coverage report from coverage.txt
