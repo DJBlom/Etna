@@ -40,7 +40,7 @@ jobs:
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "GitHub Actions"
-        git add build/codeCoverage/html
+        git add html
         git commit -m "Update coverage report"
         git push -f origin gh-pages:gh-pages
         git config advice.addIgnoredFile false
