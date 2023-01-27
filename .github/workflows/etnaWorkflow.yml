@@ -35,7 +35,7 @@ jobs:
       uses: actions/checkout@v3
     - name: Unit Tests
       run: |
-        scripts/UnitTest.sh 
+        scripts/UnitTests.sh 
       env:
         CPPUTEST_HOME: ${{ vars.CPPUTEST_HOME }}
         
