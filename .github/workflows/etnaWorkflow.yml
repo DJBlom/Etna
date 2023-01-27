@@ -14,10 +14,10 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v3
     - name: Build
-      run: scripts/Build.sh Release    
+      run: scripts/Build.sh    
       
   StaticCodeAnalysis:
-    needs: BuildProject
+    #needs: BuildProject
     runs-on: ubuntu-latest
     container: dawidblom/etna:latest
     steps:
@@ -27,7 +27,7 @@ jobs:
       run: scripts/StaticCodeAnalysis.sh
     
   UnitTests:
-    needs: StaticCodeAnalysis
+    #needs: StaticCodeAnalysis
     runs-on: ubuntu-latest
     container: dawidblom/etna:latest
     steps:
@@ -40,7 +40,7 @@ jobs:
         CPPUTEST_HOME: ${{ vars.CPPUTEST_HOME }}
         
   CodeCoverage:
-    needs: UnitTests
+    #needs: UnitTests
     runs-on: ubuntu-latest
     container: dawidblom/etna:latest
     steps:

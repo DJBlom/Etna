@@ -4,7 +4,7 @@
 CMAKE=cmake
 BUILD_DIR=build
 BUILD_TYPE=Release
-thresholds=("100" "100" "80")
+thresholds=("100" "100" "80") # "Lines", "Functions" "Branches"
 PASS=0
 FAIL=1
 PATH_TO_COVERAGE_FILE=../build/codeCoverage/coverage.txt
