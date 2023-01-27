@@ -6,13 +6,13 @@ USAGE="Usage: $(basename $0) [-v | --verbose] [ Reset | Release ]"
 
 CMAKE=cmake
 BUILD=build
-BUILD_DIR=$BUILD
+BUILD_DIR=$BUILD/Release
 TESTING_DIR=Testing
 TOOLCHAIN=cmakeModules/EtnaToolchain.cmake
 
 RESET=
 TYPE=Release
-RELEASE=Release
+RELEASE=$TYPE
 VERBOSE=
 
 
@@ -21,7 +21,7 @@ for arg; do
         --help|-h)              echo $USAGE; exit 0;;
         -v|--verbose)           VERBOSE='VERBOSE=1'  ;;
         Reset)                  RESET=1 ;;
-        Release)                TYPE=Release; BUILD_DIR=$BUILD/Release ;;
+        Release)                TYPE=Release ;;
         *)                      echo -e "unknown option $arg\n$USAGE" >&2;  exit 1 ;;
     esac
 done

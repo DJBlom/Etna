@@ -1,5 +1,5 @@
 project(Etna VERSION 0.0.1 LANGUAGES CXX C)
-include(EtnaFiles)
+include(EtnaTestFiles)
 
 find_program(GCOV gcov)
 if(DEFINED ENV{CPPUTEST_HOME} AND GCOV AND BUILD_COVERAGE)

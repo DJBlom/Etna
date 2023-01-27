@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ./test
+cd test
 make -s -f Makefile EtnaUnitTests
 ./EtnaUnitTests -c -v
 

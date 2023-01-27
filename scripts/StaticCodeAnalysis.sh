@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CMAKE=cmake
-BUILD_DIR=build
+BUILD_DIR=build/staticCodeAnalysis
 BUILD_TYPE=Release
 
 

@@ -2,7 +2,7 @@
 
 
 CMAKE=cmake
-BUILD_DIR=build
+BUILD_DIR=build/codeCoverage
 BUILD_TYPE=Release
 thresholds=("100" "100" "80") # "Lines", "Functions" "Branches"
 PASS=0
@@ -47,12 +47,12 @@ fi
 
 ## Check if the function coverage is less than 90%
 function_threshold=$PASS
-if [[ "$faaaaaaaaaaaaaaaa" < "${thresholds[1]}" ]]; 
+if [[ "$function_coverage" < "${thresholds[1]}" ]]; 
 then
     echo "Function coverage should be greater than ${thresholds[1]}%: FAILED"
     function_threshold=$FAIL
 else
-    echo "Function coverage is: $faaaaaaaaaaaaaaaa%: PASSED"
+    echo "Function coverage is: $function_coverage%: PASSED"
 fi
 
 # Check if the branch coverage is less than 60%
