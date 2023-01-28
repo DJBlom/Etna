@@ -15,8 +15,9 @@ $CMAKE --build $BUILD_DIR
 cd $BUILD_DIR
 ctest -T Test -T coverage
 lcov --rc lcov_branch_coverage=1 --directory . --capture --output-file coverage.info
+lcov --rc lcov_branch_coverage=1 --remove coverage.info '/opt/*' --output-file coverage.info
 lcov --rc lcov_branch_coverage=1 --list coverage.info > coverage.txt
-genhtml -o html coverage.info
+genhtml --rc lcov_branch_coverage=1 --legend -o html coverage.info
 
 
 # Get the code coverage report from coverage.txt

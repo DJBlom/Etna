@@ -34,15 +34,13 @@ jobs:
     - name: Code Coverage
       run: |
         scripts/CodeCoverage.sh
-        ls
-        ls build/codeCoverage/
       env: 
         CPPUTEST_HOME: ${{ vars.CPPUTEST_HOME }}
     - name: Publish Report
       uses: actions/upload-artifact@v2
       with:
         name: coverage-report
-        path: build/codeCoverage/html/index.html
+        path: build/codeCoverage/html/*
      
   #HILTesting:
     #runs-on: ubuntu-latest
