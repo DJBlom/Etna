@@ -37,10 +37,13 @@ jobs:
       env: 
         CPPUTEST_HOME: ${{ vars.CPPUTEST_HOME }}
     - name: Publish Report
-      uses: actions/upload-artifact@v2
-      with:
-        name: coverage-report
-        path: build/codeCoverage/html/*
+      run: |
+        git clone https://github.com/DJBlom/Coverage.git
+        cd Coverage
+        cp -R ../build/codeCoverage/html .
+        git add .
+        git commit -m "Updating coverage report. Coverage Report URL: ${{steps.deployment.output.page_url}}"
+        git push origin main
      
   #HILTesting:
     #runs-on: ubuntu-latest
