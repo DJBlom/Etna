@@ -22,6 +22,10 @@ jobs:
     steps:
     - name: Checkout Code
       uses: actions/checkout@v3
+      with:
+        submodules: 'recursive'
+        ref: main
+        ssh-key: ${{ secrets.COVERAGE_REPO_DEPLOY_KEY }}
     #- name: Static Code Analysis
       #run: scripts/StaticCodeAnalysis.sh
 
