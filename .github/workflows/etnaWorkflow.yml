@@ -38,7 +38,7 @@ jobs:
         CPPUTEST_HOME: ${{ vars.CPPUTEST_HOME }}
     - name: Publish Report
       run: |
-        git clone git@github.com:DJBlom/Coverage.git
+        git clone https://github.com/DJBlom/Coverage.git
         cd Coverage
         cp -R ../build/codeCoverage/html .
         git add .
