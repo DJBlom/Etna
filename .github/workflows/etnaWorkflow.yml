@@ -50,7 +50,7 @@ jobs:
 
 
      
-  #HILTesting:
+  HILTesting:
     #runs-on: ubuntu-latest
     #container: dawidblom/etna:latest
     #steps:
