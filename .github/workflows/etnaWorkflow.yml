@@ -35,8 +35,6 @@ jobs:
     - name: Code Coverage
       run: |
         scripts/CodeCoverage.sh
-        git config user.email "dawidjblom@gmail.com"
-        git config user.name "Dawid"
       env: 
         CPPUTEST_HOME: ${{ vars.CPPUTEST_HOME }}
     - name: Publish Report
