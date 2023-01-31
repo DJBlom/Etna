@@ -20,16 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     container: dawidblom/etna:latest       
     steps:
-    - name: Install git-lfs
-      run: |
-        sudo dnf -y install git-lfs
     - name: Checkout Code
       uses: actions/checkout@v3
-      with:
-        ref: main
-        submodules: 'recursive'
-        lfs: true
-        ssh-key: ${{ secrets.COVERAGE_PAGE_DEPLOY_KEY }}
 
     #- name: Static Code Analysis
       #run: scripts/StaticCodeAnalysis.sh
@@ -42,19 +34,20 @@ jobs:
 
     - name: Code Coverage
       run: |
-        ls
-        pwd
-        #scripts/CodeCoverage.sh
+        scripts/CodeCoverage.sh
       env: 
         CPPUTEST_HOME: ${{ vars.CPPUTEST_HOME }}
     - name: Publish Report
       run: |
-        git clone git@github.com:DJBlom/Coverage.git
+        git config --global user.email "dawidjblom@gmail.com"
+        git config --global user.name "Dawid"
+        git clone https://github.com/DJBlom/Coverage.git
         cd Coverage
         cp -R ../build/codeCoverage/html .
         git add .
         git commit -m "Updating coverage report. Coverage Report URL: ${{steps.deployment.output.page_url}}"
         git push origin main
+
      
   #HILTesting:
     #runs-on: ubuntu-latest
