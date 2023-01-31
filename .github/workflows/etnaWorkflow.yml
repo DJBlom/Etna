@@ -46,7 +46,7 @@ jobs:
         destination-github-usrname: 'DJBlom'
         destination-repository-name: 'DJBlom/Coverage'
         user-email: dawidjblom@gmail.com  
-        target-branch: main
+        #target-branch: main
 
 
      
