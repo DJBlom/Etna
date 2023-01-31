@@ -22,7 +22,7 @@ jobs:
     steps:
     - name: Install git-lfs
       run: |
-        dnf -y install git-lfs
+        sudo dnf -y install git-lfs
     - name: Checkout Code
       uses: actions/checkout@v3
       with:
