@@ -42,12 +42,11 @@ jobs:
     - name: Publish Report
       run: |
         git clone https://user:$GITHUB_TOKEN@github.com/DJBlom/Coverage.git
-        
-        #cp -R build/codeCoverage/html Coverage/
-        #cd Coverage
-        #git add .
-        #git commit -m "Coverage Report Updated"
-        #git push origin main
+        cp -R build/codeCoverage/html Coverage/
+        cd Coverage
+        git add .
+        git commit -m "Coverage Report Updated"
+        git push origin main
         
         #git remote set-url origin git@github.com:DJBlom/Coverage.git
         #git config --global user.email "dawidjblom@gmail.com"
