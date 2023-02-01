@@ -47,7 +47,7 @@ jobs:
         cd Coverage
         git add .
         git commit -m "Coverage Report Updated"
-        git push 
+        git push origin main
 
 
      
