@@ -40,13 +40,13 @@ jobs:
     - name: Publish Report
       run: |
         git config --global user.email "dawidjblom@gmail.com"
-        git config --global user.name "DJBlom"
+        git config --global user.name "Dawid"
         git clone https://github.com/DJBlom/Coverage.git
+        cp -R build/codeCoverage/html Coverage/
         cd Coverage
-        cp -R ../build/codeCoverage/html .
         git add .
         git commit -m "Coverage Report Updated"
-        git push origin main
+        git push 
 
 
      
