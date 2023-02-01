@@ -47,7 +47,7 @@ jobs:
       with:
         source-directory: 'build/codeCoverage/html'
         destination-github-username: 'DJBlom'
-        destination-repository-name: 'github.com:DJBlom/Coverage.git'
+        destination-repository-name: 'Coverage'
         user-email: dawidjblom@gmail.com
         target-branch: main
 
