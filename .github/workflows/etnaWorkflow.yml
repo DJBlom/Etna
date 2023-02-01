@@ -39,6 +39,7 @@ jobs:
         CPPUTEST_HOME: ${{ vars.CPPUTEST_HOME }}
     - name: Publish Report
       run: |
+        git remote add origin https://${{ secrets.USERNAME }}:${{ secrets.SSH_DEPLOY_KEY }}@github.com/${{ secrets.SSH_DEPLOY_KEY }}/project.git
         git config --global user.email "dawidjblom@gmail.com"
         git config --global user.name "Dawid"
         git clone https://github.com/DJBlom/Coverage.git
