@@ -7,7 +7,6 @@ on:
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  SSH_DEPLOY_KEY: ${{ secrets.SSH_COVERAGE_PAGES }}
   
 jobs:
   #Build:
@@ -34,14 +33,6 @@ jobs:
       #  scripts/UnitTests.sh 
       #env:
       #  CPPUTEST_HOME: ${{ vars.CPPUTEST_HOME }}
-      
-    - name: Set up SSH key
-      run: |
-        echo "$SSH_DEPLOY_KEY" > deploy_key
-        chmod 600 deploy_key
-        eval $(ssh-agent -s)
-        ssh-add deploy_key
-        ssh-keyscan -H github.com
 
     - name: Code Coverage
       run: |
@@ -49,10 +40,8 @@ jobs:
       env: 
         CPPUTEST_HOME: ${{ vars.CPPUTEST_HOME }}
     - name: Publish Report
-      env:
-        GIT_SSH_COMMAND: 'ssh -i deploy_key'
       run: |
-        git clone git@github.com:DJBlom/Coverage.git
+        git clone https://user:$GITHUB_TOKEN@github.com/DJBlom/Coverage.git
         
         #cp -R build/codeCoverage/html Coverage/
         #cd Coverage
