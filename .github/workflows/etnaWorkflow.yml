@@ -48,10 +48,9 @@ jobs:
         cd Coverage
         git add .
         git commit -m "Coverage Report Updated"
-        git config --unset-all http.https://github.com/.extraheader
         git push --set-upstream https://user:$GITHUB_TOKEN@github.com/Coverage.git
         
-
+        #git config --unset-all http.https://github.com/.extraheader
       
         
 
