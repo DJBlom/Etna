@@ -39,7 +39,7 @@ jobs:
         CPPUTEST_HOME: ${{ vars.CPPUTEST_HOME }}
     - name: Publish Report
       run: |
-        git remote add upstream https://github.com/${{ secrets.USERNAME }}/Coverage.git
+        git remote set-url origin https://github.com/DJBlom/Coverage.git
         git config --global user.email "dawidjblom@gmail.com"
         git config --global user.name "Dawid"
         git clone https://github.com/DJBlom/Coverage.git
