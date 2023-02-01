@@ -40,6 +40,8 @@ jobs:
     - name: Publish Report
       run: |
         git clone git@github.com:DJBlom/Coverage.git
+      env:
+        SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
         #cp -R build/codeCoverage/html Coverage/
         #cd Coverage
         #git add .
