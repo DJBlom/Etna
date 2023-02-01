@@ -7,7 +7,7 @@ on:
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+  SSH_DEPLOY_KEY: ${{ secrets.SSH_COVERAGE_PAGES }}
   
 jobs:
   #Build:
@@ -41,6 +41,7 @@ jobs:
         chmod 600 deploy_key
         eval $(ssh-agent -s)
         ssh-add deploy_key
+        ssh-keyscan -H github.com
 
     - name: Code Coverage
       run: |
