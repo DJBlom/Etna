@@ -48,6 +48,8 @@ jobs:
         git add .
         git commit -m "Coverage Report Updated"
         git push origin main
+      env:
+        ${{ secrets.SSH_DEPLOY_KEY }}
       
         
 
