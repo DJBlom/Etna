@@ -38,15 +38,15 @@ jobs:
       env: 
         CPPUTEST_HOME: ${{ vars.CPPUTEST_HOME }}
     - name: Publish Report
-      uses: cpina/github-action-push-to-another-repository@v1.5.1
+      run: |
+        git clone git@github.com:DJBlom/Coverage.git
+        cd Coverage
+        cp -R ../build/codeCoverage/html .
+        git add .
+        git commit -m "Coverage Report Updated"
+        git push origin main
       env:
          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
-      with:
-        source-directory: build/codeCoverage/html
-        destination-github-usrname: 'DJBlom'
-        destination-repository-name: 'DJBlom/Coverage'
-        user-email: dawidjblom@gmail.com  
-        target-branch: main
 
 
      
