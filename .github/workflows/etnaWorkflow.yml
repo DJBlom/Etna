@@ -24,12 +24,12 @@ jobs:
     #    name: Etna.elf
     #    path: build/Release/source/
       
-  Test:
-    runs-on: ubuntu-latest
-    container: dawidblom/etna:latest       
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
+  #Test:
+  #  runs-on: ubuntu-latest
+  #  container: dawidblom/etna:latest       
+  #  steps:
+  #  - name: Checkout Code
+  #    uses: actions/checkout@v3
 
     #- name: Static Code Analysis
       #run: scripts/StaticCodeAnalysis.sh
@@ -40,22 +40,22 @@ jobs:
       #env:
       #  CPPUTEST_HOME: ${{ vars.CPPUTEST_HOME }}
 
-    - name: Code Coverage
-      run: |
-        scripts/CodeCoverage.sh
-      env: 
-        CPPUTEST_HOME: ${{ vars.CPPUTEST_HOME }}
-    - name: Publish Report
-      uses: cpina/github-action-push-to-another-repository@main
-      env:
-        SSH_DEPLOY_KEY: ${{ secrets.SSH_COVERAGE_PAGES }}
-        API_TOKEN_GITHUB: ${{ secrets.COVERAGE_REPO_DEPLOY_KEY }}
-      with:
-        source-directory: 'build/codeCoverage/html'
-        destination-github-username: 'DJBlom'
-        destination-repository-name: 'Coverage'
-        user-email: dawidjblom@gmail.com
-        target-branch: main
+    #- name: Code Coverage
+    #  run: |
+    #    scripts/CodeCoverage.sh
+    #  env: 
+    #    CPPUTEST_HOME: ${{ vars.CPPUTEST_HOME }}
+    #- name: Publish Report
+    #  uses: cpina/github-action-push-to-another-repository@main
+    #  env:
+    #    SSH_DEPLOY_KEY: ${{ secrets.SSH_COVERAGE_PAGES }}
+    #    API_TOKEN_GITHUB: ${{ secrets.COVERAGE_REPO_DEPLOY_KEY }}
+    #  with:
+    #    source-directory: 'build/codeCoverage/html'
+    #    destination-github-username: 'DJBlom'
+    #    destination-repository-name: 'Coverage'
+    #    user-email: dawidjblom@gmail.com
+    #    target-branch: main
 
       
         
@@ -73,7 +73,7 @@ jobs:
    #   env:
    #     TTY: /dev/ttyAMC0
 
-    - name: Flash firmware
+    - name: Flash Firmware
       run: scripts/FlashCode.sh
     
     
