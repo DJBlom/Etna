@@ -18,11 +18,11 @@ jobs:
     - name: Build
       run: scripts/Build.sh  
       
-    - name: Upload Binary
-      uses: actions/upload-artifact@v3
-      with:
-        name: Etna.elf
-        path: build/Release/source/
+    #- name: Upload Binary
+    #  uses: actions/upload-artifact@v3
+    #  with:
+    #    name: Etna.elf
+    #    path: build/Release/source/
       
   Test:
     runs-on: ubuntu-latest
@@ -66,12 +66,12 @@ jobs:
     runs-on: ubuntu-latest
     container: dawidblom/etna:latest
     steps:
-    - name: Download Binary
-      uses: actions/download-artifact@v3
-      with:
-        name: Etna.elf  
-      env:
-        TTY: /dev/ttyAMC0
+   # - name: Download Binary
+   #   uses: actions/download-artifact@v3
+   #   with:
+   #     name: Etna.elf  
+   #   env:
+   #     TTY: /dev/ttyAMC0
 
     - name: Flash firmware
       run: scripts/FlashCode.sh
