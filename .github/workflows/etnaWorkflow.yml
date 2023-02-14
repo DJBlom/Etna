@@ -56,13 +56,17 @@ jobs:
 
 
      
-  #HILTesting:
-    #runs-on: ubuntu-latest
-    #container: dawidblom/etna:latest
-    #steps:
-    #- name: Checkout Code
-    #  uses: actions/checkout@v3
-      
-    #- name: Performing HIL Testing
-    #  run:
-    #    echo "Performing Hardware In The Loop Testing"
+  HILTesting:
+    runs-on: ubuntu-latest
+    container: dawidblom/etna:latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3      
+      env:
+        TTY: /dev/ttyAMC0
+
+    - name: Flash firmware
+      run: |
+        scripts/FlashCode.sh
+    
+    
