@@ -75,7 +75,7 @@ jobs:
    #   env:
    #     TTY: /dev/ttyAMC0
 
-    - name: Flash Firmware
-      run: scripts/FlashCode.sh
+      - name: Flash Firmware
+        run: scripts/FlashCode.sh
     
     
