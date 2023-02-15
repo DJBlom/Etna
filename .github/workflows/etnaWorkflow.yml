@@ -15,7 +15,7 @@ jobs:
     steps:
     - name: Checkout Code
       uses: actions/checkout@v3
-    - name: Build
+    - name: Build Project
       run: scripts/Build.sh  
     - name: Upload Binary
       uses: actions/upload-artifact@v3
@@ -68,10 +68,12 @@ jobs:
         uses: actions/download-artifact@v3
         with:
          name: Etna.elf  
-        #env:
-        #  TTY: /dev/ttyAMC0
-      #- name: Flash Firmware
-      #  run: scripts/FlashCode.sh
+         needs: Build Project
+        env:
+          TTY: /dev/ttyAMC0
+          
+      - name: Flash Firmware
+        run: scripts/FlashCode.sh
 
 
     
