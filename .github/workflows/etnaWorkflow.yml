@@ -77,7 +77,7 @@ jobs:
           
       - name: Flash Firmware
         run: |
-          ls -la /dev 
+          ls -la /dev/tty 
           scripts/FlashCode.sh
 
 
