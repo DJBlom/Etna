@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo "target extended-remote /dev/ttyUSB0" > gdb.init
+echo "target extended-remote /dev/ttyAMC0" > gdb.init
 echo "monitor reset halt" >> gdb.init
-echo "load path/to/firmware.elf" >> gdb.init
+echo "load Etna.elf" >> gdb.init
 echo "monitor reset" >> gdb.init
 echo "quit" >> gdb.init
 gdb -x gdb.init
