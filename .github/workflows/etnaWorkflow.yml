@@ -69,7 +69,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
       - name: Flash Firmware
-        run: scripts/FlashCode.sh
+        run: |
+          scripts/Build.sh
+          scripts/FlashCode.sh
    # - name: Download Binary
    #   uses: actions/download-artifact@v3
    #   with:
