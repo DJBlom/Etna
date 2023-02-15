@@ -72,11 +72,13 @@ jobs:
         uses: actions/download-artifact@v3
         with:
          name: Etna.elf  
-        env:
-          TTY: /dev/ttyAMC0
+        #env:
+        #  TTY: /dev/ttyAMC0
           
       - name: Flash Firmware
-        run: scripts/FlashCode.sh
+        run: |
+          ls /dev 
+          scripts/FlashCode.sh
 
 
     
