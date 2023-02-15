@@ -67,14 +67,14 @@ int main()
     debug.LogMessage("Blink\n\r");
     while (true)
     {
-        *odr = *odr | (1U << 5);
+        //*odr = *odr | (1U << 5);
 
         for (int i = 0; i < 500000; i++)
         {
 
         }
 
-        *odr = *odr & ~(1U << 5);
+        //*odr = *odr & ~(1U << 5);
         for (int i = 0; i < 500000; i++)
         {
 
