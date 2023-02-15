@@ -63,6 +63,7 @@ jobs:
      
   HILTesting:
     runs-on: ubuntu-latest
+    container: dawidblom/etna:latest
     needs: Build
     steps:
       - name: Checkout Code
