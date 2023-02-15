@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "target extended-remote /dev/ttyAMC0" > gdb.init
+echo "target extended-remote /dev/ttyACM0" > gdb.init
 echo "monitor reset halt" >> gdb.init
 echo "load Etna.elf" >> gdb.init
 echo "monitor reset" >> gdb.init
