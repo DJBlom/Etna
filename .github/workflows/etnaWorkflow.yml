@@ -21,7 +21,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: Etna.elf
-        path: build/Release/source/
+        path: build/Release/source/Etna.elf
       
   #Test:
   #  runs-on: ubuntu-latest
