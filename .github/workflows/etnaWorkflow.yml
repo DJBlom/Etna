@@ -63,12 +63,12 @@ jobs:
      
   HILTesting:
     runs-on: ubuntu-latest
+    needs: Build
     steps:
       - name: Download Binary
         uses: actions/download-artifact@v3
         with:
          name: Etna.elf  
-         needs: Build Project
         env:
           TTY: /dev/ttyAMC0
           
